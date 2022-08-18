@@ -1,5 +1,6 @@
 package com.example.q_mark;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -16,6 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
 public class Otp_verify extends AppCompatActivity {
 
     private EditText otp_1,otp_2,otp_3,otp_4,otp_5,otp_6;
@@ -23,11 +32,17 @@ public class Otp_verify extends AppCompatActivity {
     private boolean resend_show=false;
     private int resendtime=1000;
     private int slectedpos=0;
+
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    private String getEmail,getName,getMobile,getPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_otp_verify);
+
+
 
         otp_1=findViewById(R.id.otp_digit_1);
         otp_2=findViewById(R.id.otp_digit_2);
@@ -41,13 +56,18 @@ public class Otp_verify extends AppCompatActivity {
         final TextView email=findViewById(R.id.otp_email);
         final TextView mobile=findViewById(R.id.otp_mobile);
 
-        //getting email mobile form signup
-        final String getEmail= getIntent().getStringExtra("email");
-        final String getMobile= getIntent().getStringExtra("mobile");
+        //getting data form signup
+        getEmail= getIntent().getStringExtra("email");
+        getMobile= getIntent().getStringExtra("mobile");
+        getName=getIntent().getStringExtra("name");
+        getPassword=getIntent().getStringExtra("password");
+
         //setting email at otp page
         email.setText(getEmail);
-        mobile.setText(getMobile);
+        mobile.setText(String.format("+88%s",getMobile));
 
+        mAuth=FirebaseAuth.getInstance();
+        mUser=mAuth.getCurrentUser();
         otp_1.addTextChangedListener(textwatcher);
         otp_2.addTextChangedListener(textwatcher);
         otp_3.addTextChangedListener(textwatcher);
@@ -56,6 +76,7 @@ public class Otp_verify extends AppCompatActivity {
         otp_6.addTextChangedListener(textwatcher);
 
         show_keyboard(otp_1);
+
         reset_tym_count();
         resendbutton.setOnClickListener(new View.OnClickListener() {
             @Override

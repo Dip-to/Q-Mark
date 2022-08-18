@@ -16,10 +16,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.concurrent.TimeUnit;
 
 
 public class SignUp extends AppCompatActivity {
@@ -35,8 +40,6 @@ public class SignUp extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     FirebaseAuth mAuth;
-    FirebaseUser mUser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,11 @@ public class SignUp extends AppCompatActivity {
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
+        email.setText("@gmail.com");
+        mobile.setText("01521582090");
+        name.setText("dsnalkdnaskl");
         mAuth=FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
+        //mUser=mAuth.getCurrentUser();
 
         pass1_show_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,12 +111,6 @@ public class SignUp extends AppCompatActivity {
                 final String getEmail=email.getText().toString();
                 final String getMobile=mobile.getText().toString();
                 signupauthentication();
-                //redirect to otp verifying
-//                Intent intent=new Intent(SignUp.this,Otp_verify.class);
-//                intent.putExtra("mobile",getMobile);
-//                intent.putExtra("email",getEmail);
-//                startActivity(intent);
-
             }
         });
 
@@ -128,11 +128,16 @@ public class SignUp extends AppCompatActivity {
 
     private void signupauthentication()
     {
+
+
         String s_email=email.getText().toString();
         String s_phn=mobile.getText().toString();
         String s_pass1=pass1.getText().toString();
         String s_pass2=pass2.getText().toString();
         String s_name=name.getText().toString();
+
+
+
 
         if(s_name.isEmpty()) name.setError("Name field can't be empty");
         else if(!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
@@ -142,37 +147,104 @@ public class SignUp extends AppCompatActivity {
         else if(!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
         else
         {
-            progressDialog.setMessage("Registration in progress");
-            progressDialog.setTitle("Registration");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+            Toast.makeText(SignUp.this, "holaap", Toast.LENGTH_SHORT).show();
 
-           mAuth.createUserWithEmailAndPassword(s_email,s_pass1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-               @Override
-               public void onComplete(@NonNull Task<AuthResult> task)
-               {
+            PhoneAuthOptions options =  PhoneAuthOptions.newBuilder(mAuth)
+                            .setPhoneNumber("+88"+s_phn)       // Phone number to verify
+                            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                            .setActivity(this)                 // Activity (for callback binding)
+                            .setCallbacks
+                                    (
+                                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks()
+                                        {
+                                            @Override
+                                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
-                   if(task.isSuccessful())
-                   {
-                       progressDialog.dismiss();
-                       Toast.makeText(SignUp.this, "Registration successfull", Toast.LENGTH_SHORT).show();
-                   }
-                   else
-                   {
-                       progressDialog.dismiss();
-                       try
-                       {
-                           throw task.getException();
-                       } catch(Exception e)
-                       {
-                           Toast.makeText(getApplicationContext(), "Email already taken! Try login", Toast.LENGTH_SHORT).show();
-                       }
-                   }
-                   Intent intent=new Intent(SignUp.this,Login.class);
-                   intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                   startActivity(intent);
-               }
-           });
+                                            }
+
+                                            @Override
+                                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                                Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            @Override
+                                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                                Intent intent=new Intent(SignUp.this,Otp_verify.class);
+                                                intent.putExtra("mobile",s_phn);
+                                                intent.putExtra("email",s_email);
+                                                intent.putExtra("otp",s);
+                                                Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    )          // OnVerificationStateChangedCallbacks
+                            .build();
+            PhoneAuthProvider.verifyPhoneNumber(options);
+//            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                    "+88"+s_phn,
+//                    60,
+//                    TimeUnit.SECONDS,
+//                    SignUp.this,
+//                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+//                        @Override
+//                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onVerificationFailed(@NonNull FirebaseException e) {
+//                            Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                            Intent intent=new Intent(SignUp.this,Otp_verify.class);
+//                            intent.putExtra("mobile",s_phn);
+//                            intent.putExtra("email",s_email);
+//                            intent.putExtra("otp",s);
+//                            Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
+//                            startActivity(intent);
+//                        }
+//                    }
+//            );
+//            Intent intent=new Intent(SignUp.this,Otp_verify.class);
+//            intent.putExtra("mobile",s_phn);
+//            intent.putExtra("email",s_email);
+//            intent.putExtra("password",s_pass1);
+//            intent.putExtra("name",s_name);
+//
+//            startActivity(intent);
+//            progressDialog.setMessage("Registration in progress");
+//            progressDialog.setTitle("Registration");
+//            progressDialog.setCanceledOnTouchOutside(false);
+//            progressDialog.show();
+//
+//           mAuth.createUserWithEmailAndPassword(s_email,s_pass1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//               @Override
+//               public void onComplete(@NonNull Task<AuthResult> task)
+//               {
+//
+//                   if(task.isSuccessful())
+//                   {
+//                       progressDialog.dismiss();
+//                       Toast.makeText(SignUp.this, "Registration successfull", Toast.LENGTH_SHORT).show();
+//                   }
+//                   else
+//                   {
+//                       progressDialog.dismiss();
+//                       try
+//                       {
+//                           throw task.getException();
+//                       } catch(Exception e)
+//                       {
+//                           Toast.makeText(getApplicationContext(), "Email already taken! Try login", Toast.LENGTH_SHORT).show();
+//                       }
+//                   }
+//                   Intent intent=new Intent(SignUp.this,Login.class);
+//                   intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                   startActivity(intent);
+//               }
+//           });
         }
     }
 
