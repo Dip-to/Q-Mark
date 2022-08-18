@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "217952865556",
+    "firebase_url": "https://q-mark-default-rtdb.firebaseio.com",
+    "project_id": "q-mark",
+    "storage_bucket": "q-mark.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217952865556:android:e93aec26a0d11106b10601",
+        "android_client_info": {
+          "package_name": "com.example.q_mark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217952865556-te03tcetd9luhs40ch1s45jng3n8ekop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4uROfbXtGJfNuz44Qb3JaJ-2gu2Ijv9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217952865556-te03tcetd9luhs40ch1s45jng3n8ekop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
