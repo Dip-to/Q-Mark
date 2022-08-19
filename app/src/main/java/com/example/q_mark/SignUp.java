@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class SignUp extends AppCompatActivity {
     private AppCompatButton signup_button;
     private TextView login;
     ProgressDialog progressDialog;
+    ProgressBar progressBar;
 
     FirebaseAuth mAuth;
 
@@ -52,10 +54,11 @@ public class SignUp extends AppCompatActivity {
         mobile= findViewById(R.id.sup_mobile);
         pass1= findViewById(R.id.sup_pass);
         pass2= findViewById(R.id.sup_pass_cnfrm);
-
+        progressBar=findViewById(R.id.progressBar);
         signup_button= findViewById(R.id.sup_button);
         login=findViewById(R.id.login_page_back);
         progressDialog=new ProgressDialog(this);
+        progressBar=new ProgressBar(this);
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
@@ -110,7 +113,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 final String getEmail=email.getText().toString();
                 final String getMobile=mobile.getText().toString();
-                signupauthentication();
+                signupauthentication(view);
             }
         });
 
@@ -126,7 +129,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private void signupauthentication()
+    private void signupauthentication(View view)
     {
 
 
@@ -147,8 +150,9 @@ public class SignUp extends AppCompatActivity {
         else if(!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
         else
         {
-            Toast.makeText(SignUp.this, "holaap", Toast.LENGTH_SHORT).show();
 
+
+            progressBar.setVisibility(view.VISIBLE);
             PhoneAuthOptions options =  PhoneAuthOptions.newBuilder(mAuth)
                             .setPhoneNumber("+88"+s_phn)       // Phone number to verify
                             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -164,11 +168,13 @@ public class SignUp extends AppCompatActivity {
 
                                             @Override
                                             public void onVerificationFailed(@NonNull FirebaseException e) {
+                                                progressBar.setVisibility(view.GONE);
                                                 Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
 
                                             @Override
                                             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                                progressBar.setVisibility(view.GONE);
                                                 Intent intent=new Intent(SignUp.this,Otp_verify.class);
                                                 intent.putExtra("mobile",s_phn);
                                                 intent.putExtra("email",s_email);
