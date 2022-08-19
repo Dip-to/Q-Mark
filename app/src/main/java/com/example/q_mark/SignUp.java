@@ -163,7 +163,7 @@ public class SignUp extends AppCompatActivity {
                                         {
                                             @Override
                                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
+                                                progressBar.setVisibility(view.GONE);
                                             }
 
                                             @Override
@@ -178,8 +178,11 @@ public class SignUp extends AppCompatActivity {
                                                 Intent intent=new Intent(SignUp.this,Otp_verify.class);
                                                 intent.putExtra("mobile",s_phn);
                                                 intent.putExtra("email",s_email);
+                                                intent.putExtra("name",s_name);
+                                                intent.putExtra("password",s_pass1);
                                                 intent.putExtra("otp",s);
                                                 Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
                                             }
                                         }
