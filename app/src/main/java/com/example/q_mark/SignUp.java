@@ -58,7 +58,6 @@ public class SignUp extends AppCompatActivity {
         signup_button= findViewById(R.id.sup_button);
         login=findViewById(R.id.login_page_back);
         progressDialog=new ProgressDialog(this);
-        progressBar=new ProgressBar(this);
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
@@ -111,9 +110,68 @@ public class SignUp extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(view.VISIBLE);
                 final String getEmail=email.getText().toString();
                 final String getMobile=mobile.getText().toString();
-                signupauthentication(view);
+                //signupauthentication(view);
+                String s_email=email.getText().toString();
+                String s_phn=mobile.getText().toString();
+                String s_pass1=pass1.getText().toString();
+                String s_pass2=pass2.getText().toString();
+                String s_name=name.getText().toString();
+
+
+
+
+                if(s_name.isEmpty()) name.setError("Name field can't be empty");
+                else if(!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
+                else if(s_phn.isEmpty() || s_phn.length()!=11) mobile.setError("Enter correct mobile no");
+                else if(s_pass1.isEmpty()) pass1.setError("Password field can't be empty.");
+                else if(s_pass1.length()<6) pass1.setError("Password length must be at least 6");
+                else if(!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
+                else {
+                    progressDialog.setMessage("Please wait for the next step");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+                    PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                            .setPhoneNumber("+88" + s_phn)       // Phone number to verify
+                            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                            .setActivity(SignUp.this)                 // Activity (for callback binding)
+                            .setCallbacks
+                                    (
+                                            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                                @Override
+                                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                                    progressDialog.dismiss();
+                                                }
+
+                                                @Override
+                                                public void onVerificationFailed(@NonNull FirebaseException e) {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+
+                                                    Intent intent = new Intent(SignUp.this, Otp_verify.class);
+
+                                                    intent.putExtra("mobile", s_phn);
+                                                    intent.putExtra("email", s_email);
+                                                    intent.putExtra("name", s_name);
+                                                    intent.putExtra("password", s_pass1);
+                                                    intent.putExtra("otp", s);
+                                                    Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
+                                                    progressDialog.dismiss();
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                    )          // OnVerificationStateChangedCallbacks
+                            .build();
+                    PhoneAuthProvider.verifyPhoneNumber(options);
+                }
+                progressBar.setVisibility(view.GONE);
             }
         });
 
@@ -152,7 +210,7 @@ public class SignUp extends AppCompatActivity {
         {
 
 
-            progressBar.setVisibility(view.VISIBLE);
+
             PhoneAuthOptions options =  PhoneAuthOptions.newBuilder(mAuth)
                             .setPhoneNumber("+88"+s_phn)       // Phone number to verify
                             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -174,7 +232,7 @@ public class SignUp extends AppCompatActivity {
 
                                             @Override
                                             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                                progressBar.setVisibility(view.GONE);
+
                                                 Intent intent=new Intent(SignUp.this,Otp_verify.class);
                                                 intent.putExtra("mobile",s_phn);
                                                 intent.putExtra("email",s_email);
@@ -183,6 +241,7 @@ public class SignUp extends AppCompatActivity {
                                                 intent.putExtra("otp",s);
                                                 Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                progressBar.setVisibility(view.GONE);
                                                 startActivity(intent);
                                             }
                                         }
@@ -255,6 +314,7 @@ public class SignUp extends AppCompatActivity {
 //               }
 //           });
         }
+        progressBar.setVisibility(view.GONE);
     }
 
 
