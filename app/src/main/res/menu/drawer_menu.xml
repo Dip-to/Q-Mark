@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIN="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/side_menu_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/side_menu_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/side_menu_notification"
+            android:icon="@drawable/ic_notification"
+            android:title="Notification" />
+        <item
+            android:id="@+id/side_menu_friends"
+            android:icon="@drawable/ic_friends"
+            android:title="Friends" />
+        <item
+            android:id="@+id/side_menu_addfriend"
+            android:icon="@drawable/ic_addfriend"
+            android:title="Add friend" />
+        <item
+            android:id="@+id/side_menu_upload"
+            android:icon="@drawable/ic_upload"
+            android:title="Upload" />
+        <item
+            android:id="@+id/side_menu_chat"
+            android:icon="@drawable/ic_chat"
+            android:title="Chat" />
+        <item
+            android:id="@+id/side_menu_course"
+            android:icon="@drawable/ic_course"
+            android:title="Course" />
+        <item
+            android:id="@+id/side_menu_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+    </group>
+
+</menu>
