@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_login);
-        startActivity(new Intent(MainActivity.this, Login.class));
+        startActivity(new Intent(MainActivity.this, Welcome_page.class));
     }
 }
