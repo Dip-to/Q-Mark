@@ -30,11 +30,11 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUp extends AppCompatActivity {
 
-    private boolean pass_show1=false;
-    private boolean pass_show2=false;
+    private boolean pass_show1 = false;
+    private boolean pass_show2 = false;
 
-    private String emailpattern= "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private EditText name,email,mobile,pass1,pass2;
+    private String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private EditText name, email, mobile, pass1, pass2;
 
     private AppCompatButton signup_button;
     private TextView login;
@@ -49,36 +49,33 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_sign_up);
 
-        name=findViewById(R.id.sup_name);
-        email= findViewById(R.id.sup_email);
-        mobile= findViewById(R.id.sup_mobile);
-        pass1= findViewById(R.id.sup_pass);
-        pass2= findViewById(R.id.sup_pass_cnfrm);
-        progressBar=findViewById(R.id.progressBar);
-        signup_button= findViewById(R.id.sup_button);
-        login=findViewById(R.id.login_page_back);
-        progressDialog=new ProgressDialog(this);
+        name = findViewById(R.id.sup_name);
+        email = findViewById(R.id.sup_email);
+        mobile = findViewById(R.id.sup_mobile);
+        pass1 = findViewById(R.id.sup_pass);
+        pass2 = findViewById(R.id.sup_pass_cnfrm);
+        progressBar = findViewById(R.id.progressBar);
+        signup_button = findViewById(R.id.sup_button);
+        login = findViewById(R.id.login_page_back);
+        progressDialog = new ProgressDialog(this);
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
         email.setText("@gmail.com");
         mobile.setText("01521582090");
         name.setText("dsnalkdnaskl");
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         //mUser=mAuth.getCurrentUser();
 
         pass1_show_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pass_show1==true)
-                {
-                    pass_show1=false;
+                if (pass_show1 == true) {
+                    pass_show1 = false;
                     pass1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     pass1_show_img.setImageResource(R.drawable.eye_show);
-                }
-                else
-                {
-                    pass_show1=true;
+                } else {
+                    pass_show1 = true;
                     pass1.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     pass1_show_img.setImageResource(R.drawable.eye_hide);
                 }
@@ -89,15 +86,12 @@ public class SignUp extends AppCompatActivity {
         pass2_show_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pass_show2==true)
-                {
-                    pass_show2=false;
+                if (pass_show2 == true) {
+                    pass_show2 = false;
                     pass2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     pass2_show_img.setImageResource(R.drawable.eye_show);
-                }
-                else
-                {
-                    pass_show2=true;
+                } else {
+                    pass_show2 = true;
                     pass2.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     pass2_show_img.setImageResource(R.drawable.eye_hide);
                 }
@@ -111,24 +105,23 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(view.VISIBLE);
-                final String getEmail=email.getText().toString();
-                final String getMobile=mobile.getText().toString();
+                final String getEmail = email.getText().toString();
+                final String getMobile = mobile.getText().toString();
                 //signupauthentication(view);
-                String s_email=email.getText().toString();
-                String s_phn=mobile.getText().toString();
-                String s_pass1=pass1.getText().toString();
-                String s_pass2=pass2.getText().toString();
-                String s_name=name.getText().toString();
+                String s_email = email.getText().toString();
+                String s_phn = mobile.getText().toString();
+                String s_pass1 = pass1.getText().toString();
+                String s_pass2 = pass2.getText().toString();
+                String s_name = name.getText().toString();
 
 
-
-
-                if(s_name.isEmpty()) name.setError("Name field can't be empty");
-                else if(!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
-                else if(s_phn.isEmpty() || s_phn.length()!=11) mobile.setError("Enter correct mobile no");
-                else if(s_pass1.isEmpty()) pass1.setError("Password field can't be empty.");
-                else if(s_pass1.length()<6) pass1.setError("Password length must be at least 6");
-                else if(!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
+                if (s_name.isEmpty()) name.setError("Name field can't be empty");
+                else if (!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
+                else if (s_phn.isEmpty() || s_phn.length() != 11)
+                    mobile.setError("Enter correct mobile no");
+                else if (s_pass1.isEmpty()) pass1.setError("Password field can't be empty.");
+                else if (s_pass1.length() < 6) pass1.setError("Password length must be at least 6");
+                else if (!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
                 else {
                     progressDialog.setMessage("Please wait for the next step");
                     progressDialog.setCanceledOnTouchOutside(false);
@@ -180,73 +173,68 @@ public class SignUp extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUp.this,Login.class));
+                startActivity(new Intent(SignUp.this, Login.class));
             }
         });
 
 
     }
 
-    private void signupauthentication(View view)
-    {
+    private void signupauthentication(View view) {
 
 
-        String s_email=email.getText().toString();
-        String s_phn=mobile.getText().toString();
-        String s_pass1=pass1.getText().toString();
-        String s_pass2=pass2.getText().toString();
-        String s_name=name.getText().toString();
+        String s_email = email.getText().toString();
+        String s_phn = mobile.getText().toString();
+        String s_pass1 = pass1.getText().toString();
+        String s_pass2 = pass2.getText().toString();
+        String s_name = name.getText().toString();
 
 
+        if (s_name.isEmpty()) name.setError("Name field can't be empty");
+        else if (!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
+        else if (s_phn.isEmpty() || s_phn.length() != 11)
+            mobile.setError("Enter correct mobile no");
+        else if (s_pass1.isEmpty()) pass1.setError("Password field can't be empty.");
+        else if (s_pass1.length() < 6) pass1.setError("Password length must be at least 6");
+        else if (!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
+        else {
 
 
-        if(s_name.isEmpty()) name.setError("Name field can't be empty");
-        else if(!s_email.matches(emailpattern)) email.setError("Enter correct e-mail");
-        else if(s_phn.isEmpty() || s_phn.length()!=11) mobile.setError("Enter correct mobile no");
-        else if(s_pass1.isEmpty()) pass1.setError("Password field can't be empty.");
-        else if(s_pass1.length()<6) pass1.setError("Password length must be at least 6");
-        else if(!s_pass1.equals(s_pass2)) pass2.setError("Password didn't match");
-        else
-        {
-
-
-
-            PhoneAuthOptions options =  PhoneAuthOptions.newBuilder(mAuth)
-                            .setPhoneNumber("+88"+s_phn)       // Phone number to verify
-                            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                            .setActivity(this)                 // Activity (for callback binding)
-                            .setCallbacks
-                                    (
-                                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks()
-                                        {
-                                            @Override
-                                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                                progressBar.setVisibility(view.GONE);
-                                            }
-
-                                            @Override
-                                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                                progressBar.setVisibility(view.GONE);
-                                                Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-
-                                            @Override
-                                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-
-                                                Intent intent=new Intent(SignUp.this,Otp_verify.class);
-                                                intent.putExtra("mobile",s_phn);
-                                                intent.putExtra("email",s_email);
-                                                intent.putExtra("name",s_name);
-                                                intent.putExtra("password",s_pass1);
-                                                intent.putExtra("otp",s);
-                                                Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                progressBar.setVisibility(view.GONE);
-                                                startActivity(intent);
-                                            }
+            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                    .setPhoneNumber("+88" + s_phn)       // Phone number to verify
+                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                    .setActivity(this)                 // Activity (for callback binding)
+                    .setCallbacks
+                            (
+                                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                        @Override
+                                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                            progressBar.setVisibility(view.GONE);
                                         }
-                                    )          // OnVerificationStateChangedCallbacks
-                            .build();
+
+                                        @Override
+                                        public void onVerificationFailed(@NonNull FirebaseException e) {
+                                            progressBar.setVisibility(view.GONE);
+                                            Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+
+                                            Intent intent = new Intent(SignUp.this, Otp_verify.class);
+                                            intent.putExtra("mobile", s_phn);
+                                            intent.putExtra("email", s_email);
+                                            intent.putExtra("name", s_name);
+                                            intent.putExtra("password", s_pass1);
+                                            intent.putExtra("otp", s);
+                                            Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            progressBar.setVisibility(view.GONE);
+                                            startActivity(intent);
+                                        }
+                                    }
+                            )          // OnVerificationStateChangedCallbacks
+                    .build();
             PhoneAuthProvider.verifyPhoneNumber(options);
 //            PhoneAuthProvider.getInstance().verifyPhoneNumber(
 //                    "+88"+s_phn,
