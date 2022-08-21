@@ -7,8 +7,11 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +33,8 @@ public class Login extends AppCompatActivity {
     FirebaseUser mUser;
     private AppCompatButton login_button;
     private boolean pass_show = false;
+    Animation top,bottom;
+    private  static  int SPLASH_SCREEN =2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,23 @@ public class Login extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         final TextView signUp = findViewById(R.id.sign_up_click);
         final ImageView showpass = findViewById(R.id.show_sup_pass);
+        top = AnimationUtils.loadAnimation(this, R.anim.top);
+        bottom = AnimationUtils.loadAnimation(this, R.anim.bottom);
+        email.setAnimation(top);
+        password.setAnimation(top);
+        login_button.setAnimation(bottom);
+
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run() {
+//                Intent intent = new Intent(Welcome_page.this, Login.class);
+//                startActivity(intent);
+//                finish();
+            }
+        },SPLASH_SCREEN);
+
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
