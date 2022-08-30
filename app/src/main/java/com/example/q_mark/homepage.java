@@ -72,7 +72,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             navigationView.setCheckedItem(R.id.side_menu_settings);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Course()).commit();
+                    new contact_us_page()).commit();
             navigationView.setCheckedItem(R.id.side_menu_course);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -128,7 +128,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
             case R.id.side_menu_course:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Course()).commit();
+                        new contact_us_page()).commit();
                 break;
 
             case R.id.side_menu_addfriend:
