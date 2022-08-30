@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine2"
+        android:id="@+id/msg"
         android:layout_width="338dp"
         android:layout_height="153dp"
         android:layout_marginTop="400dp"
