@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="87dp">
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="104dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="456dp"
         android:text="Messege"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -22,8 +24,8 @@
         android:id="@+id/textView6"
         android:layout_width="104dp"
         android:layout_height="35dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="356dp"
         android:text="Subject"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -36,7 +38,7 @@
         android:layout_width="337dp"
         android:layout_height="62dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="384dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/text_shape"
         android:ems="10"
@@ -57,7 +59,7 @@
         android:id="@+id/msg"
         android:layout_width="338dp"
         android:layout_height="153dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="484dp"
         android:background="@drawable/text_shape"
         android:ems="10"
         android:gravity="top"
@@ -74,11 +76,38 @@
 
     <Button
         android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="571dp"
+        style="@style/Widget.Material3.Button.UnelevatedButton"
+        android:layout_width="108dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="644dp"
         android:text="Send"
+        android:textAlignment="gravity"
+        android:textSize="15dp"
+        app:icon="@drawable/ic_send"
+        app:iconGravity="textEnd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="491dp"
+        android:layout_height="279dp"
+        android:layout_marginTop="49dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/contact_us_bg" />
+
+    <ImageView
+        android:id="@+id/cycle_man"
+        android:layout_width="384dp"
+        android:layout_height="365dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/contact_us_bicycle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,21 +6,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import java.net.URI;
 
 public class contact_us_page extends Fragment {
 
     private EditText subject,msg;
     private Button send;
     private String[] email_tex= {"qmarkapp@gmail.com"};
+    private ImageView cycle;
+    Animation right_to_left;
 
     @Nullable
     @Override
@@ -36,6 +38,11 @@ public class contact_us_page extends Fragment {
         subject=getView().findViewById(R.id.subject);
         msg=getView().findViewById(R.id.msg);
         send=getView().findViewById(R.id.send);
+        cycle=getView().findViewById(R.id.cycle_man);
+        right_to_left= AnimationUtils.loadAnimation(getActivity(),R.anim.right_to_left);
+
+        cycle.setAnimation(right_to_left);
+
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override

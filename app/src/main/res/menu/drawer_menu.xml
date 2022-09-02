@@ -32,14 +32,15 @@
             android:id="@+id/side_menu_chat"
             android:icon="@drawable/ic_chat"
             android:title="Chat" />
-        <item
-            android:id="@+id/side_menu_course"
-            android:icon="@drawable/ic_course"
-            android:title="Course" />
+
         <item
             android:id="@+id/side_menu_settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
+        <item
+            android:id="@+id/side_menu_contact_us"
+            android:icon="@drawable/ic_contact_us"
+            android:title="Contact Us" />
     </group>
 
 </menu>
