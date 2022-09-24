@@ -20,7 +20,7 @@ public class Welcome_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_welcom_page);
-        t1=findViewById(R.id.textView);
+        t1=findViewById(R.id.name_profile);
         t2=findViewById(R.id.to);
         t3=findViewById(R.id.name);
         im1=findViewById(R.id.imageView);
