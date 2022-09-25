@@ -30,6 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -123,6 +125,9 @@ public class Otp_verify extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
+
+                                            reg_new_user(mUser.getUid());
+
                                             progressDialog.dismiss();
                                             Toast.makeText(Otp_verify.this, "Registration successfull", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(Otp_verify.this, homepage.class);
@@ -151,6 +156,21 @@ public class Otp_verify extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void reg_new_user(String s) {
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://q-mark-dd305-default-rtdb.firebaseio.com/");
+        try {
+            databaseReference.child("User").child(s).child("Name").setValue(getName);
+            databaseReference.child("User").child(s).child("Email").setValue(getEmail);
+            databaseReference.child("User").child(s).child("Mobile").setValue(getMobile);
+            databaseReference.child("User").child(s).child("Pimage").setValue("###");
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(Otp_verify.this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
 
     }
 
