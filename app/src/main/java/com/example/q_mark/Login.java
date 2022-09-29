@@ -117,7 +117,7 @@ public class Login extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         progressDialog.dismiss();
                         send_to_homepage();
-                        Toast.makeText(Login.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
                     } else {
                         progressDialog.dismiss();
                         try {
