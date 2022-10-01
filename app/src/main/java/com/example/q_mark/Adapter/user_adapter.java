@@ -23,13 +23,13 @@ import java.util.Date;
 
 public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> {
     Context context;
+    ArrayList<User> list;
 
     public user_adapter(Context context, ArrayList<User> list) {
         this.context = context;
         this.list = list;
     }
 
-    ArrayList<User> list;
 
     @NonNull
     @Override
@@ -61,11 +61,11 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
                             public void onSuccess(Void unused) {
                                 FirebaseDatabase.getInstance().getReference().child("User")
                                         .child(user.getUid())
-                                        .child("followerC ount")
+                                        .child("followerCount")
                                         .setValue(user.getFollowerCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Toast.makeText(context, "You followed" +user.getName(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(context, "You followed " +user.getName(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
