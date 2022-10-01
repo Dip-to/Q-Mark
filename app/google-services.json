@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "811646881547",
+    "firebase_url": "https://q-mark-dd305-default-rtdb.firebaseio.com",
     "project_id": "q-mark-dd305",
     "storage_bucket": "q-mark-dd305.appspot.com"
   },
@@ -27,6 +28,14 @@
           "android_info": {
             "package_name": "com.example.q_mark",
             "certificate_hash": "1e6749839a61d276c6a0745572115e6f30392b40"
+          }
+        },
+        {
+          "client_id": "811646881547-vtsadgvkeccjed5dpf3adldqatjjrat9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.q_mark",
+            "certificate_hash": "edc119665656abac73890fecd20d1ffd86396243"
           }
         },
         {
