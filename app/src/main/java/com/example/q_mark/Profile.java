@@ -118,7 +118,7 @@ public class Profile extends Fragment {
                     email1.setText(email);
                     email2.setText(email);
                     mobile1.setText(mpbile);
-                    System.out.println(pimg);
+                    //System.out.println(pimg);
                     if(!pimg.equals("###"))
                     {
                         try {

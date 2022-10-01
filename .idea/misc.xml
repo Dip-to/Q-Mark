@@ -7,7 +7,10 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/bg_ig.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/circle_image.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/follow_btn.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_friends.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/placeholder.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/top_button_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/white_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.302536231884058" />
@@ -18,10 +21,13 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_welcom_page.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/chat.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/contact_us.xml" value="0.34103260869565216" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/follow_bg.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/friends.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/nav_header.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/profile.xml" value="0.33" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/search.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/upload.xml" value="0.1111111111111111" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/user_sample.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/drawable/ic_launcher_background.xml" value="0.332" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/drawable/round_text_box.xml" value="0.332" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/layout/activity_homepage.xml" value="0.3484375" />
