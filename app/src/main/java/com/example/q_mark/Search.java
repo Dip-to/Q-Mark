@@ -31,6 +31,7 @@ public class Search extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         binding=SearchBinding.inflate(inflater,container,false);
         user_adapter us=new user_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
@@ -59,6 +60,7 @@ public class Search extends Fragment {
         });
 
         return binding.getRoot();
+
 
     }
 

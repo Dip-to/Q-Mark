@@ -1,6 +1,5 @@
 package com.example.q_mark;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.q_mark.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -68,9 +68,14 @@ public class Profile extends Fragment {
         mfrnds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), my_friends.class));
+                Fragment frnd_fragment=new my_friends();
+                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,frnd_fragment).commit();
+
+
             }
         });
+
 
 
         databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://q-mark-dd305-default-rtdb.firebaseio.com/User");
