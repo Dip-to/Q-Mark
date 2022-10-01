@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/top_background" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/pro_img"
+        android:id="@+id/proImg"
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_marginTop="48dp"
@@ -47,9 +47,9 @@
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/pro_img"
-        app:layout_constraintStart_toStartOf="@+id/pro_img"
-        app:layout_constraintTop_toBottomOf="@+id/pro_img" />
+        app:layout_constraintEnd_toEndOf="@+id/proImg"
+        app:layout_constraintStart_toStartOf="@+id/proImg"
+        app:layout_constraintTop_toBottomOf="@+id/proImg" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -99,6 +99,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/frnds_btn"
                 android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -119,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Payment"
+                    android:text="Friends"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="14sp"

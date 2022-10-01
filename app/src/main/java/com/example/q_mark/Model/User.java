@@ -1,7 +1,8 @@
-package com.example.q_mark;
+package com.example.q_mark.Model;
 
 public class User {
     private String Name,Email,Pimage,Mobile,uid;
+    private int followerCount;
 
     public User(String name, String email, String pimage, String mobile) {
         Name = name;
@@ -52,5 +53,13 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public int getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(int followerCount) {
+        this.followerCount = followerCount;
     }
 }

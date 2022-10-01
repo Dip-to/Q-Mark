@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.q_mark.Adapter.user_adapter;
+import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.SearchBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +27,7 @@ public class Search extends Fragment {
     FirebaseAuth mauth;
     FirebaseDatabase firebaseDatabase;
     SearchBinding binding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,11 +36,14 @@ public class Search extends Fragment {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.RV.setLayoutManager(linearLayoutManager);
         binding.RV.setAdapter(us);
+
         firebaseDatabase.getReference().child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
+
                     User user=dataSnapshot.getValue(User.class);
                     user.setUid(dataSnapshot.getKey());
                     System.out.println(dataSnapshot.getKey());

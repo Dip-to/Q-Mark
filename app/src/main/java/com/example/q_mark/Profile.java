@@ -7,9 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.q_mark.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,10 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -45,6 +41,7 @@ public class Profile extends Fragment {
     private ImageView pro_img;
     private Button brws;
     DatabaseReference databaseReference;
+    LinearLayout mfrnds;
     Uri img;
     private String s;
     ActivityMainBinding binding;
@@ -64,8 +61,16 @@ public class Profile extends Fragment {
         email1=getView().findViewById(R.id.email1);
         email2=getView().findViewById(R.id.email2);
         mobile1=getView().findViewById(R.id.mobile);
-        pro_img=getView().findViewById(R.id.pro_img);
+        pro_img=getView().findViewById(R.id.proImg);
         brws=getView().findViewById(R.id.browse);
+        mfrnds=getView().findViewById(R.id.frnds_btn);
+
+        mfrnds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), my_friends.class));
+            }
+        });
 
 
         databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://q-mark-dd305-default-rtdb.firebaseio.com/User");

@@ -24,7 +24,7 @@ public class Welcome_page extends AppCompatActivity {
         t2=findViewById(R.id.to);
         t3=findViewById(R.id.name);
         im1=findViewById(R.id.imageView);
-        im2=findViewById(R.id.pro_img);
+        im2=findViewById(R.id.proImg);
         top = AnimationUtils.loadAnimation(this, R.anim.top);
         bottom = AnimationUtils.loadAnimation(this, R.anim.bottom);
 
