@@ -1,4 +1,4 @@
-package com.example.q_mark;
+package com.example.q_mark.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +19,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.q_mark.databinding.ActivityMainBinding;
+import com.example.q_mark.Fragments.my_followers;
+import com.example.q_mark.R;
+import com.example.q_mark.fbase_userdata;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -41,10 +43,10 @@ public class Profile extends Fragment {
     private ImageView pro_img;
     private Button brws;
     DatabaseReference databaseReference;
-    LinearLayout mfrnds;
+    LinearLayout mfrnds,following;
     Uri img;
     private String s;
-    ActivityMainBinding binding;
+
     ActivityResultLauncher<String> launcher;
     @Nullable
     @Override
@@ -64,11 +66,22 @@ public class Profile extends Fragment {
         pro_img=getView().findViewById(R.id.proImg);
         brws=getView().findViewById(R.id.browse);
         mfrnds=getView().findViewById(R.id.frnds_btn);
+        following=getView().findViewById(R.id.following);
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment frnd_fragment=new me_following();
+                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,frnd_fragment).commit();
+            }
+        });
+
 
         mfrnds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment frnd_fragment=new my_friends();
+                Fragment frnd_fragment=new my_followers();
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container,frnd_fragment).commit();
 

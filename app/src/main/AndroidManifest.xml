@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.q_mark" >
+    package="com.example.q_mark">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,28 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Qmark"
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
-            android:name=".my_friends"
+            android:name=".Fragments.my_followers"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".StartActivity.Welcome_page"
             android:exported="false" />
         <activity
-            android:name=".Welcome_page"
-            android:exported="false" />
-        <activity
-            android:name=".homepage"
+            android:name=".StartActivity.homepage"
             android:exported="false" />
         <activity
             android:name=".Otp_verify"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".StartActivity.Login"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".StartActivity.SignUp"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,7 +2,7 @@ package com.example.q_mark.Model;
 
 public class User {
     private String Name,Email,Pimage,Mobile,uid;
-    private int followerCount;
+    private int followerCount,followingCount;
 
     public User(String name, String email, String pimage, String mobile) {
         Name = name;
@@ -61,5 +61,13 @@ public class User {
 
     public void setFollowerCount(int followerCount) {
         this.followerCount = followerCount;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(int followingCount) {
+        this.followingCount = followingCount;
     }
 }

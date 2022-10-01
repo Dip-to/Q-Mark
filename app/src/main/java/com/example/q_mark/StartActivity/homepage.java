@@ -1,4 +1,4 @@
-package com.example.q_mark;
+package com.example.q_mark.StartActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,9 +11,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.q_mark.Fragments.Addfriend;
+import com.example.q_mark.Fragments.Chat;
+import com.example.q_mark.Fragments.Friends;
+import com.example.q_mark.Fragments.Notification;
+import com.example.q_mark.Fragments.Profile;
+import com.example.q_mark.Fragments.Settings;
+import com.example.q_mark.Fragments.Upload;
+import com.example.q_mark.Fragments.contact_us_page;
+import com.example.q_mark.Home;
+import com.example.q_mark.R;
+import com.example.q_mark.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

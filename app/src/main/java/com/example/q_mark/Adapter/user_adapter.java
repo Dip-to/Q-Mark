@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Model.Follower;
+import com.example.q_mark.Model.Following;
 import com.example.q_mark.R;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.UserSampleBinding;
@@ -52,6 +53,11 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
                 follower.setFollowedby(FirebaseAuth.getInstance().getUid());
                 follower.setFollwedate(new Date().getTime());
 
+                Following ff=new Following();
+                ff.setFollow(user.getUid());
+                ff.setFollowedate(new Date().getTime());
+
+
                 FirebaseDatabase.getInstance().getReference().child("User")
                         .child(user.getUid())
                         .child("followers")
@@ -65,11 +71,28 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
                                         .setValue(user.getFollowerCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
+
                                                 Toast.makeText(context, "You followed " +user.getName(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
+                            }
+                        });
+                FirebaseDatabase.getInstance().getReference().child("User")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .child("following")
+                        .child(ff.getFollow())
+                        .setValue(ff).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                FirebaseDatabase.getInstance().getReference().child("User")
+                                        .child(FirebaseAuth.getInstance().getUid())
+                                        .child("followingCount")
+                                        .setValue(user.getFollowingCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
 
-
+                                            }
+                                        });
                             }
                         });
             }

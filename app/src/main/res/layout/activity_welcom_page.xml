@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Welcome_page">
+    tools:context=".StartActivity.Welcome_page">
 
 
     <ImageView

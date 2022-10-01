@@ -1,4 +1,4 @@
-package com.example.q_mark;
+package com.example.q_mark.StartActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.q_mark.R;
 
 public class Welcome_page extends AppCompatActivity {
     private TextView t1,t2,t3;

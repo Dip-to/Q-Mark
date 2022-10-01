@@ -1,4 +1,4 @@
-package com.example.q_mark;
+package com.example.q_mark.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.q_mark.R;
 
 public class contact_us_page extends Fragment {
 

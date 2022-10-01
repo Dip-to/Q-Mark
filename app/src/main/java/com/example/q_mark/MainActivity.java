@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.q_mark.StartActivity.Welcome_page;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
