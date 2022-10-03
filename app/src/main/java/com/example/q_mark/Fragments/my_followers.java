@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.q_mark.Adapter.follower_adapter;
 import com.example.q_mark.Adapter.user_adapter;
 import com.example.q_mark.Model.User;
+import com.example.q_mark.R;
 import com.example.q_mark.databinding.MyFriendsBinding;
 import com.example.q_mark.databinding.SearchBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +34,9 @@ public class my_followers extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       // return inflater.inflate(R.layout.my_friends,container,false);
+        //return inflater.inflate(R.layout.my_friends,container,false);
         binding= MyFriendsBinding.inflate(inflater,container,false);
+        
         follower_adapter ff= new follower_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.rv.setLayoutManager(linearLayoutManager);

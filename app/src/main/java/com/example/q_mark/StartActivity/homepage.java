@@ -117,46 +117,46 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         switch (item.getItemId()) {
             case R.id.side_menu_chat:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Chat()).commit();
+                        new Chat()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Home()).commit();
+                        new Home()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).commit();
+                        new Profile()).addToBackStack(null).commit();
                 break;
             case R.id.side_menu_friends:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Friends()).commit();
+                        new Friends()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_notification:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Notification()).commit();
+                        new Notification()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_contact_us:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new contact_us_page()).commit();
+                        new contact_us_page()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_addfriend:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Addfriend()).commit();
+                        new Addfriend()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_upload:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Upload()).commit();
+                        new Upload()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Settings()).commit();
+                        new Settings()).addToBackStack(null).commit();
 
                 break;
         }

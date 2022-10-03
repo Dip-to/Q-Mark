@@ -73,7 +73,9 @@ public class Profile extends Fragment {
             public void onClick(View view) {
                 Fragment frnd_fragment=new me_following();
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,frnd_fragment).commit();
+                transaction.replace(R.id.fragment_container,frnd_fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -83,7 +85,9 @@ public class Profile extends Fragment {
             public void onClick(View view) {
                 Fragment frnd_fragment=new my_followers();
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,frnd_fragment).commit();
+                transaction.replace(R.id.fragment_container,frnd_fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
 
 
             }
