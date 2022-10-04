@@ -1,35 +1,31 @@
 package com.example.q_mark.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.Listener.UserListener;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.ItemContainerChatUserBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 
 public class chat_users_adapter extends RecyclerView.Adapter<chat_users_adapter.UserViewHolder> {
 
     Context context;
     ArrayList<User> users;
+    private final UserListener userListener;
 
-    public chat_users_adapter(Context context, ArrayList<User> users) {
+    public chat_users_adapter(Context context, ArrayList<User> users, UserListener userListener, UserListener userListener1) {
         this.context = context;
         this.users = users;
-
+        this.userListener = userListener1;
     }
 
 
@@ -49,6 +45,7 @@ public class chat_users_adapter extends RecyclerView.Adapter<chat_users_adapter.
         System.out.println(chatUser.getName()+"adapt");
         holder.binding.textEmail.setText(chatUser.getEmail());
         Picasso.with(context).load(chatUser.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.chatImageprofile);
+        holder.binding.getRoot().setOnClickListener(view -> userListener.onUserClicked(chatUser));
 
 
     }

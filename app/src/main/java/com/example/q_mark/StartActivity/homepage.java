@@ -60,6 +60,8 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     new Chat()).commit();
             navigationView.setCheckedItem(R.id.side_menu_chat);
 
+
+
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Profile()).commit();
             navigationView.setCheckedItem(R.id.side_menu_profile);
@@ -90,6 +92,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Home()).commit();
             navigationView.setCheckedItem(R.id.side_menu_home);
+
 
 
         }
@@ -123,6 +126,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.side_menu_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Home()).addToBackStack(null).commit();
+
                 break;
 
             case R.id.side_menu_profile:
@@ -173,6 +177,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             switch (item.getItemId()){
                 case R.id.bottom_home:
                      selectedFragment=new Home();
+
                     break;
                 case R.id.bottom_profile:
                     selectedFragment=new Profile();

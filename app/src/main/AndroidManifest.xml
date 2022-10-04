@@ -34,6 +34,9 @@
         <activity
             android:name=".StartActivity.SignUp"
             android:exported="false" />
+        <activity android:name=".Fragments.chatActivity"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -48,10 +51,9 @@
             android:name=".Firebase.MessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

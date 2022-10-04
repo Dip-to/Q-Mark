@@ -1,8 +1,6 @@
 package com.example.q_mark.Fragments;
 
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.q_mark.Adapter.chat_users_adapter;
+import com.example.q_mark.Listener.UserListener;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.ChatBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,12 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class Chat  extends Fragment {
+public class Chat  extends Fragment implements UserListener {
     private ChatBinding chatBinding;
 
     ArrayList<User> list=new ArrayList<>();
+    private Object User;
 
     @Nullable
     @Override
@@ -37,7 +38,7 @@ public class Chat  extends Fragment {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         chatBinding.chatUserRecycleView.setLayoutManager(linearLayoutManager);
 
-        chat_users_adapter chat_users_adapter=new chat_users_adapter(getContext(),list);
+        chat_users_adapter chat_users_adapter=new chat_users_adapter(getContext(),list,this,this);
         chatBinding.chatUserRecycleView.setAdapter(chat_users_adapter);
 
 
@@ -60,6 +61,7 @@ public class Chat  extends Fragment {
                                     list.add(user);
                                     chat_users_adapter.notifyDataSetChanged();
 
+
                                 }
 
                                 @Override
@@ -67,7 +69,13 @@ public class Chat  extends Fragment {
 
                                 }
                             });
+
                         }
+
+
+
+
+
                     }
 
                     @Override
@@ -75,6 +83,7 @@ public class Chat  extends Fragment {
 
                     }
                 });
+
 
 //        firebaseDatabase.getReference().child("User").addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -96,4 +105,18 @@ public class Chat  extends Fragment {
         return chatBinding.getRoot();
 
     }
+
+//    @Override
+//    public Fragment onUserClicked(User user) {
+//        public static  chatActivity createInstance(ArrayList<User> list) {
+//            chatActivity chat_fragment = new chatActivity();
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("user", list);
+//            chat_fragment.setArguments(bundle);
+//            return chat_fragment;
+//        }
+//
+//    }
+
+
 }
