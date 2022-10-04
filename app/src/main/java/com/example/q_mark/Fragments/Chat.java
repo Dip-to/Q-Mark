@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.q_mark.Adapter.chat_users_adapter;
 import com.example.q_mark.Listener.UserListener;
 import com.example.q_mark.Model.User;
+import com.example.q_mark.R;
 import com.example.q_mark.databinding.ChatBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +31,6 @@ public class Chat  extends Fragment implements UserListener {
     private ChatBinding chatBinding;
 
     ArrayList<User> list=new ArrayList<>();
-    private Object User;
 
     @Nullable
     @Override
@@ -106,17 +108,25 @@ public class Chat  extends Fragment implements UserListener {
 
     }
 
-//    @Override
-//    public Fragment onUserClicked(User user) {
-//        public static  chatActivity createInstance(ArrayList<User> list) {
-//            chatActivity chat_fragment = new chatActivity();
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("user", list);
-//            chat_fragment.setArguments(bundle);
-//            return chat_fragment;
-//        }
-//
-//    }
+    @Override
+    public Fragment onUserClicked(User user) {
+        System.out.println("click hoy "+user.getName() );
+            Fragment chat_fragment = new chatActivity();
 
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("rcv", user.getUid());
+            chat_fragment.setArguments(bundle);
+            FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container,chat_fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+//        Fragment frnd_fragment=new me_following();
+//        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container,frnd_fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+            return chat_fragment;
+        }
 
 }

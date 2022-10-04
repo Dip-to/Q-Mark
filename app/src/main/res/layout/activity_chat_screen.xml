@@ -123,5 +123,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/proImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="212dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/profile" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

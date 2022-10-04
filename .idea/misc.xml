@@ -7,7 +7,9 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/bg_ig.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/circle_image.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/comment-alt_24.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/follow_btn.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/followdbutton.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_addfriend.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_chat.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_contact_us.xml" value="0.1" />
@@ -26,6 +28,7 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/text_shape.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/top_button_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/white_background.xml" value="0.1" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_login.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_main.xml" value="0.302536231884058" />
@@ -36,12 +39,16 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/chat.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/contact_us.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/follow_bg.xml" value="0.34103260869565216" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/fragment_add_post.xml" value="0.25" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/friends.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/home.xml" value="0.33" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/item_container_chat_user.xml" value="0.30434782608695654" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/me_following.xml" value="0.30434782608695654" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/my_friend_sample.xml" value="0.32019927536231885" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/my_friends.xml" value="0.32019927536231885" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/nav_header.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/notification.xml" value="0.30434782608695654" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/post_sample.xml" value="0.25" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/profile.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/search.xml" value="0.20218579234972678" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/settings.xml" value="0.30434782608695654" />
@@ -55,24 +62,9 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/layout/activity_otp_verify.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/layout/activity_sign_up.xml" value="0.5" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Qmark/app/src/main/res/layout/login_page.xml" value="0.33" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/background_recieved_msg.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/background_sent_message.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/chat_background_contentbottom.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/chatbackground_content_top.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/circle_image.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_back.xml" value="0.1465" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_info.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/ic_send.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.264" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_sign_up.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/chat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/contact_us.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/home.xml" value="0.22916666666666666" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/item_container_chat_user.xml" value="0.264" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/item_container_recieved_msg.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/item_container_sent_message.xml" value="0.1" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/me_following.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/my_friends.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/search.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/upload.xml" value="0.22826086956521738" />
