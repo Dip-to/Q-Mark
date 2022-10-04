@@ -36,13 +36,7 @@ public class chat_users_adapter extends RecyclerView.Adapter<chat_users_adapter.
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        ItemContainerChatUserBinding itemContainerChatUserBinding = ItemContainerChatUserBinding.inflate(
-//                LayoutInflater.from(parent.getContext()),
-//                parent,
-//                false
-//        );
-//
-//        return new UserViewHolder(itemContainerChatUserBinding);
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_container_chat_user,parent,false);
         return new UserViewHolder(view);
     }

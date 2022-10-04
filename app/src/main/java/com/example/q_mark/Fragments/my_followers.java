@@ -30,7 +30,7 @@ public class my_followers extends Fragment {
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth mauth;
     MyFriendsBinding binding;
-
+    boolean flag;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class my_followers extends Fragment {
         firebaseDatabase.getReference().child("User").child(uid).child("followers").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                flag=false;
                 list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
@@ -55,6 +56,7 @@ public class my_followers extends Fragment {
 //                        user.setUid(dataSnapshot.getKey());
 //                        System.out.println(dataSnapshot.getKey());
 //                        list.add(user);
+
                         firebaseDatabase.getReference().child("User").child(dataSnapshot.getKey()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,7 +65,14 @@ public class my_followers extends Fragment {
 //                            System.out.println(snapshot.getKey());
 //                            System.out.println(user.getName());
                             list.add(user);
-                            ff.notifyDataSetChanged();
+                            if(flag==false)
+                            {
+
+                                ff.notifyDataSetChanged();
+                                flag=true;
+                            }
+
+
                         }
 
                         @Override
@@ -71,8 +80,9 @@ public class my_followers extends Fragment {
 
                         }
                     });
+
                 }
-                ff.notifyDataSetChanged();
+                if(flag==false) ff.notifyDataSetChanged();
             }
 
             @Override

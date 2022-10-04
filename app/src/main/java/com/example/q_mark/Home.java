@@ -5,28 +5,92 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.Adapter.post_adapter;
 import com.example.q_mark.Fragments.add_post;
 import com.example.q_mark.Fragments.me_following;
+import com.example.q_mark.Model.Post;
+import com.example.q_mark.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class Home extends Fragment {
 
     Button addpost;
+    RecyclerView rv;
+    ArrayList<Post> dashboardList;
+    ImageView img;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home,container,false);
+        View view=inflater.inflate(R.layout.home,container,false);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addpost=getView().findViewById(R.id.addpost);
+        rv=getView().findViewById(R.id.rv);
+        img=getView().findViewById(R.id.profile);
+        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user=snapshot.getValue(User.class);
+                Picasso.with(getContext()).load(user.getPimage()).placeholder(R.drawable.ic_profile).into(img);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        //timeline work
+        dashboardList=new ArrayList<>();
+        post_adapter pp=new post_adapter(dashboardList,getContext());
+        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(getContext());
+        rv.setLayoutManager(linearLayoutManager);
+        rv.addItemDecoration(new DividerItemDecoration(rv.getContext(),DividerItemDecoration.VERTICAL));
+        rv.setNestedScrollingEnabled(false);
+        rv.setAdapter(pp);
+
+        FirebaseDatabase.getInstance().getReference().child("posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    Post post=dataSnapshot.getValue(Post.class);
+                    dashboardList.add(post);
+                }
+                pp.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
         addpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -67,13 +67,7 @@ public class Chat  extends Fragment {
 
                                 }
                             });
-
                         }
-
-
-
-
-
                     }
 
                     @Override
