@@ -31,15 +31,15 @@ import java.util.ArrayList;
 
 public class Home extends Fragment {
 
-    Button addpost;
+    ImageView addpost;
     RecyclerView rv;
     ArrayList<Post> dashboardList;
     ImageView img;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.home,container,false);
-        return view;
+        return inflater.inflate(R.layout.home,container,false);
+
     }
 
     @Override

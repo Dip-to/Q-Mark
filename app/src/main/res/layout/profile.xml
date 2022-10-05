@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="417dp"
         android:layout_height="377dp"
-        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/top_background" />
@@ -19,13 +18,12 @@
         android:id="@+id/proImg"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="595dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/profile" />
 
     <TextView
