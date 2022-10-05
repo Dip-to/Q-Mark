@@ -27,14 +27,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class chatActivity extends Fragment {
@@ -55,6 +62,7 @@ public class chatActivity extends Fragment {
         //View view = LayoutInflater.from(context).inflate(R.layout.user_sample,parent,false);
         setListener();
         loadReceiverDetails();
+        listenMessages();
         //init();
         return binding.getRoot();
     }
@@ -73,12 +81,7 @@ public class chatActivity extends Fragment {
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.getUid());
         message.put(Constants.KEY_MESSAGE ,binding.inputMessage.getText().toString());
         message.put(Constants.KEY_TIMESTAMP, new Date().toString());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                System.out.println("hoise");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        database.collection(Constants.KEY_COLLECTION_CHAT).add(message).addOnSuccessListener(documentReference -> System.out.println("hoise")).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 System.out.println("hoy ni");
@@ -86,6 +89,50 @@ public class chatActivity extends Fragment {
         });
         binding.inputMessage.setText(null);
     }
+
+    private void  listenMessages(){
+        database.collection(Constants.KEY_COLLECTION_CHAT)
+                .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,receiverUser.getUid())
+                .addSnapshotListener(eventListener);
+
+        database.collection(Constants.KEY_COLLECTION_CHAT)
+                .whereEqualTo(Constants.KEY_SENDER_ID,receiverUser.getUid())
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,FirebaseAuth.getInstance().getUid())
+                .addSnapshotListener(eventListener);
+    }
+
+    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
+        if(error != null){
+            return;
+        }
+        if(value!=null){
+            int count =chatMessages.size();
+            for (DocumentChange documentChange : value.getDocumentChanges()){
+                if(documentChange.getType() == DocumentChange.Type.ADDED){
+                    ChatMessage chatMessage = new ChatMessage();
+                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
+                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                    chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
+                    chatMessage.dateObject= documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                    chatMessages.add(chatMessage);
+                }
+
+            }
+
+            Collections.sort(chatMessages,(obj1,obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
+            if(count == 0){
+                chatAdapter.notifyDataSetChanged();
+            }else{
+                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
+                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
+            }
+            binding.chatScreenRv.setVisibility(View.VISIBLE);
+        }
+        binding.chatProgressBar.setVisibility(View.GONE);
+    };
+
 private void loadReceiverDetails(){
 
         String s=getArguments().getString("rcv");
@@ -117,6 +164,10 @@ private void loadReceiverDetails(){
 private void setListener(){
         binding.chatImageBack.setOnClickListener(view -> getActivity().onBackPressed());
         binding.layoutSend.setOnClickListener(view -> sendMessage());
+}
+
+private String getReadableDateTime(Date date) {
+        return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
 }
 
 }
