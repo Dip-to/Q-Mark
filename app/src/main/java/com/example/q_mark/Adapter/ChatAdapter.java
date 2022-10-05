@@ -8,21 +8,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Model.ChatMessage;
+import com.example.q_mark.R;
 import com.example.q_mark.databinding.ItemContainerRecievedMsgBinding;
 import com.example.q_mark.databinding.ItemContainerSentMessageBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final List<ChatMessage> chatMessages;
-    private final Bitmap receivedProfileImage;
+    private final String receivedProfileImage;
     private final String senderId;
 
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
-    public ChatAdapter(List<ChatMessage> chatMessages, Bitmap receivedProfileImage, String senderId) {
+    public ChatAdapter(List<ChatMessage> chatMessages, String receivedProfileImage, String senderId) {
         this.chatMessages = chatMessages;
         this.receivedProfileImage = receivedProfileImage;
         this.senderId = senderId;
@@ -100,10 +102,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding = itemContainerRecievedMsgBinding;
         }
 
-        void setData(ChatMessage chatMessage, Bitmap receiveProfileImage){
+        void setData(ChatMessage chatMessage, String receiveProfileImage){
             binding.textMessage.setText(chatMessage.message);
             binding.textDateTime.setText(chatMessage.dateTime);
-            binding.chatScreenImageProfile.setImageBitmap(receiveProfileImage);
+            //ekhane picasso lagbe
+            Picasso.with(itemView.getContext()).load(receiveProfileImage).placeholder(R.drawable.ic_profile).into(binding.chatScreenImageProfile);
+
+            // binding.chatScreenImageProfile.setImageBitmap(receiveProfileImage);
         }
 
     }
