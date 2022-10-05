@@ -15,7 +15,9 @@
         android:layout_marginBottom="@dimen/_16sdp"
         android:background="@drawable/chatbackground_content_top"
         app:layout_constraintBottom_toTopOf="@+id/layoutSend"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp" />
 
     <View
         android:id="@+id/headerBackground"
@@ -23,7 +25,7 @@
         android:layout_height="0dp"
         android:background="@color/teal_200"
         app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/chat_imageBack"
@@ -33,16 +35,16 @@
         android:layout_marginTop="@dimen/_12sdp"
         android:padding="@dimen/_12sdp"
         android:src="@drawable/ic_back"
+        android:tint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/white"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/friendsName"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
+        android:layout_width="226dp"
+        android:layout_height="43dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginEnd="84dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
@@ -57,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/chat_imageBack"/>
+        app:layout_constraintTop_toBottomOf="@+id/chat_imageBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatScreen_rv"
@@ -70,7 +72,7 @@
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
-        app:layout_constraintTop_toBottomOf="@+id/viewSupporter"/>
+        app:layout_constraintTop_toBottomOf="@+id/viewSupporter" />
 
     <ProgressBar
         android:id="@+id/chat_progressBar"
@@ -79,7 +81,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintEnd_toEndOf="@+id/viewBackground"
         app:layout_constraintStart_toStartOf="@+id/viewBackground"
-        app:layout_constraintTop_toTopOf="@+id/viewBackground"/>
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
 
 
     <FrameLayout
@@ -125,12 +127,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/proImg"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="212dp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile" />
 
 

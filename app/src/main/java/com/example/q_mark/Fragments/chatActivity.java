@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.example.q_mark.Adapter.ChatAdapter;
+import com.example.q_mark.Model.ChatMessage;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.ActivityChatScreenBinding;
@@ -22,11 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class chatActivity extends Fragment {
 
     private ActivityChatScreenBinding binding;
     private User receiverUser;
+    private List<ChatMessage> chatMessages;
+    private ChatAdapter chatAdapter;
+
 
 
     @Nullable
