@@ -1,7 +1,7 @@
 package com.example.q_mark.Fragments;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+//import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +18,7 @@ import com.example.q_mark.R;
 import com.example.q_mark.databinding.ActivityChatScreenBinding;
 import com.example.q_mark.utilities.Constants;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,8 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +48,7 @@ public class chatActivity extends Fragment {
     private User receiverUser;
     private List<ChatMessage> chatMessages;
     private ChatAdapter chatAdapter;
-    private PreferenceManager preferenceManager;
+  //  private PreferenceManager preferenceManager;
     FirebaseFirestore database;
     private String rcvruserid;
 
@@ -88,38 +91,42 @@ public class chatActivity extends Fragment {
     private void  listenMessages(){
 
         //msgs rcvd by the  received user
-        FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
+       //dipto [only this line]   FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
 //                .whereEqualTo(Constants.KEY_SENDER_ID,rcvruserid)
 //                .whereEqualTo(Constants.KEY_RECEIVER_ID,FirebaseAuth.getInstance().getUid())
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null){
-                            System.out.println(error.getMessage());
-                            return;
-                        }
-                        if(value!=null){
-                            int count =chatMessages.size();
-                            for (DocumentChange documentChange : value.getDocumentChanges()){
-                                if(documentChange.getType() == DocumentChange.Type.ADDED){
-                                    ChatMessage chatMessage = new ChatMessage();
-                                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-                                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-                                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
-                                  //  chatMessage.dateTime = getReadableDateTime(new Date(String.valueOf(documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP))));
-                                    //chatMessage.dateObject= documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP).toDate();
-                                    chatMessages.add(chatMessage);
-                                }
+               //dipto [only this line] .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    //dipto suru
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                        if(error != null){
+//                            System.out.println(error.getMessage());
+//                            return;
+//                        }
+//                        if(value!=null){
+//                            int count =chatMessages.size();
+//                            for (DocumentChange documentChange : value.getDocumentChanges()){
+//                                if(documentChange.getType() == DocumentChange.Type.ADDED){
+//                                    ChatMessage chatMessage = new ChatMessage();
+//                                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+//                                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
+//                                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+//                                  //  chatMessage.dateTime = getReadableDateTime(new Date(String.valueOf(documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP))));
+//                                    //chatMessage.dateObject= documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP).toDate();
+//                                    chatMessages.add(chatMessage);
+//
+//                                }
+//
+//                            }
+//                            Log.d("FCM","middle");
+                            //dipto sesh
 
-                            }
-                            Log.d("FCM","middle");
 //                            FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
 ////                .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
 ////                .whereEqualTo(Constants.KEY_RECEIVER_ID,rcvruserid)
 //                                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
 //                                        @Override
 //                                        public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                                            L        at com.example.q_mark.Fragments.chatActivity$2.onEvent(chatActivity.java:120)og.d("FCM","middle123");
+////                                            L        at com.example.q_mark.Fragments.chatActivity$2.onEvent(chatActivity.java:120)og.d("FCM","middle123");
 //
 //                                            if(error != null){
 //                                                System.out.println(error.getMessage());
@@ -139,23 +146,33 @@ public class chatActivity extends Fragment {
 //                                                    }
 //
 //                                                }
-//                                            }
-//                                        }
-//                                    });
-
-                           // Collections.sort(chatMessages,(obj1,obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
-                            if(count == 0){
-                                chatAdapter.notifyDataSetChanged();
-                            }else{
-                                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
-                                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
-                            }
-                            binding.chatScreenRv.setVisibility(View.VISIBLE);
-                        }
-                        binding.chatProgressBar.setVisibility(View.GONE);
-                    }
-                });
-        System.out.println("in the middle");
+//                                                 Collections.sort(chatMessages,(obj1, obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
+//                            if(count == 0){
+//                                chatAdapter.notifyDataSetChanged();
+//                            }else{
+//                                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
+//                                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
+//                            }
+//                            binding.chatScreenRv.setVisibility(View.VISIBLE);
+//                        }
+//                        binding.chatProgressBar.setVisibility(View.GONE);
+//                    }
+//                });
+                            //dipto suru
+//                          // Collections.sort(chatMessages,(obj1, obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
+//                            if(count == 0){
+//                                chatAdapter.notifyDataSetChanged();
+//                            }else{
+//                                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
+//                                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
+//                            }
+//                            binding.chatScreenRv.setVisibility(View.VISIBLE);
+//                        }
+//                        binding.chatProgressBar.setVisibility(View.GONE);
+//                    }
+//                });
+//        System.out.println("in the middle");
+        //dipto sesh
 
 //        FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
 //               .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
@@ -198,47 +215,49 @@ public class chatActivity extends Fragment {
 //                });
 
 
-//        database.collection(Constants.KEY_COLLECTION_CHAT)
-//                .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
-//                .whereEqualTo(Consa@gmail.comatants.KEY_RECEIVER_ID,receiverUser.getUid())
-//                .addSnapshotListener(eventListener);
 
-//        database.collection(Constants.KEY_COLLECTION_CHAT)
-//                .whereEqualTo(Constants.KEY_SENDER_ID,receiverUser.getUid())
-//                .whereEqualTo(Constants.KEY_RECEIVER_ID,FirebaseAuth.getInstance().getUid())
-//                .addSnapshotListener(eventListener);
+//
+        FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
+                .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
+               .whereEqualTo(Constants.KEY_RECEIVER_ID,rcvruserid)
+                .addSnapshotListener(eventListener);
+
+        FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
+                .whereEqualTo(Constants.KEY_SENDER_ID,rcvruserid)
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,FirebaseAuth.getInstance().getUid())
+                .addSnapshotListener(eventListener);
     }
 
-//    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
-//        if(error != null){
-//            return;
-//        }
-//        if(value!=null){
-//            int count =chatMessages.size();
-//            for (DocumentChange documentChange : value.getDocumentChanges()){
-//                if(documentChange.getType() == DocumentChange.Type.ADDED){
-//                    ChatMessage chatMessage = new ChatMessage();
-//                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-//                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-//                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
-//                    chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
-//                    chatMessage.dateObject= documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-//                    chatMessages.add(chatMessage);
-//                }
-//
-//            }
-//
-//            Collections.sort(chatMessages,(obj1,obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
-//            if(count == 0){
-//                chatAdapter.notifyDataSetChanged();
-//            }else{
-//                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
-//                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
-//            }
-//            binding.chatScreenRv.setVisibility(View.VISIBLE);
-//        }
-//        binding.chatProgressBar.setVisibility(View.GONE);
-//    };
+    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
+        if(error != null){
+            return;
+        }
+        if(value!=null){
+            int count =chatMessages.size();
+            for (DocumentChange documentChange : value.getDocumentChanges()){
+                if(documentChange.getType() == DocumentChange.Type.ADDED){
+                    ChatMessage chatMessage = new ChatMessage();
+                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
+                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                    chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
+                    chatMessage.dateObject= Calendar.getInstance().getTime();
+                    chatMessages.add(chatMessage);
+                }
+
+            }
+
+            Collections.sort(chatMessages,(obj1,obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
+            if(count == 0){
+                chatAdapter.notifyDataSetChanged();
+            }else{
+                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
+                binding.chatScreenRv.setVisibility(chatMessages.size() -1);
+            }
+            binding.chatScreenRv.setVisibility(View.VISIBLE);
+        }
+        binding.chatProgressBar.setVisibility(View.GONE);
+    };
 
 private void loadReceiverDetails(){
 
@@ -274,8 +293,8 @@ private void setListener(){
         binding.layoutSend.setOnClickListener(view -> sendMessage());
 }
 
-private String getReadableDateTime(Date date) {
-        return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
-}
+//private String getReadableDateTime(Date date) {
+//        return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
+//}
 
 }
