@@ -86,6 +86,7 @@ public class chatActivity extends Fragment {
             }
         });
         binding.inputMessage.setText(null);
+
     }
 
     private void  listenMessages(){
@@ -236,13 +237,21 @@ public class chatActivity extends Fragment {
             int count =chatMessages.size();
             for (DocumentChange documentChange : value.getDocumentChanges()){
                 if(documentChange.getType() == DocumentChange.Type.ADDED){
-                    ChatMessage chatMessage = new ChatMessage();
-                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
-                    chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
-                    chatMessage.dateObject= Calendar.getInstance().getTime();
-                    chatMessages.add(chatMessage);
+                    try {
+                        ChatMessage chatMessage = new ChatMessage();
+                        chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                        chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
+                        chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                        chatMessage.dateTime = getReadableDateTime((documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP).toDate()));
+                        chatMessage.dateObject= documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                          //chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
+                         // chatMessage.dateObject= Calendar.getInstance().getTime();
+                        chatMessages.add(chatMessage);
+                    }catch (Exception e)
+                    {
+                        System.out.println("exception "+e.getMessage());
+                    }
+
                 }
 
             }
@@ -293,8 +302,8 @@ private void setListener(){
         binding.layoutSend.setOnClickListener(view -> sendMessage());
 }
 
-//private String getReadableDateTime(Date date) {
-//        return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
-//}
+private String getReadableDateTime(Date date) {
+        return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
+}
 
 }
