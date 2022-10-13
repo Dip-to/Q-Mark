@@ -2,7 +2,7 @@ package com.example.q_mark.Model;
 
 public class Post {
     private String postID,postImage,postedDate,postDescription,postedBy;
-    private long postedAt;
+    private long postedAt,postLike;
 
     public Post() {
     }
@@ -61,5 +61,14 @@ public class Post {
 
     public void setPostedBy(String postedBy) {
         this.postedBy = postedBy;
+    }
+
+
+    public long getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(long postLike) {
+        this.postLike = postLike;
     }
 }

@@ -12,15 +12,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="24dp"
         android:text="Select Users"
-        android:textColor="#F6F2F1"
+        android:textColor="#5D4037"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:layout_width="409dp"

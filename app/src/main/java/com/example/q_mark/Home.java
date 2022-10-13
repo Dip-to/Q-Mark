@@ -74,9 +74,11 @@ public class Home extends Fragment {
         FirebaseDatabase.getInstance().getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dashboardList.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
                     Post post=dataSnapshot.getValue(Post.class);
+                    post.setPostID(dataSnapshot.getKey());
                     dashboardList.add(post);
                 }
                 pp.notifyDataSetChanged();

@@ -6,7 +6,7 @@ plugins {
 
 android {
     compileSdk 32
-
+    archivesBaseName = "Q-Mark"
     defaultConfig {
         applicationId "com.example.q_mark"
         minSdk 21
