@@ -13,7 +13,7 @@
         android:id="@+id/imageView8"
         android:layout_width="241dp"
         android:layout_height="71dp"
-        app:srcCompat="@drawable/login_img2" />
+        app:srcCompat="@drawable/logo_pic" />
 
     <TextView
         android:id="@+id/email1"
