@@ -23,6 +23,9 @@ import java.util.ArrayList;
 
 public class Search extends Fragment {
 
+    private static final String TAG ="UserSearchActivity" ;
+    private static final int NUM_GRID_COLUMNS = 3;
+
     ArrayList<User> list=new ArrayList<>();
     FirebaseAuth mauth;
     FirebaseDatabase firebaseDatabase;
@@ -64,6 +67,12 @@ public class Search extends Fragment {
 
         return binding.getRoot();
 
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 
