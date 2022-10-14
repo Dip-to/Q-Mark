@@ -75,6 +75,25 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heartsvgrepo, 0, 0, 0);
+                            holder.binding.like.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    FirebaseDatabase.getInstance().getReference().child("posts").child(model.getPostID()).child("likes").child(FirebaseAuth.getInstance().getUid())
+                                            .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    FirebaseDatabase.getInstance().getReference().child("posts").child(model.getPostID())
+                                                            .child("postLike").setValue(model.getPostLike() - 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.heart_24, 0, 0, 0);
+                                                                }
+                                                            });
+                                                }
+                                            });
+                                }
+                            });
+
                         } else {
                             holder.binding.like.setOnClickListener(new View.OnClickListener() {
                                 @Override
