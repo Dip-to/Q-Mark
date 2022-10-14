@@ -1,6 +1,7 @@
 package com.example.q_mark.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
+import com.example.q_mark.commentActivity;
 import com.example.q_mark.databinding.PostSampleBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -122,6 +124,16 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
                     }
                 });
+        holder.binding.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, commentActivity.class);
+                intent.putExtra("postid",model.getPostID());
+                intent.putExtra("postedby",model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
 
     }

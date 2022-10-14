@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Qmark"
         tools:targetApi="31">
         <activity
+            android:name=".commentActivity"
+            android:exported="false" />
+        <activity
             android:name=".Fragments.my_followers"
             android:exported="false"
             tools:ignore="Instantiatable" />
@@ -34,7 +37,8 @@
         <activity
             android:name=".StartActivity.SignUp"
             android:exported="false" />
-        <activity android:name=".Fragments.chatActivity"
+        <activity
+            android:name=".Fragments.chatActivity"
             android:windowSoftInputMode="adjustResize"
             tools:ignore="Instantiatable" />
         <activity
