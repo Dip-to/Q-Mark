@@ -18,7 +18,10 @@ import com.example.q_mark.Fragments.Notification;
 import com.example.q_mark.Fragments.Profile;
 import com.example.q_mark.Fragments.Settings;
 import com.example.q_mark.Fragments.Upload;
+import com.example.q_mark.Fragments.add_post;
 import com.example.q_mark.Fragments.contact_us_page;
+import com.example.q_mark.Fragments.me_following;
+import com.example.q_mark.Fragments.my_followers;
 import com.example.q_mark.Home;
 import com.example.q_mark.R;
 import com.example.q_mark.Search;
@@ -63,19 +66,11 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Profile()).commit();
-            navigationView.setCheckedItem(R.id.side_menu_profile);
-
+                    new my_followers()).commit();
+            navigationView.setCheckedItem(R.id.side_menu_followers);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Notification()).commit();
-            navigationView.setCheckedItem(R.id.side_menu_notification);
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Friends()).commit();
-            navigationView.setCheckedItem(R.id.side_menu_friends);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Addfriend()).commit();
-            navigationView.setCheckedItem(R.id.side_menu_addfriend);
+                    new me_following()).commit();
+            navigationView.setCheckedItem(R.id.side_menu_followings);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Upload()).commit();
@@ -83,7 +78,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Settings()).commit();
-            navigationView.setCheckedItem(R.id.side_menu_settings);
+            navigationView.setCheckedItem(R.id.side_menu_logout);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new contact_us_page()).commit();
@@ -129,28 +124,20 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
                 break;
 
-            case R.id.side_menu_profile:
+            case R.id.side_menu_followers:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).addToBackStack(null).commit();
-                break;
-            case R.id.side_menu_friends:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Friends()).addToBackStack(null).commit();
+                        new my_followers()).addToBackStack(null).commit();
                 break;
 
-            case R.id.side_menu_notification:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Notification()).addToBackStack(null).commit();
-                break;
 
             case R.id.side_menu_contact_us:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new contact_us_page()).addToBackStack(null).commit();
                 break;
 
-            case R.id.side_menu_addfriend:
+            case R.id.side_menu_followings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Addfriend()).addToBackStack(null).commit();
+                        new me_following()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_upload:
@@ -158,7 +145,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                         new Upload()).addToBackStack(null).commit();
                 break;
 
-            case R.id.side_menu_settings:
+            case R.id.side_menu_logout:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Settings()).addToBackStack(null).commit();
 

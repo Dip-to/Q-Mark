@@ -9,21 +9,13 @@
             android:icon="@drawable/ic_home"
             android:title="Home" />
         <item
-            android:id="@+id/side_menu_profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile" />
-        <item
-            android:id="@+id/side_menu_notification"
-            android:icon="@drawable/ic_notification"
-            android:title="Notification" />
-        <item
-            android:id="@+id/side_menu_friends"
+            android:id="@+id/side_menu_followers"
             android:icon="@drawable/ic_friends"
-            android:title="Friends" />
+            android:title="Followers" />
         <item
-            android:id="@+id/side_menu_addfriend"
-            android:icon="@drawable/ic_addfriend"
-            android:title="Add friend" />
+            android:id="@+id/side_menu_followings"
+            android:icon="@drawable/ic_following"
+            android:title="Followings" />
         <item
             android:id="@+id/side_menu_upload"
             android:icon="@drawable/ic_upload"
@@ -34,13 +26,13 @@
             android:title="Chat" />
 
         <item
-            android:id="@+id/side_menu_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings" />
-        <item
             android:id="@+id/side_menu_contact_us"
             android:icon="@drawable/ic_contact_us"
             android:title="Contact Us" />
+        <item
+            android:id="@+id/side_menu_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Log Out" />
     </group>
 
 </menu>
