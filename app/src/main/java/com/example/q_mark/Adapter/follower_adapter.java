@@ -43,7 +43,7 @@ public class follower_adapter extends RecyclerView.Adapter<follower_adapter.view
         User model=list.get(position);
 
         System.out.println(model.getName()+"haha");
-        Picasso.with(context).load(model.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.pImage);
+        Picasso.get().load(model.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.pImage);
         holder.binding.pname.setText(model.getName());
         holder.binding.pUniv.setText("univerity of udvash");
     }

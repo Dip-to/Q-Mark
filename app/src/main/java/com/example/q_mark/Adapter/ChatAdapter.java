@@ -106,7 +106,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding.textMessage.setText(chatMessage.message);
             binding.textDateTime.setText(chatMessage.dateTime);
             //ekhane picasso lagbe
-            Picasso.with(itemView.getContext()).load(receiveProfileImage).placeholder(R.drawable.ic_profile).into(binding.chatScreenImageProfile);
+            Picasso.get().load(receiveProfileImage).placeholder(R.drawable.ic_profile).into(binding.chatScreenImageProfile);
 
             // binding.chatScreenImageProfile.setImageBitmap(receiveProfileImage);
         }

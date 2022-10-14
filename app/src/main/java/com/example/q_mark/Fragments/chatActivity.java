@@ -280,7 +280,7 @@ private void loadReceiverDetails(){
                 //System.out.println("from database "+receiverUser.getName());
                // System.out.println(receiverUser.getPimage());
                 binding.friendsName.setText(receiverUser.getName());
-                Picasso.with(getContext()).load(receiverUser.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
+                Picasso.get().load(receiverUser.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
 
                 chatMessages=new ArrayList<>();
                 //System.out.println(receiverUser.getPimage());

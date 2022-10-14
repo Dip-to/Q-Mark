@@ -149,7 +149,7 @@ public class Profile extends Fragment {
                     if(!pimg.equals("###"))
                     {
                         try {
-                            Picasso.with(pro_img.getContext()).load(pimg).into(pro_img);
+                            Picasso.get().load(pimg).into(pro_img);
 //                            Glide.with(this)
 //                                    .load(pro_img.getContext())
 //                                    .transform(CircleCrop())

@@ -77,10 +77,10 @@ public class add_post extends Fragment {
                 if(snapshot.exists())
                 {
                     User user=snapshot.getValue(User.class);
-                    Picasso.with(getContext()).load(user.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
+                    Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
                     binding.usName.setText(user.getName());
                     binding.puniv.setText("univerity of udvash");
-                    Picasso.with(binding.proImg.getContext()).load(user.getPimage()).into(binding.proImg);
+                    Picasso.get().load(user.getPimage()).into(binding.proImg);
                 }
             }
 

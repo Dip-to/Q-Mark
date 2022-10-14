@@ -46,8 +46,9 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         Post model = list.get(position);
 
-        Picasso.with(context).load(model.getPostImage()).placeholder(R.drawable.ic_profile).into(holder.binding.story);
+        Picasso.get().load(model.getPostImage()).placeholder(R.drawable.ic_profile).into(holder.binding.story);
         holder.binding.like.setText(model.getPostLike() + "");
+        holder.binding.comment.setText(model.getCommentCount()+"");
         String pst = model.getPostDescription();
         if (pst.equals("")) {
             holder.binding.postdesc.setVisibility(View.GONE);
@@ -60,7 +61,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
 
-                Picasso.with(context).load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
+                Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
                 holder.binding.usName.setText(user.getName());
                 holder.binding.puniv.setText("Udvaah");
             }

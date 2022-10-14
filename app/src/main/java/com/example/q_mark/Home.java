@@ -52,7 +52,7 @@ public class Home extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user=snapshot.getValue(User.class);
-                Picasso.with(getContext()).load(user.getPimage()).placeholder(R.drawable.ic_profile).into(img);
+                Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(img);
             }
 
             @Override

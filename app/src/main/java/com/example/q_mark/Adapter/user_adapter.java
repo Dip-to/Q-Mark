@@ -46,7 +46,7 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         User user=list.get(position);
-        Picasso.with(context).load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
+        Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
         holder.binding.usName.setText(user.getName());
         holder.binding.puniv.setText("univerity of udvash");
         FirebaseDatabase.getInstance().getReference().child("User")
