@@ -15,6 +15,7 @@ import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.CommentSampleBinding;
 import com.example.q_mark.databinding.PostSampleBinding;
+import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,8 +43,8 @@ public class Comment_adapter extends RecyclerView.Adapter<Comment_adapter.viewHo
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Comment comment=list.get(position);
-
-        holder.binding.time.setText(comment.getCommentedAt()+"");
+        String time= TimeAgo.using(comment.getCommentedAt());
+        holder.binding.time.setText(time);
         FirebaseDatabase.getInstance().getReference().child("User").child(comment.getCommentedBy()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
