@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.Model.Notification;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> {
 
@@ -90,6 +92,14 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.heart_24, 0, 0, 0);
+
+                                                                    FirebaseDatabase.getInstance().getReference().child("notification").child(model.getPostedBy())
+                                                                            .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+
+                                                                                }
+                                                                            });
                                                                 }
                                                             });
                                                 }
@@ -111,6 +121,23 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heartsvgrepo, 0, 0, 0);
+
+                                                                    //notification
+                                                                    Notification notification=new Notification();
+                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notification.setNotificationAt(new Date().getTime());
+                                                                    notification.setPostId(model.getPostID());
+                                                                    notification.setPostedBy(model.getPostedBy());
+                                                                    notification.setType("like");
+
+                                                                    FirebaseDatabase.getInstance().getReference().child("notification").child(model.getPostedBy())
+                                                                            .push().setValue(notification).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+
+                                                                                }
+                                                                            });
+
                                                                 }
                                                             });
                                                 }

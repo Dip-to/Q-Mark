@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Model.Follower;
 import com.example.q_mark.Model.Following;
+import com.example.q_mark.Model.Notification;
 import com.example.q_mark.R;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.UserSampleBinding;
@@ -95,6 +96,22 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
                                                                     holder.binding.button.setEnabled(false);
 
                                                                     Toast.makeText(context, "You followed " +user.getName(), Toast.LENGTH_SHORT).show();
+
+
+                                                                    //notification
+                                                                    Notification notification=new Notification();
+                                                                    notification.setNotificationAt(new Date().getTime());
+                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notification.setType("follow");
+
+                                                                    FirebaseDatabase.getInstance().getReference().child("notification").child(user.getUid())
+                                                                            .push().setValue(notification).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+
+                                                                                }
+                                                                            });
+
                                                                 }
                                                             });
                                                 }

@@ -11,14 +11,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.q_mark.Fragments.Addfriend;
 import com.example.q_mark.Fragments.Chat;
-import com.example.q_mark.Fragments.Friends;
-import com.example.q_mark.Fragments.Notification;
+import com.example.q_mark.Fragments.notification;
 import com.example.q_mark.Fragments.Profile;
 import com.example.q_mark.Fragments.Settings;
 import com.example.q_mark.Fragments.Upload;
-import com.example.q_mark.Fragments.add_post;
 import com.example.q_mark.Fragments.contact_us_page;
 import com.example.q_mark.Fragments.me_following;
 import com.example.q_mark.Fragments.my_followers;
@@ -173,7 +170,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     selectedFragment=new Search();
                     break;
                 case R.id.bottom_notification:
-                    selectedFragment=new Notification();
+                    selectedFragment=new notification();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
