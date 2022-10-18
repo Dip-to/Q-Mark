@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.q_mark.Adapter.Comment_adapter;
 import com.example.q_mark.Model.Comment;
+import com.example.q_mark.Model.Notification;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.ActivityCommentBinding;
@@ -112,6 +113,22 @@ public class commentActivity extends AppCompatActivity {
                                             public void onSuccess(Void unused) {
                                                 binding.addcmnttext.setText("");
                                                 Toast.makeText(commentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+
+                                                Notification notification=new Notification();
+                                                notification.setNotificationAt(new Date().getTime());
+                                                notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                notification.setPostId(postid);
+                                                notification.setPostedBy(postedby);
+                                                notification.setType("comment");
+
+                                                FirebaseDatabase.getInstance().getReference().child("notification")
+                                                        .child(postedby).push().setValue(notification).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+
+                                                            }
+                                                        });
+
                                             }
                                         });
                                     }

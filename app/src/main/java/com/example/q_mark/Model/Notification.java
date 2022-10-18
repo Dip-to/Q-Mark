@@ -1,7 +1,7 @@
 package com.example.q_mark.Model;
 
 public class Notification {
-    private String notificationBy,postId,type,postedBy;
+    private String notificationBy,postId,type,postedBy,notificationId;
     private long notificationAt;
     private boolean checkOpen;
 
@@ -55,5 +55,13 @@ public class Notification {
 
     public void setCheckOpen(boolean checkOpen) {
         this.checkOpen = checkOpen;
+    }
+
+    public String getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(String notificationId) {
+        this.notificationId = notificationId;
     }
 }
