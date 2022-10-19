@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="110dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="88dp"
 
-        app:cardCornerRadius="10dp"
-        app:cardElevation="@dimen/_35sdp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,30 +21,29 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="102dp"
+            android:layout_height="98dp"
             android:background="#F3F3F6">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/proImg"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="69dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/not_text"
-                android:layout_width="297dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14mdp"
                 app:layout_constraintBottom_toBottomOf="@+id/proImg"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.008"
                 app:layout_constraintStart_toEndOf="@+id/proImg"
                 app:layout_constraintTop_toTopOf="@+id/proImg"
                 app:layout_constraintVertical_bias="0.25" />
