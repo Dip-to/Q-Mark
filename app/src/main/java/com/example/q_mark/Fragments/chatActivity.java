@@ -46,9 +46,9 @@ public class chatActivity extends Fragment {
 
     private ActivityChatScreenBinding binding;
     private User receiverUser;
-    private List<ChatMessage> chatMessages;
+    private List<ChatMessage> chatMessages=new ArrayList<>();
     private ChatAdapter chatAdapter;
-  //  private PreferenceManager preferenceManager;
+    //  private PreferenceManager preferenceManager;
     FirebaseFirestore database;
     private String rcvruserid;
 
@@ -58,13 +58,14 @@ public class chatActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = ActivityChatScreenBinding.inflate(inflater,container,false);
         //View view = LayoutInflater.from(context).inflate(R.layout.user_sample,parent,false);
+
         setListener();
         loadReceiverDetails();
         listenMessages();
         //init();
         return binding.getRoot();
     }
-//    public void init()
+    //    public void init()
 //    {
 //        //preferenceManager= (PreferenceManager) PreferenceManager.getDefaultSharedPreferences(getActivity());
 //        chatMessages=new ArrayList<>();
@@ -92,11 +93,11 @@ public class chatActivity extends Fragment {
     private void  listenMessages(){
 
         //msgs rcvd by the  received user
-       //dipto [only this line]   FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
+        //dipto [only this line]   FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
 //                .whereEqualTo(Constants.KEY_SENDER_ID,rcvruserid)
 //                .whereEqualTo(Constants.KEY_RECEIVER_ID,FirebaseAuth.getInstance().getUid())
-               //dipto [only this line] .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    //dipto suru
+        //dipto [only this line] .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        //dipto suru
 //                    @Override
 //                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 //                        if(error != null){
@@ -119,7 +120,7 @@ public class chatActivity extends Fragment {
 //
 //                            }
 //                            Log.d("FCM","middle");
-                            //dipto sesh
+        //dipto sesh
 
 //                            FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
 ////                .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
@@ -159,7 +160,7 @@ public class chatActivity extends Fragment {
 //                        binding.chatProgressBar.setVisibility(View.GONE);
 //                    }
 //                });
-                            //dipto suru
+        //dipto suru
 //                          // Collections.sort(chatMessages,(obj1, obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
 //                            if(count == 0){
 //                                chatAdapter.notifyDataSetChanged();
@@ -220,7 +221,7 @@ public class chatActivity extends Fragment {
 //
         FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID,FirebaseAuth.getInstance().getUid())
-               .whereEqualTo(Constants.KEY_RECEIVER_ID,rcvruserid)
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,rcvruserid)
                 .addSnapshotListener(eventListener);
 
         FirebaseFirestore.getInstance().collection(Constants.KEY_COLLECTION_CHAT)
@@ -244,8 +245,8 @@ public class chatActivity extends Fragment {
                         chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
                         chatMessage.dateTime = getReadableDateTime((documentChange.getDocument().getTimestamp(Constants.KEY_TIMESTAMP).toDate()));
                         chatMessage.dateObject= documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-                          //chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
-                         // chatMessage.dateObject= Calendar.getInstance().getTime();
+                        //chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
+                        // chatMessage.dateObject= Calendar.getInstance().getTime();
                         chatMessages.add(chatMessage);
                     }catch (Exception e)
                     {
@@ -265,10 +266,11 @@ public class chatActivity extends Fragment {
             }
             binding.chatScreenRv.setVisibility(View.VISIBLE);
         }
+        binding.chatScreenRv.scrollToPosition(chatAdapter.getItemCount()-1);
         binding.chatProgressBar.setVisibility(View.GONE);
     };
 
-private void loadReceiverDetails(){
+    private void loadReceiverDetails(){
 
         String s=getArguments().getString("rcv");
         rcvruserid=s;
@@ -278,14 +280,14 @@ private void loadReceiverDetails(){
                 receiverUser=snapshot.getValue(User.class);
                 receiverUser.setUid(s);
                 //System.out.println("from database "+receiverUser.getName());
-               // System.out.println(receiverUser.getPimage());
+                // System.out.println(receiverUser.getPimage());
                 binding.friendsName.setText(receiverUser.getName());
                 Picasso.get().load(receiverUser.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
 
-                chatMessages=new ArrayList<>();
                 //System.out.println(receiverUser.getPimage());
                 chatAdapter=new ChatAdapter(chatMessages,receiverUser.getPimage(), FirebaseAuth.getInstance().getUid());
                 binding.chatScreenRv.setAdapter(chatAdapter);
+                binding.chatScreenRv.scrollToPosition(chatAdapter.getItemCount()-1);
                 database=FirebaseFirestore.getInstance();
             }
 
@@ -295,15 +297,15 @@ private void loadReceiverDetails(){
             }
         });
 
-}
+    }
 
-private void setListener(){
+    private void setListener(){
         binding.chatImageBack.setOnClickListener(view -> getActivity().onBackPressed());
         binding.layoutSend.setOnClickListener(view -> sendMessage());
-}
+    }
 
-private String getReadableDateTime(Date date) {
+    private String getReadableDateTime(Date date) {
         return new SimpleDateFormat("MMMM dd,yyyy - hh :mm a", Locale.getDefault()).format(date);
-}
+    }
 
 }

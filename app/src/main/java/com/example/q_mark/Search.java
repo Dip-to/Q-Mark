@@ -1,6 +1,8 @@
 package com.example.q_mark;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Search extends Fragment {
 
@@ -30,13 +34,14 @@ public class Search extends Fragment {
     FirebaseAuth mauth;
     FirebaseDatabase firebaseDatabase;
     SearchBinding binding;
+    user_adapter us;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding=SearchBinding.inflate(inflater,container,false);
-        user_adapter us=new user_adapter(getContext(),list);
+        us=new user_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.RV.setLayoutManager(linearLayoutManager);
         binding.RV.setAdapter(us);
@@ -44,14 +49,69 @@ public class Search extends Fragment {
         firebaseDatabase.getReference().child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(binding.searchbar.getText().toString().equals(""))
+                {
+                    list.clear();
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                    {
+
+                        User user=dataSnapshot.getValue(User.class);
+                        user.setUid(dataSnapshot.getKey());
+                        System.out.println(dataSnapshot.getKey());
+                        if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid()))
+                        {
+                            list.add(user);
+                        }
+                    }
+                    us.notifyDataSetChanged();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //search
+        binding.searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                searchUser(charSequence.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+
+        return binding.getRoot();
+
+
+    }
+
+    private void searchUser(String s) {
+        Query query=FirebaseDatabase.getInstance().getReference("User").orderByChild("Name");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
-
                     User user=dataSnapshot.getValue(User.class);
                     user.setUid(dataSnapshot.getKey());
                     System.out.println(dataSnapshot.getKey());
-                    if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid()))
+                    if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid()) && user.getName().toLowerCase().contains(s))
                     {
                         list.add(user);
                     }
@@ -64,9 +124,6 @@ public class Search extends Fragment {
 
             }
         });
-
-        return binding.getRoot();
-
 
     }
 
