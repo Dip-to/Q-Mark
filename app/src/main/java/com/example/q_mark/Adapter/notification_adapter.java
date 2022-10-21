@@ -68,7 +68,6 @@ public class notification_adapter extends RecyclerView.Adapter<notification_adap
                         }
 
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
