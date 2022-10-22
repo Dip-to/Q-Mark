@@ -42,8 +42,6 @@ public class notification extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rv=getView().findViewById(R.id.rv);
-
-
         notification_adapter ff= new notification_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         rv.setLayoutManager(linearLayoutManager);

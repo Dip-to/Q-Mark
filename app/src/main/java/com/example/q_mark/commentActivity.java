@@ -36,6 +36,12 @@ public class commentActivity extends AppCompatActivity {
     ArrayList<Comment> list=new ArrayList<>();
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.goup,R.anim.godown);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);

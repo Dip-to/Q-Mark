@@ -1,5 +1,6 @@
 package com.example.q_mark.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -160,6 +161,8 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
                 intent.putExtra("postedby",model.getPostedBy());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+                ((Activity) context).overridePendingTransition(R.anim.goup,R.anim.godown);
+
             }
         });
 
