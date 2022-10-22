@@ -1,5 +1,6 @@
 package com.example.q_mark.StartActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.q_mark.Fragments.Chat;
 import com.example.q_mark.Fragments.notification;
@@ -46,7 +48,6 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         drawer = findViewById(R.id.drawer_layout);
         Toolbar toolbar=findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,toolbar,R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
@@ -157,7 +158,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment=new Home();
+            Fragment selectedFragment=null;
             switch (item.getItemId()){
                 case R.id.bottom_home:
                      selectedFragment=new Home();
@@ -174,8 +175,9 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment).commit();
+                    selectedFragment).addToBackStack(null).commit();
             return true;
+
 
         }
     };

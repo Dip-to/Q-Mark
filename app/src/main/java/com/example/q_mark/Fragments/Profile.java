@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -25,6 +26,7 @@ import com.example.q_mark.fbase_userdata;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +48,7 @@ public class Profile extends Fragment {
     LinearLayout mfrnds,following;
     Uri img;
     private String s;
+    private FloatingActionButton chng_dp;
 
     ActivityResultLauncher<String> launcher;
     @Nullable
@@ -67,6 +70,7 @@ public class Profile extends Fragment {
         brws=getView().findViewById(R.id.browse);
         mfrnds=getView().findViewById(R.id.frnds_btn);
         following=getView().findViewById(R.id.following);
+        chng_dp=getView().findViewById(R.id.chng_dp_btn);
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +99,7 @@ public class Profile extends Fragment {
 
 
 
+
         databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://q-mark-dd305-default-rtdb.firebaseio.com/User");
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference st=FirebaseStorage.getInstance().getReference();
@@ -105,6 +110,18 @@ public class Profile extends Fragment {
         ArrayList<String> pp= new ArrayList<String>();
 
         brws.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launcher.launch("image/*");
+
+                if(img!=null)
+                {
+
+                    uploadimg();
+                }
+            }
+        });
+        chng_dp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 launcher.launch("image/*");
@@ -168,11 +185,8 @@ public class Profile extends Fragment {
         });
 
 
-
-
-
-
     }
+
 
     private void uploadimg() {
         StorageReference reference=FirebaseStorage.getInstance().getReference().child("Profile_image/"+ UUID.randomUUID().toString());

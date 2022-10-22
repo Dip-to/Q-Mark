@@ -12,7 +12,7 @@
         android:layout_height="377dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_background" />
+        app:srcCompat="@drawable/ui_bg" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/proImg"
@@ -253,5 +253,17 @@
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.324" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/chng_dp_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="100dp"
+        android:clickable="true"
+        app:backgroundTint="#16FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_addpost" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
