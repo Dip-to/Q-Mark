@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/drawable/background_chat_input.xml" value="0.238" />
+        <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/drawable/background_recieved_msg.xml" value="0.238" />
+        <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/layout/folder_sample.xml" value="0.26197916666666665" />
         <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/layout/fragment_add_post.xml" value="0.15715579710144928" />
         <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/layout/home.xml" value="0.4" />
         <entry key="..\:/CODING/Junior training/LAB/OOP/Projects/Q-mark/app/src/main/res/layout/upload.xml" value="0.264" />

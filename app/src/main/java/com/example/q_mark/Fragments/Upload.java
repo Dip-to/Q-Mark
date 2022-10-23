@@ -1,7 +1,9 @@
 package com.example.q_mark.Fragments;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,31 +26,40 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.Adapter.folder_adapter;
 import com.example.q_mark.MainActivity;
+import com.example.q_mark.Model.Notification;
+import com.example.q_mark.Model.folder;
 import com.example.q_mark.R;
+import com.example.q_mark.databinding.UploadBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 import android.app.ProgressDialog;
+import com.example.q_mark.Model;
 
 public class Upload extends Fragment {
-    //constant to track image chooser intent
-    private static final int PICK_IMAGE_REQUEST = 234 , PICK_PDF_REQUEST=123;
 
-    private Button UploadPageChooseFileButton,UploadPageUploadButton,pdfUpload;
-    private TextView UploadPageChooseFileTextView;
-    private ImageView imageView;
+    RecyclerView recyclerView;
+    TextView noFilesText;
 
-    //uri to store file
-    private Uri imgfilePath,pdffilePath;
+    private ArrayList<folder>list = new ArrayList<folder>();
+    private String curPath;
+    UploadBinding binding;
+
 
     //firebase objects
     FirebaseAuth mauth;
@@ -58,143 +69,54 @@ public class Upload extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        curPath = Intent.getIntent().getStringExtra("path");
+        if(curPath.size()==0 || curPath == null)
+        {
+            curPath = "https://q-mark-dd305-default-rtdb.firebaseio.com/Upload/" + FirebaseAuth.getInstance().getUid();
+        }
+
+        //Upload -> folder1
+        //cur -> cur + "/folder1";
         mauth=FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        firebaseStorage=firebaseStorage.getInstance();
+        firebaseDatabase=FirebaseDatabase.getInstance().getReferenceFromUrl(curPath);
+        firebaseStorage= FirebaseStorage.getInstance();
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.upload, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //view objects
-        UploadPageChooseFileButton = (Button) getView().findViewById(R.id.choose_btn);
-        UploadPageUploadButton = (Button) getView().findViewById(R.id.upload_btn);
-        UploadPageChooseFileTextView = (TextView) getView().findViewById(R.id.upload_txtfield);
-        imageView = (ImageView) getView().findViewById(R.id.uploadedImage);
-        pdfUpload = (Button) getView().findViewById(R.id.choosepdfbtn);
-        firebaseStorage = FirebaseStorage.getInstance();
-
-        UploadPageChooseFileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showImageFileChooser();
-            }
-        });
-        pdfUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPdfFileChooser();
-            }
-        });
-
-        UploadPageUploadButton.setOnClickListener(new View.OnClickListener() {
+        folder_adapter fap= new folder_adapter(getContext(),list);
+        binding = UploadBinding.inflate(inflater,container,false);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        binding.recyclerView.setLayoutManager(linearLayoutManager);
+        binding.recyclerView.setAdapter(fap);
+        binding.addPdfBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadFile();
+
             }
         });
-    }
 
-    private void uploadFile() {
-        //if there is a file to upload
-        if (imgfilePath != null) {
-            //displaying a progress dialog while upload is going on
-            final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Uploading");
-            progressDialog.show();
-
-            final StorageReference storageReference = firebaseStorage.getReference().child(FirebaseAuth.getInstance().getUid()).child("Photo").child(new Date().getTime()+" ");
-            storageReference.putFile(imgfilePath);
-            progressDialog.dismiss();
-        }
-        //if there is not any file
-        else {
-            //you can display an error toast
-        }
-
-        if(pdffilePath!=null)
-        {
-            final ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Uploading");
-            progressDialog.show();
-
-            final StorageReference storageReference = firebaseStorage.getReference().child(FirebaseAuth.getInstance().getUid()).child("Pdf").child(new Date().getTime()+" ");
-            storageReference.putFile(pdffilePath);
-            progressDialog.dismiss();
-        }
-    }
-
-    private void showImageFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select an Image"),PICK_IMAGE_REQUEST);
-    }
-    private void showPdfFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("pdf/*");
-
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select an Pdf"),PICK_PDF_REQUEST);
-    }
-
-    public String getFileName(Uri uri) {
-        String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+        FirebaseDatabase.getInstance().getReferenceFromUrl(curPath).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    folder newFolder = dataSnapshot.getValue(folder.class);
+                    list.add(newFolder);
                 }
-            } finally {
-                cursor.close();
+                fap.notifyDataSetChanged();
             }
-        }
-        if (result == null) {
-            result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
-        }
-        return result;
+        });
+
+        return binding.getRoot();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data!=null && data.getData() != null)
-        {
-            imgfilePath = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imgfilePath);
-                imageView.setImageBitmap(bitmap);
-                UploadPageChooseFileTextView.setText(getFileName(imgfilePath));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-        else if(requestCode == PICK_PDF_REQUEST && resultCode == Activity.RESULT_OK && data!=null && data.getData() != null)
-        {
-            pdffilePath = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), pdffilePath);
-                //imageView.setImageBitmap(bitmap);
-                //UploadPageChooseFileTextView.setText(getFileName(imgfilePath));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
