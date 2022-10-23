@@ -64,7 +64,6 @@ public class Search extends Fragment {
                         }
                     }
                     us.notifyDataSetChanged();
-
                 }
 
             }
@@ -118,7 +117,6 @@ public class Search extends Fragment {
                 }
                 us.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

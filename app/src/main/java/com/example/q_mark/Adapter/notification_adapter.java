@@ -3,6 +3,7 @@ package com.example.q_mark.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,6 +83,9 @@ public class notification_adapter extends RecyclerView.Adapter<notification_adap
             public void onClick(View view) {
                 if(model.getType().equals("like") || model.getType().equals("comment"))
                 {
+                    FirebaseDatabase.getInstance().getReference().child("notification").child(model.getPostedBy())
+                            .child(model.getNotificationId()).child("checkOpen").setValue(true);
+                    holder.binding.clrs.setBackgroundColor(Color.WHITE);
                     Intent intent=new Intent(context, commentActivity.class);
                     intent.putExtra("postid",model.getPostId());
                     intent.putExtra("postedby",model.getPostedBy());
@@ -91,6 +95,11 @@ public class notification_adapter extends RecyclerView.Adapter<notification_adap
                 }
             }
         });
+        Boolean chck=model.isCheckOpen();
+        if(chck==true)
+        {
+            holder.binding.clrs.setBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.q_mark.Model.Notification;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
@@ -49,7 +51,10 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         Post model = list.get(position);
 
-        Picasso.get().load(model.getPostImage()).placeholder(R.drawable.ic_profile).into(holder.binding.story);
+        //post image
+        Glide.with(context).load(model.getPostImage()).fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_profile).into(holder.binding.story);
+        //Picasso.get().load(model.getPostImage()).placeholder(R.drawable.ic_profile).into(holder.binding.story);
         holder.binding.like.setText(model.getPostLike() + "");
         holder.binding.comment.setText(model.getCommentCount()+"");
         String pst = model.getPostDescription();
@@ -138,7 +143,6 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
                                                                                 }
                                                                             });
-
                                                                 }
                                                             });
                                                 }

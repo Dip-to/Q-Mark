@@ -79,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_150mdp"
                 android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/syedmumtahinmahmud"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -107,7 +107,7 @@
             <TextView
                 android:id="@+id/comment"
                 android:layout_width="64dp"
-                android:layout_height="37dp"
+                android:layout_height="27dp"
                 android:layout_marginStart="20dp"
                 android:drawableLeft="@drawable/ic_outline_comment"
                 android:drawablePadding="10dp"

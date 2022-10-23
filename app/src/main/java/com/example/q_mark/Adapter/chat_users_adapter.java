@@ -46,7 +46,6 @@ public class chat_users_adapter extends RecyclerView.Adapter<chat_users_adapter.
         Picasso.get().load(chatUser.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.chatImageprofile);
         holder.binding.getRoot().setOnClickListener(view -> userListener.onUserClicked(chatUser));
 
-
     }
 
     @Override

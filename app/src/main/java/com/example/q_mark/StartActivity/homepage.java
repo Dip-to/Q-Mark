@@ -26,6 +26,7 @@ import com.example.q_mark.R;
 import com.example.q_mark.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -144,6 +145,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                 break;
 
             case R.id.side_menu_logout:
+                FirebaseAuth.getInstance().signOut();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Settings()).addToBackStack(null).commit();
 

@@ -15,11 +15,13 @@ import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Fragments.Upload;
+import com.example.q_mark.Model.Folder;
 import com.example.q_mark.Model.Notification;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.FolderSampleBinding;
 import com.example.q_mark.databinding.NotificationSampleBinding;
 //import com.example.q_mark.Model;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -36,7 +38,7 @@ public class folder_adapter extends RecyclerView.Adapter<folder_adapter.viewHold
     }
 
 
-
+    DatabaseReference databaseReference;
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,7 +50,7 @@ public class folder_adapter extends RecyclerView.Adapter<folder_adapter.viewHold
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        folder model=list.get(position); //data type change
+        Folder model=list.get(position); //data type change
 
         if(model.getIsdirectory())
         {
@@ -76,17 +78,19 @@ public class folder_adapter extends RecyclerView.Adapter<folder_adapter.viewHold
                 }
                 else if(model.getImage())
                 {
+                    databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl(model.getFolderPath());
                     Intent intent = new Intent();
                     String type = "image/*";
-                    intent.setDataAndType(FirebaseDatabase.getInstance().getReferenceFromUrl(model.getFolderPath()).get(),type);
+                    intent.setDataAndType(d,type);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
                 else if(model.getPdf())
                 {
+                    databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl(model.getFolderPath());
                     Intent intent = new Intent();
                     String type = "pdf/*";
-                    intent.setDataAndType(FirebaseDatabase.getInstance().getReferenceFromUrl(model.getFolderPath()).get(),type);
+                   // intent.setDataAndType(databaseReference,type);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

@@ -31,8 +31,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Adapter.folder_adapter;
 import com.example.q_mark.MainActivity;
+import com.example.q_mark.Model.Folder;
 import com.example.q_mark.Model.Notification;
-import com.example.q_mark.Model.folder;
+
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.UploadBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,29 +50,29 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 import android.app.ProgressDialog;
-import com.example.q_mark.Model;
+
 
 public class Upload extends Fragment {
 
     RecyclerView recyclerView;
     TextView noFilesText;
 
-    private ArrayList<folder>list = new ArrayList<folder>();
+    private ArrayList<Folder>list = new ArrayList<>();
     private String curPath;
     UploadBinding binding;
 
 
     //firebase objects
     FirebaseAuth mauth;
-    FirebaseDatabase firebaseDatabase;
+    DatabaseReference firebaseDatabase;
     FirebaseStorage firebaseStorage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        curPath = Intent.getIntent().getStringExtra("path");
-        if(curPath.size()==0 || curPath == null)
+        curPath = Intent.getStringExtra("path");
+        if(curPath.length()==0 || curPath == null)
         {
             curPath = "https://q-mark-dd305-default-rtdb.firebaseio.com/Upload/" + FirebaseAuth.getInstance().getUid();
         }
@@ -104,7 +105,7 @@ public class Upload extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    folder newFolder = dataSnapshot.getValue(folder.class);
+                    Folder newFolder = dataSnapshot.getValue(Folder.class);
                     list.add(newFolder);
                 }
                 fap.notifyDataSetChanged();
