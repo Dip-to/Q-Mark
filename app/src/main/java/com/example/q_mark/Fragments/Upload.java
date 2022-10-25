@@ -107,12 +107,12 @@ public class Upload extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        folder_adapter fap= new folder_adapter(getContext(),list);
           binding = UploadBinding.inflate(inflater,container,false);
-        binding.addPhotoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launcher.launch("image/*");
-            }
-        });
+//        binding.addPhotoBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                launcher.launch("image/*");
+//            }
+//        });
         launcher=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
