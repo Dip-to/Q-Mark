@@ -81,7 +81,7 @@ public class folder_adapter extends RecyclerView.Adapter<folder_adapter.viewHold
                     databaseReference=FirebaseDatabase.getInstance().getReferenceFromUrl(model.getFolderPath());
                     Intent intent = new Intent();
                     String type = "image/*";
-                    intent.setDataAndType(d,type);
+                 //   intent.setDataAndType(d,type);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

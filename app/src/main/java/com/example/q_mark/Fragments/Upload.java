@@ -71,51 +71,51 @@ public class Upload extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        curPath = Intent.getStringExtra("path");
-        if(curPath.length()==0 || curPath == null)
-        {
-            curPath = "https://q-mark-dd305-default-rtdb.firebaseio.com/Upload/" + FirebaseAuth.getInstance().getUid();
-        }
-
-        //Upload -> folder1
-        //cur -> cur + "/folder1";
-        mauth=FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance().getReferenceFromUrl(curPath);
-        firebaseStorage= FirebaseStorage.getInstance();
+        //curPath = Intent.getStringExtra("path");
+//        if(curPath.length()==0 || curPath == null)
+//        {
+//            curPath = "https://q-mark-dd305-default-rtdb.firebaseio.com/Upload/" + FirebaseAuth.getInstance().getUid();
+//        }
+//
+//        //Upload -> folder1
+//        //cur -> cur + "/folder1";
+//        mauth=FirebaseAuth.getInstance();
+//        firebaseDatabase=FirebaseDatabase.getInstance().getReferenceFromUrl(curPath);
+//        firebaseStorage= FirebaseStorage.getInstance();
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        folder_adapter fap= new folder_adapter(getContext(),list);
-        binding = UploadBinding.inflate(inflater,container,false);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        binding.recyclerView.setLayoutManager(linearLayoutManager);
-        binding.recyclerView.setAdapter(fap);
-        binding.addPdfBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        folder_adapter fap= new folder_adapter(getContext(),list);
+          binding = UploadBinding.inflate(inflater,container,false);
+//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+//        binding.recyclerView.setLayoutManager(linearLayoutManager);
+//        binding.recyclerView.setAdapter(fap);
+//        binding.addPdfBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-            }
-        });
-
-        FirebaseDatabase.getInstance().getReferenceFromUrl(curPath).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren())
-                {
-                    Folder newFolder = dataSnapshot.getValue(Folder.class);
-                    list.add(newFolder);
-                }
-                fap.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        FirebaseDatabase.getInstance().getReferenceFromUrl(curPath).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+//                {
+//                    Folder newFolder = dataSnapshot.getValue(Folder.class);
+//                    list.add(newFolder);
+//                }
+//                fap.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         return binding.getRoot();
     }

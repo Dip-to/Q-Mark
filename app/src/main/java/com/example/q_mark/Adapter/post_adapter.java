@@ -3,15 +3,21 @@ package com.example.q_mark.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.q_mark.Fragments.Profile_user;
+import com.example.q_mark.Fragments.me_following;
 import com.example.q_mark.Model.Notification;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
@@ -169,7 +175,21 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
             }
         });
-
+        holder.binding.proImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Fragment ff=new Profile_user();
+                //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", model.getPostedBy());
+                ff.setArguments(bundle);
+                FragmentTransaction transaction=activity.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,ff);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
     }
 
