@@ -71,21 +71,62 @@
         android:overScrollMode="ifContentScrolls"
         android:padding="@dimen/_20sdp"
         android:visibility="gone"
-        app:reverseLayout="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        app:layout_constraintBottom_toTopOf="@+id/smsg"
         app:layout_constraintTop_toBottomOf="@+id/viewSupporter"
+        app:reverseLayout="false"
         app:stackFromEnd="true" />
 
     <ProgressBar
         android:id="@+id/chat_progressBar"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintEnd_toEndOf="@+id/viewBackground"
         app:layout_constraintStart_toStartOf="@+id/viewBackground"
         app:layout_constraintTop_toTopOf="@+id/viewBackground" />
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/smsg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/smsgtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_sent_message"
+            android:padding="@dimen/_12sdp"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="wrap"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <TextView
+            android:id="@+id/smsgtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/smsgtext" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/layoutSend"

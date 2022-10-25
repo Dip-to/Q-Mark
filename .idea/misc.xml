@@ -40,7 +40,7 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/text_shape.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/top_button_background.xml" value="0.1" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/drawable/white_background.xml" value="0.1" />
-        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_comment.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_login.xml" value="0.302536231884058" />
@@ -53,6 +53,8 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/comment_sample.xml" value="0.5" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/contact_us.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/follow_bg.xml" value="0.34103260869565216" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/forget_pass.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/forget_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/fragment_add_post.xml" value="0.25" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/friends.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/home.xml" value="0.33" />

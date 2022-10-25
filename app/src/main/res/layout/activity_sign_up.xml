@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:layout_editor_absoluteX="-6dp"
-    tools:layout_editor_absoluteY="48dp">
+    tools:layout_editor_absoluteX="-5dp"
+    tools:layout_editor_absoluteY="-49dp">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -24,13 +24,13 @@
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="164dp"
         android:layout_marginEnd="11dp"
         android:ems="10"
         android:hint="Full name"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,13 +39,13 @@
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="236dp"
         android:layout_marginEnd="11dp"
         android:ems="10"
         android:hint="Email address"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="364dp"
+        android:layout_marginTop="312dp"
         android:layout_marginEnd="11dp"
         android:ems="10"
         android:hint="Mobile no"
@@ -69,25 +69,10 @@
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="452dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/sup_pass_cnfrm"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="508dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Confirm password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -98,13 +83,28 @@
         android:id="@+id/sup_button"
         android:layout_width="124dp"
         android:layout_height="53dp"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="612dp"
         android:background="#2F9133"
         android:gravity="center|center_horizontal"
         android:text="Sign Up"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/sup_pass_cnfrm"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="524dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -158,8 +158,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="186dp"
-        android:layout_height="197dp"
+        android:layout_width="162dp"
+        android:layout_height="154dp"
         android:layout_marginStart="131dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="94dp"

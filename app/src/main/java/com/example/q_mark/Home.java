@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Home extends Fragment {
 
@@ -71,7 +72,7 @@ public class Home extends Fragment {
         rv.setNestedScrollingEnabled(false);
         rv.setAdapter(pp);
 
-        FirebaseDatabase.getInstance().getReference().child("posts").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("posts").orderByChild("postedAt").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dashboardList.clear();
@@ -81,6 +82,7 @@ public class Home extends Fragment {
                     post.setPostID(dataSnapshot.getKey());
                     dashboardList.add(post);
                 }
+                Collections.reverse(dashboardList);
                 pp.notifyDataSetChanged();
             }
 
