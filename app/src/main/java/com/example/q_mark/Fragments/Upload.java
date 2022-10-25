@@ -1,26 +1,14 @@
 package com.example.q_mark.Fragments;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.OpenableColumns;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +18,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.q_mark.Adapter.folder_adapter;
-import com.example.q_mark.MainActivity;
-import com.example.q_mark.Model.Folder;
-import com.example.q_mark.Model.Notification;
-
-import com.example.q_mark.R;
+import com.example.q_mark.Model.Files;
+import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.UploadBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,13 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import org.w3c.dom.Text;
-import android.app.ProgressDialog;
 
 
 public class Upload extends Fragment {
@@ -63,11 +42,11 @@ public class Upload extends Fragment {
     RecyclerView recyclerView;
     TextView noFilesText;
 
-
-    private ArrayList<Folder>list = new ArrayList<>();
     private String curPath;
     UploadBinding binding;
     ActivityResultLauncher<String> launcher;
+    Uri uri;
+    private String unv,type;
 
 
 
@@ -80,99 +59,122 @@ public class Upload extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //curPath = Intent.getStringExtra("path");
-//        if(curPath.length()==0 || curPath == null)
-//        {
-//            curPath = "https://q-mark-dd305-default-rtdb.firebaseio.com/Upload/" + FirebaseAuth.getInstance().getUid();
-//        }
-//
-//        //Upload -> folder1
-//        //cur -> cur + "/folder1";
-//        mauth=FirebaseAuth.getInstance();
-//        firebaseDatabase=FirebaseDatabase.getInstance().getReferenceFromUrl(curPath);
-//        firebaseStorage= FirebaseStorage.getInstance();
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        folder_adapter fap= new folder_adapter(getContext(),list);
-          binding = UploadBinding.inflate(inflater,container,false);
-//        binding.addPhotoBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                launcher.launch("image/*");
-//            }
-//        });
-        launcher=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+
+        binding = UploadBinding.inflate(inflater,container,false);
+        binding.chsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onActivityResult(Uri result) {
-
-                // result will contain the image
-                binding.imageView2.setImageURI(result);
-
-
+            public void onClick(View view) {
+                launcher.launch("*/*");
 
             }
         });
-//        private void uploadimg() {
-//            StorageReference reference=FirebaseStorage.getInstance().getReference().child("Profile_image/"+ UUID.randomUUID().toString());
-//            reference.putFile(img).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                    if(task.isSuccessful())
-//                    {
-//                        Toast.makeText(getActivity(),"Image Uploaded",Toast.LENGTH_SHORT).show();
-//                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                databaseReference.child(s).child("Pimage").setValue(uri.toString());
-//                            }
-//                        });
-//                        //databaseReference.child("User").child(s).child("Pimage").setValue("###");
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-//        binding.recyclerView.setLayoutManager(linearLayoutManager);
-//        binding.recyclerView.setAdapter(fap);
-//        binding.addPdfBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        binding.slide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type="slide";
+                binding.others.setChecked(false);
+                binding.pdf.setChecked(false);
+            }
+        });
+       binding.pdf.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               type="pdf";
+               binding.others.setChecked(false);
+               binding.slide.setChecked(false);
+           }
+       });
+       binding.others.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               type="others";
+               binding.pdf.setChecked(false);
+               binding.slide.setChecked(false);
+           }
+       });
 
-//        FirebaseDatabase.getInstance().getReferenceFromUrl(curPath).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren())
-//                {
-//                    Folder newFolder = dataSnapshot.getValue(Folder.class);
-//                    list.add(newFolder);
-//                }
-//                fap.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
+
+        launcher=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if(result!=null)
+                {
+                    binding.chsbtn.setText(result.getPath().toString());
+                    uri=result;
+                }
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getUid())
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                User user=snapshot.getValue(User.class);
+                                unv=user.getUniversity();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+        binding.upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Files files=new Files();
+                files.setName(binding.fname.getText().toString());
+                files.setCourse(binding.fcourse.getText().toString());
+                files.setYear(binding.fyear.getText().toString());
+                files.setSubject(binding.fsubject.getText().toString());
+                files.setHint(binding.fname.getText().toString()+"*"+binding.fcourse.getText().toString()+"*"+
+                                unv+"*"+binding.fsubject.getText().toString());
+                files.setUploaderid(FirebaseAuth.getInstance().getUid());
+                files.setUniversity(unv);
+                if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
+                {
+                    files.setType(type);
+                    StorageReference reference=FirebaseStorage.getInstance().getReference().child("Upload/"+ UUID.randomUUID().toString());
+                    reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            if(task.isSuccessful())
+                            {
+                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri urii) {
+                                        files.setPath(urii.toString());
+                                        FirebaseDatabase.getInstance().getReference().child("Upload").child(unv)
+                                                .push().setValue(files).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+            }
+        });
 
         return binding.getRoot();
     }

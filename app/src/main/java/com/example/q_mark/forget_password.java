@@ -25,11 +25,11 @@ public class forget_password extends AppCompatActivity {
         setContentView(R.layout.activity_forget_password);
         email=findViewById(R.id.frgt_email);
         fbutton=findViewById(R.id.frgt_nxt_btn);
-
         fbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String s=email.getText().toString();
+
                 if (!s.matches(emailpattern)) email.setError("Enter correct e-mail");
                 else
                 {
