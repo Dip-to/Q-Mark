@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Qmark"
         tools:targetApi="31">
         <activity
+            android:name=".Change_password"
+            android:exported="false" />
+        <activity
+            android:name=".forget_password"
+            android:exported="false" />
+        <activity
             android:name=".Forget_password"
             android:exported="false" />
         <activity

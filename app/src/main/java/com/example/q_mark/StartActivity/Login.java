@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        password = findViewById(R.id.confirm_pass);
         login_button = findViewById(R.id.login_bttn);
         progressDialog = new ProgressDialog(this);
         final TextView signUp = findViewById(R.id.sign_up_click);

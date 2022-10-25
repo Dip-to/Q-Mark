@@ -110,7 +110,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/confirm_pass"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="21dp"
