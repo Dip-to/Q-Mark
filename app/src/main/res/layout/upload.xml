@@ -4,96 +4,136 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/uploadPage"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-20dp">
 
-    <TextView
-        android:id="@+id/nofiles_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="NO FILES FOUND"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="412dp"
-        android:layout_height="569dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/newFolderBtn"
-        android:layout_width="156dp"
-        android:layout_height="62dp"
-        android:layout_above="@+id/nofiles_textview"
-        android:layout_below="@+id/recycler_view"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="New Folder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addPdfBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_alignStart="@+id/newFolderBtn"
-        android:layout_alignTop="@+id/newFolderBtn"
-        android:layout_alignBottom="@+id/newFolderBtn"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
-        android:text="Add PDF"
-        app:layout_constraintEnd_toEndOf="@+id/addPhotoBtn"
-        app:layout_constraintStart_toStartOf="@+id/addPhotoBtn"
-        app:layout_constraintTop_toBottomOf="@+id/addPhotoBtn" />
-
-    <Button
-        android:id="@+id/addPhotoBtn"
-        android:layout_width="139dp"
-        android:layout_height="60dp"
-        android:layout_alignStart="@+id/addPdfBtn"
-        android:layout_alignTop="@+id/addPdfBtn"
-        android:layout_alignBottom="@+id/addPdfBtn"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="60dp"
-        android:text="Add Images"
-        app:layout_constraintBottom_toBottomOf="@+id/newFolderBtn"
-        app:layout_constraintStart_toEndOf="@+id/newFolderBtn"
-        app:layout_constraintTop_toTopOf="@+id/newFolderBtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
+        android:layout_width="195dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/follow_btn"
+        android:backgroundTint="#009688"
+        android:text="Choose..."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="216dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/upload_img" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload"
-        app:layout_constraintBottom_toBottomOf="@+id/addPdfBtn"
-        app:layout_constraintEnd_toStartOf="@+id/addPdfBtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/newFolderBtn"
-        app:layout_constraintTop_toTopOf="@+id/addPdfBtn"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="wrap_content"
-        android:layout_height="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="260dp"
+        android:text="PDF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPdfBtn" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="260dp"
+        android:text="Slide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="260dp"
+        android:text="others"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:layout_width="376dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="488dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Year"
+        android:textColor="#676363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="383dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="312dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="#676363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="383dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="368dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="University"
+        android:textColor="#676363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="378dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="428dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Course"
+        android:textColor="#676363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button3"
+        android:layout_width="195dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="620dp"
+        android:background="@drawable/follow_btn"
+        android:backgroundTint="#009688"
+        android:text="Upload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="378dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="544dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Subject"
+        android:textColor="#676363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

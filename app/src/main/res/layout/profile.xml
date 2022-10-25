@@ -8,22 +8,21 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="417dp"
-        android:layout_height="377dp"
+        android:layout_width="412dp"
+        android:layout_height="287dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ui_bg" />
+        app:srcCompat="@drawable/bg_5" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/proImg"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="147dp"
+        android:layout_height="130dp"
         android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/profile" />
 
     <TextView
@@ -53,8 +52,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="52dp"
         android:background="@drawable/white_background"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +67,8 @@
 
             <LinearLayout
                 android:id="@+id/following"
-                android:layout_width="115dp"
-                android:layout_height="119dp"
+                android:layout_width="144dp"
+                android:layout_height="133dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/top_button_background"
@@ -80,27 +77,34 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="174dp"
-                    android:layout_height="62dp"
+                    android:layout_width="169dp"
+                    android:layout_height="51dp"
                     android:layout_margin="10dp"
-                    app:srcCompat="@drawable/ic_2" />
+                    app:srcCompat="@drawable/follow" />
 
                 <TextView
                     android:id="@+id/textView38"
-                    android:layout_width="match_parent"
+                    android:layout_width="185dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:text="Following"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/following_count"
+                    android:layout_width="184dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TextView" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/frnds_btn"
-                android:layout_width="109dp"
-                android:layout_height="wrap_content"
+                android:layout_width="131dp"
+                android:layout_height="135dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/top_button_background"
@@ -109,21 +113,27 @@
 
                 <ImageView
                     android:id="@+id/imageView32"
-                    android:layout_width="161dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="162dp"
+                    android:layout_height="55dp"
                     android:layout_margin="10dp"
-                    app:srcCompat="@drawable/ic_3" />
+                    app:srcCompat="@drawable/following_final" />
 
                 <TextView
                     android:id="@+id/textView33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:text="Followers"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/follower_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="TextView" />
             </LinearLayout>
         </LinearLayout>
 
@@ -258,8 +268,8 @@
         android:id="@+id/chng_dp_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="204dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="148dp"
         android:clickable="true"
         app:backgroundTint="#16FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
