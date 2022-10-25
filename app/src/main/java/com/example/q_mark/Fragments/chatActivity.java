@@ -58,34 +58,40 @@ public class chatActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = ActivityChatScreenBinding.inflate(inflater,container,false);
         //View view = LayoutInflater.from(context).inflate(R.layout.user_sample,parent,false);
-
         setListener();
         loadReceiverDetails();
         listenMessages();
-        //init();
+        binding.chatScreenRv.setAdapter(chatAdapter);
+        database=FirebaseFirestore.getInstance();
+
+        // init();
         return binding.getRoot();
     }
-    //    public void init()
+//        public void init()
 //    {
 //        //preferenceManager= (PreferenceManager) PreferenceManager.getDefaultSharedPreferences(getActivity());
 //        chatMessages=new ArrayList<>();
-//        System.out.println(receiverUser.getPimage());
+//        //System.out.println(receiverUser.getPimage());
 //        chatAdapter=new ChatAdapter(chatMessages,receiverUser.getPimage(), FirebaseAuth.getInstance().getUid());
 //        binding.chatScreenRv.setAdapter(chatAdapter);
 //        database=FirebaseFirestore.getInstance();
 //    }
+
+
     private void sendMessage() {
         Map<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, FirebaseAuth.getInstance().getUid());
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.getUid());
         message.put(Constants.KEY_MESSAGE ,binding.inputMessage.getText().toString());
         message.put(Constants.KEY_TIMESTAMP, FieldValue.serverTimestamp());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message).addOnSuccessListener(documentReference -> System.out.println("hoise")).addOnFailureListener(new OnFailureListener() {
+        database.collection(Constants.KEY_COLLECTION_CHAT).add(message)
+        .addOnSuccessListener(documentReference -> System.out.println("hoise")).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 System.out.println("hoy ni");
             }
         });
+
         binding.inputMessage.setText(null);
 
     }
@@ -248,6 +254,7 @@ public class chatActivity extends Fragment {
                         //chatMessage.dateTime = SimpleDateFormat.getDateTimeInstance().format(new Date());
                         // chatMessage.dateObject= Calendar.getInstance().getTime();
                         chatMessages.add(chatMessage);
+                       // Collections.sort(chatMessages,(obj1,obj2)-> obj1.dateObject.compareTo(obj2.dateObject));
                     }catch (Exception e)
                     {
                         System.out.println("exception "+e.getMessage());
