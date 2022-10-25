@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/pchng"
         android:layout_width="212dp"
         android:layout_height="104dp"
         android:layout_marginStart="116dp"

@@ -154,7 +154,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/pchng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="7dp"

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.q_mark.R;
+import com.example.q_mark.forget_password;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     private String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private EditText password, email;
+    TextView fpass;
     ProgressDialog progressDialog;
 
     FirebaseAuth mAuth;
@@ -55,7 +57,7 @@ public class Login extends AppCompatActivity {
         email.setAnimation(top);
         password.setAnimation(top);
         login_button.setAnimation(bottom);
-
+        fpass=findViewById(R.id.forgot_pass);
         new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -73,6 +75,13 @@ public class Login extends AppCompatActivity {
 
                 performlogin();
 
+            }
+        });
+        fpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, forget_password.class);
+                startActivity(intent);
             }
         });
         showpass.setOnClickListener(new View.OnClickListener() {

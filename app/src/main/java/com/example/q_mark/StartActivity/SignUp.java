@@ -32,7 +32,7 @@ public class SignUp extends AppCompatActivity {
     private boolean pass_show2 = false;
 
     private String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private EditText name, email, mobile, pass1, pass2;
+    private EditText name, email, mobile, pass1, pass2,univ;
 
     private AppCompatButton signup_button;
     private TextView login;
@@ -56,6 +56,7 @@ public class SignUp extends AppCompatActivity {
         signup_button = findViewById(R.id.sup_button);
         login = findViewById(R.id.login_page_back);
         progressDialog = new ProgressDialog(this);
+        univ=findViewById(R.id.univ);
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
@@ -111,6 +112,7 @@ public class SignUp extends AppCompatActivity {
                 String s_pass1 = pass1.getText().toString();
                 String s_pass2 = pass2.getText().toString();
                 String s_name = name.getText().toString();
+                String u_name=univ.getText().toString();
 
 
                 if (s_name.isEmpty()) name.setError("Name field can't be empty");
@@ -152,6 +154,7 @@ public class SignUp extends AppCompatActivity {
                                                     intent.putExtra("name", s_name);
                                                     intent.putExtra("password", s_pass1);
                                                     intent.putExtra("otp", s);
+                                                    intent.putExtra("unv",u_name);
                                                     Toast.makeText(SignUp.this, "enter otp", Toast.LENGTH_SHORT).show();
                                                     progressDialog.dismiss();
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

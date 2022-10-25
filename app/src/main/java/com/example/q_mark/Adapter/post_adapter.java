@@ -77,7 +77,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
                 Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
                 holder.binding.usName.setText(user.getName());
-                holder.binding.puniv.setText("Udvaah");
+                holder.binding.puniv.setText(user.getUniversity());
             }
 
             @Override

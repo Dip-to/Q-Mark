@@ -1,7 +1,9 @@
 package com.example.q_mark.Model;
 
 public class User {
-    private String Name,Email,Pimage,Mobile,uid;
+
+
+    private String Name,Email,Pimage,Mobile,uid,University;
     private int followerCount,followingCount;
 
     public User(String name, String email, String pimage, String mobile) {
@@ -15,6 +17,13 @@ public class User {
 
     }
 
+    public String getUniversity() {
+        return University;
+    }
+
+    public void setUniversity(String university) {
+        University = university;
+    }
     public String getName() {
         return Name;
     }

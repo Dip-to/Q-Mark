@@ -47,7 +47,7 @@ public class Otp_verify extends AppCompatActivity {
     FirebaseAuth mAuth, eauth;
     FirebaseUser mUser;
     ProgressDialog progressDialog;
-    private String getEmail, getName, getMobile, getPassword;
+    private String getEmail, getName, getMobile, getPassword,univ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,8 @@ public class Otp_verify extends AppCompatActivity {
         getName = getIntent().getStringExtra("name");
         getPassword = getIntent().getStringExtra("password");
         verification_otp = getIntent().getStringExtra("otp");
+        univ=getIntent().getStringExtra("unv");
+
 
         //setting phoneat otp page
         mobile.setText(String.format("+88%s", getMobile));
@@ -166,6 +168,7 @@ public class Otp_verify extends AppCompatActivity {
             databaseReference.child("User").child(s).child("Email").setValue(getEmail);
             databaseReference.child("User").child(s).child("Mobile").setValue(getMobile);
             databaseReference.child("User").child(s).child("Pimage").setValue("###");
+            databaseReference.child("User").child(s).child("University").setValue(univ);
         }
         catch (Exception e)
         {
