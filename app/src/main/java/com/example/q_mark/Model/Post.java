@@ -1,18 +1,19 @@
 package com.example.q_mark.Model;
 
 public class Post {
-    private String postID,postImage,postedDate,postDescription,postedBy;
+    private String postID,postImage,postedDate,postDescription,postedBy,university;
     private long postedAt,postLike,commentCount;
 
     public Post() {
     }
 
-    public Post(String postID, String postImage, String postedDate, String postDescription, long postedAt) {
+    public Post(String postID, String postImage, String postedDate, String postDescription, long postedAt, String university) {
         this.postID = postID;
         this.postImage = postImage;
         this.postedDate = postedDate;
         this.postDescription = postDescription;
         this.postedAt = postedAt;
+        this.university= university;
     }
 
     public String getPostID() {
@@ -21,6 +22,14 @@ public class Post {
 
     public void setPostID(String postID) {
         this.postID = postID;
+    }
+
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String postID) {
+        this.university = university;
     }
 
     public String getPostImage() {

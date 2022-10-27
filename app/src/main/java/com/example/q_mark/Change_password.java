@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.q_mark.databinding.ActivityChangePasswordBinding;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Change_password extends AppCompatActivity {
     EditText p1,p2,p3;
     Button button;
+    ImageView back;
     private String s_pass1,s_pass2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,14 @@ public class Change_password extends AppCompatActivity {
         p2=findViewById(R.id.new_pass);
         p3=findViewById(R.id.confirm_pass);
         button=findViewById(R.id.update_btn);
+        back=findViewById(R.id.change_pass_back_btn);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="411dp"
         android:layout_height="277dp"
-        android:background="@drawable/mine"
+        android:background="@drawable/p_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,7 +148,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="Password:"
-                android:textColor="#5917e1"
+                android:textColor="#126A62"
                 android:textSize="18sp" />
 
             <TextView
@@ -184,7 +184,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="Mobile:"
-                android:textColor="#5917e1"
+                android:textColor="#126A62"
                 android:textSize="18sp" />
 
             <TextView
@@ -220,7 +220,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="Email:"
-                android:textColor="#5917e1"
+                android:textColor="#126A62"
                 android:textSize="18sp" />
 
             <TextView
@@ -245,11 +245,12 @@
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/browse"
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
+        android:backgroundTint="#126A62"
         android:gravity="center"
         android:text="Edit Profile"
         android:textColor="#ffffff"

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.q_mark.Fragments.Chat;
+import com.example.q_mark.Fragments.Search_contents;
 import com.example.q_mark.Fragments.notification;
 import com.example.q_mark.Fragments.Profile;
 import com.example.q_mark.Fragments.Settings;
@@ -74,6 +75,10 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Upload()).commit();
             navigationView.setCheckedItem(R.id.side_menu_upload);
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Search_contents()).commit();
+            navigationView.setCheckedItem(R.id.side_menu_search_content);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Settings()).commit();
@@ -142,6 +147,10 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.side_menu_upload:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Upload()).addToBackStack(null).commit();
+                break;
+            case R.id.side_menu_search_content:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Search_contents()).addToBackStack(null).commit();
                 break;
 
             case R.id.side_menu_logout:

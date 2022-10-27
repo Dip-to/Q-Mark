@@ -19,7 +19,11 @@
         <item
             android:id="@+id/side_menu_upload"
             android:icon="@drawable/ic_upload"
-            android:title="Upload" />
+            android:title="Upload Contents" />
+        <item
+            android:id="@+id/side_menu_search_content"
+            android:icon="@drawable/ic_search"
+            android:title="Search Contents" />
         <item
             android:id="@+id/side_menu_chat"
             android:icon="@drawable/ic_chat"
