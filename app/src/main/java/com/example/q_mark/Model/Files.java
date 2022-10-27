@@ -6,7 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Files {
-    private String name,university,course,id,year,subject,type,hint,path,uploaderid;
+    public String getFiletype() {
+        return filetype;
+    }
+
+    public void setFiletype(String filetype) {
+        this.filetype = filetype;
+    }
+
+    private String name,university,course,id,year,subject,type,hint,path,uploaderid,filetype;
 
     public Files() {
     }
@@ -104,6 +112,7 @@ public class Files {
         result.put("hint", hint);
         result.put("path", path);
         result.put("uploaderid", uploaderid);
+        result.put("filetype",filetype);
 
         return result;
     }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -92,7 +93,7 @@ public class Upload extends Fragment {
        binding.pdf.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               type="pdf";
+               type="question";
                binding.others.setChecked(false);
                binding.slide.setChecked(false);
            }
@@ -144,6 +145,7 @@ public class Upload extends Fragment {
                                 unv+"*"+binding.fsubject.getText().toString());
                 files.setUploaderid(FirebaseAuth.getInstance().getUid());
                 files.setUniversity(unv);
+
                 if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
                 {
                     files.setType(type);
@@ -187,5 +189,7 @@ public class Upload extends Fragment {
 
         return binding.getRoot();
     }
+
+
 
 }
