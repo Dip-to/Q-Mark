@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AutoCompleteTextView;
 
 import com.example.q_mark.Otp_verify;
 import com.example.q_mark.R;
@@ -32,6 +34,22 @@ public class SignUp extends AppCompatActivity {
     private boolean pass_show2 = false;
 
     private String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private final String[] nameOfUniversity = new String[]{"University of Dhaka","University of Rajshahi","University of Chittagong","Jahangirnagar University",
+            "Islamic University, Bangladesh","Khulna University","Jagannath University", "Comilla University","Jatiya Kabi Kazi Nazrul Islam University",
+            "Bangladesh University of Professionals","Begum Rokeya University","University of Barisal", "Rabindra University, Bangladesh","Sheikh Hasina University",
+            "Bangabandhu Sheikh Mujibur Rahman University","Bangabandhu Sheikh Mujib Medical University","Chittagong Medical University","Rajshahi Medical University",
+            "Sylhet Medical University","Sheikh Hasina Medical University","Shahjalal University of Science and Technology","Hajee Mohammad Danesh Science & Technology University",
+            "Mawlana Bhashani Science and Technology University", "Patuakhali Science and Technology University","Noakhali Science and Technology University","Jashore University of Science and Technology",
+            "Pabna University of Science and Technology","Bangabandhu Sheikh Mujibur Rahman Science and Technology University", "Rangamati Science and Technology University",
+            "Bangamata Sheikh Fojilatunnesa Mujib Science & Technology University","Chandpur Science and Technology University", "Sunamganj Science and Technology University",
+            "Bogura Science and Technology University","Lakshmipur Science and Technology University", "Chittagong Veterinary and Animal Sciences University","Bangladesh University of Textiles",
+            "Bangabandhu Sheikh Mujibur Rahman Maritime University", "Bangabandhu Sheikh Mujibur Rahman Digital University", "Bangabandhu Sheikh Mujibur Rahman Aviation and Aerospace University",
+            "Bangladesh Agricultural University","Bangabandhu Sheikh Mujibur Rahman Agricultural University","Sher-E-Bangla Agricultural University","Sylhet Agricultural University","Khulna Agricultural University",
+            "Habiganj Agricultural University","Kurigram Agricultural University","Bangladesh University of Engineering & Technology","Khulna University of Engineering & Technology","Chittagong University of Engineering & Technology",
+            "Rajshahi University of Engineering & Technology","Dhaka University of Engineering & Technology","Open University of Bangladesh","National University of Bangladesh","Islamic Arabic University","Islamic University of Technology",
+            "Asian University for Women","Military Institute of Science and Technology","International University of Business Agriculture and Technology","North South University","Independent University, Bangladesh","American International University-Bangladesh",
+            "Dhaka International University","International Islamic University, Chittagong","Asian University of Bangladesh","East West University","Gono Bishwabidyalay","People's University of Bangladesh"
+    };
     private EditText name, email, mobile, pass1, pass2,univ;
 
     private AppCompatButton signup_button;
@@ -47,6 +65,12 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_sign_up);
 
+        AutoCompleteTextView univname = findViewById(R.id.autouniv);
+        ArrayAdapter<String> adapter = new
+                ArrayAdapter<String>(this,
+                R.layout.list_items,R.id.text_view_list_item, nameOfUniversity);
+        univname.setAdapter(adapter);
+        univname.setAdapter(adapter);
         name = findViewById(R.id.sup_name);
         email = findViewById(R.id.sup_email);
         mobile = findViewById(R.id.sup_mobile);
@@ -56,7 +80,6 @@ public class SignUp extends AppCompatActivity {
         signup_button = findViewById(R.id.sup_button);
         login = findViewById(R.id.login_page_back);
         progressDialog = new ProgressDialog(this);
-        univ=findViewById(R.id.univ);
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
@@ -112,7 +135,7 @@ public class SignUp extends AppCompatActivity {
                 String s_pass1 = pass1.getText().toString();
                 String s_pass2 = pass2.getText().toString();
                 String s_name = name.getText().toString();
-                String u_name=univ.getText().toString();
+                String u_name=univname.getText().toString();
 
 
                 if (s_name.isEmpty()) name.setError("Name field can't be empty");
