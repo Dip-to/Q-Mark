@@ -2,6 +2,8 @@ package com.example.q_mark.Fragments;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import android.net.Uri;
@@ -155,13 +157,20 @@ public class Upload extends Fragment {
                                     @Override
                                     public void onSuccess(Uri urii) {
                                         files.setPath(urii.toString());
-                                        FirebaseDatabase.getInstance().getReference().child("Upload").child(unv)
-                                                .push().setValue(files).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+                                        String key=FirebaseDatabase.getInstance().getReference().child("Upload").push().getKey();
+                                        Map<String, Object> postValues = files.toMap();
+
+                                        Map<String, Object> childUpdates = new HashMap<>();
+                                        childUpdates.put("/Upload/" + key, postValues);
+                                        childUpdates.put("/Upload_unv/"+files.getUniversity()+"/"+key,postValues);
+                                        FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
                                     }
                                 });
                             }
