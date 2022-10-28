@@ -85,7 +85,7 @@ public class Upload extends Fragment {
         binding.slide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                type="slide";
+                type="Slide";
                 binding.others.setChecked(false);
                 binding.pdf.setChecked(false);
             }
@@ -93,7 +93,7 @@ public class Upload extends Fragment {
        binding.pdf.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               type="question";
+               type="Question";
                binding.others.setChecked(false);
                binding.slide.setChecked(false);
            }
@@ -101,7 +101,7 @@ public class Upload extends Fragment {
        binding.others.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               type="others";
+               type="Others";
                binding.pdf.setChecked(false);
                binding.slide.setChecked(false);
            }

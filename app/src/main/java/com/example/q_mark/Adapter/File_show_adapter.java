@@ -42,7 +42,8 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
         holder.binding.course.setText(Html.fromHtml("<b>"+"Cousrse: " +"</b >" +"     "+model.getCourse()));
         holder.binding.subjectt.setText(Html.fromHtml("<b>"+"Subject: " +"</b >" +"     "+model.getSubject()));
         holder.binding.year.setText(Html.fromHtml("<b>"+"Year: " +"</b >" +"     "+model.getYear()));
-        holder.binding.unv.setText(Html.fromHtml("<b>"+"University Name: " +"</b >" +"     "+model.getUniversity()));
+        holder.binding.unv.setText(Html.fromHtml("<b>"+"University: " +"</b >" +"     "+model.getUniversity()));
+        holder.binding.type.setText(Html.fromHtml("<b>"+"Type: " +"</b >" +"     "+model.getType()));
 
         String s=model.getType();
         Picasso.get().load(model.getPath()).placeholder(R.drawable.ic_pdf).into(holder.binding.img);

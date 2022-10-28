@@ -30,7 +30,7 @@ public class MIddlepage extends Fragment {
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("university", s);
-                bundle.putString("type","question");
+                bundle.putString("type","Question");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container,ff);
@@ -45,7 +45,7 @@ public class MIddlepage extends Fragment {
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("university", s);
-                bundle.putString("type","slide");
+                bundle.putString("type","Slide");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container,ff);
@@ -60,7 +60,7 @@ public class MIddlepage extends Fragment {
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("university", s);
-                bundle.putString("type","others");
+                bundle.putString("type","Others");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container,ff);
