@@ -60,4 +60,10 @@ public class Search_contents extends Fragment {
         fragmentTransaction.addToBackStack(null).commit();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        button_uni_content frag1=new button_uni_content();
+        loadFragment(frag1);
+    }
 }

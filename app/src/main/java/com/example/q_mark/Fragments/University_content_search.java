@@ -1,11 +1,9 @@
 package com.example.q_mark.Fragments;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,9 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Adapter.File_show_adapter;
-import com.example.q_mark.Adapter.University_list_adapter;
 import com.example.q_mark.Model.Files;
-import com.example.q_mark.R;
+import com.example.q_mark.databinding.SearchFragmentBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,34 +21,35 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class button_uni_content extends Fragment {
+public class University_content_search extends Fragment {
+    SearchFragmentBinding binding;
+    ArrayList<Files> list=new ArrayList<>();
 
-    ArrayList<String> list=new ArrayList<>();
-    RecyclerView rv;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.university_fragment,container,false);
-    }
+        binding=SearchFragmentBinding.inflate(inflater,container,false);
+        String type=getArguments().getString("type");
+        String university=getArguments().getString("university");
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
-        rv=getView().findViewById(R.id.RV);
-        University_list_adapter ff= new University_list_adapter(getContext(),list);
+        File_show_adapter ff= new File_show_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        rv.setLayoutManager(linearLayoutManager);
-        rv.setAdapter(ff);
-
-        FirebaseDatabase.getInstance().getReference().child("Upload_unv").orderByKey().addValueEventListener(new ValueEventListener() {
+        binding.RV.setLayoutManager(linearLayoutManager);
+        binding.RV.setAdapter(ff);
+        FirebaseDatabase.getInstance().getReference("Upload_unv").child(university).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                for (DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
-
-                    list.add((dataSnapshot.getKey()));
+                    Files files=dataSnapshot.getValue(Files.class);
+                    System.out.println(files.getType()+" "+type);
+                    if(files.getType().equals(type))
+                    {
+                        list.add(files);
+                    }
                 }
                 ff.notifyDataSetChanged();
             }
@@ -61,5 +59,9 @@ public class button_uni_content extends Fragment {
 
             }
         });
+
+
+
+        return binding.getRoot();
     }
 }
