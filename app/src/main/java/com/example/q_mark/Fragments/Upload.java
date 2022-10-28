@@ -142,7 +142,8 @@ public class Upload extends Fragment {
                 files.setYear(binding.fyear.getText().toString());
                 files.setSubject(binding.fsubject.getText().toString());
                 files.setHint(binding.fname.getText().toString()+"*"+binding.fcourse.getText().toString()+"*"+
-                                unv+"*"+binding.fsubject.getText().toString());
+                                binding.fsubject.getText().toString()+"*"+
+                                unv);
                 files.setUploaderid(FirebaseAuth.getInstance().getUid());
                 files.setUniversity(unv);
 
@@ -189,7 +190,4 @@ public class Upload extends Fragment {
 
         return binding.getRoot();
     }
-
-
-
 }

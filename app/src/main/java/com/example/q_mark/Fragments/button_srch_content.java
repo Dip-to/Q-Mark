@@ -24,15 +24,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class button_srch_content extends Fragment {
 
     ArrayList<Files> list=new ArrayList<>();
     RecyclerView rv;
     EditText srch;
+    File_show_adapter ff;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class button_srch_content extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rv=getView().findViewById(R.id.RV);
-        File_show_adapter ff= new File_show_adapter(getContext(),list);
+        ff= new File_show_adapter(getContext(),list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(ff);
@@ -91,5 +94,26 @@ public class button_srch_content extends Fragment {
     private void srch(String s) {
 
         //serach
+        Query query=FirebaseDatabase.getInstance().getReference("Upload").orderByChild("hint");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Files files = dataSnapshot.getValue(Files.class);
+                    if(files.getHint().toLowerCase().contains(s.toLowerCase()))
+                    {
+                        list.add(files);
+                    }
+                }
+                ff.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

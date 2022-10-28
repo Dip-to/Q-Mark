@@ -136,6 +136,7 @@ public class SignUp extends AppCompatActivity {
                 String s_pass2 = pass2.getText().toString();
                 String s_name = name.getText().toString();
                 String u_name=univname.getText().toString();
+                System.out.println(u_name);
 
 
                 if (s_name.isEmpty()) name.setError("Name field can't be empty");
