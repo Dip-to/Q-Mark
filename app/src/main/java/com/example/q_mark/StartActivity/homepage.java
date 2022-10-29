@@ -106,7 +106,8 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+           //super.onBackPressed();
+            drawer.openDrawer(GravityCompat.START);
         }
 
     }
