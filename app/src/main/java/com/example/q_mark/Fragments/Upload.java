@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import android.app.ProgressDialog;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -134,6 +135,7 @@ public class Upload extends Fragment {
                             }
                         });
         binding.upload.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Files files=new Files();
@@ -149,6 +151,14 @@ public class Upload extends Fragment {
 
                 if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
                 {
+                    ProgressDialog progressBar = new ProgressDialog(view.getContext());
+                    progressBar.setCancelable(true);
+                    progressBar.setMessage("File uploading ...");
+                    progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressBar.setProgress(0);
+                    progressBar.setMax(100);
+                    progressBar.show();
+
                     files.setType(type);
                     StorageReference reference=FirebaseStorage.getInstance().getReference().child("Upload/"+ UUID.randomUUID().toString());
                     reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -169,6 +179,8 @@ public class Upload extends Fragment {
                                         FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
+                                                //dismiss progressbar
+                                                progressBar.dismiss();
                                                 Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
                                             }
                                         });

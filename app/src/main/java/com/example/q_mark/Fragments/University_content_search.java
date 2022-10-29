@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class University_content_search extends Fragment {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.RV.setLayoutManager(linearLayoutManager);
         binding.RV.setAdapter(ff);
+
         FirebaseDatabase.getInstance().getReference("Upload_unv").child(university).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,9 +61,6 @@ public class University_content_search extends Fragment {
 
             }
         });
-
-
-
         return binding.getRoot();
     }
 }
