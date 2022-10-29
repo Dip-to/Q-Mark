@@ -50,7 +50,7 @@
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="275dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/material_on_surface_stroke"
             app:cardElevation="@dimen/_35sdp">
 
 
