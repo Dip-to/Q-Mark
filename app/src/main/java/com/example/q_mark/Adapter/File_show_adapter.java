@@ -33,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.viewHolder> {
 
@@ -129,20 +130,8 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
 
     public void download(Files model)
     {
-        storageReference = firebaseStorage.getReference();
-        ref = storageReference.child(model.getPath());
-        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                String url = uri.toString();
-                downloadFiles(context,model.getName(),"."+model.getFiletype(),DIRECTORY_DOWNLOADS,url);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
+        String ext = model.getFiletype().toLowerCase().substring(model.getFiletype().toLowerCase().lastIndexOf('/')+1);
+        downloadFiles(context,model.getName(),"."+ext,DIRECTORY_DOWNLOADS,model.getPath());
     }
     public void downloadFiles(Context context,String fileName, String fileExtension, String destinationDirectory, String url)
     {
