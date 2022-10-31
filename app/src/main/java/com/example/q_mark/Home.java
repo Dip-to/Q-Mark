@@ -1,23 +1,20 @@
 package com.example.q_mark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Adapter.post_adapter;
-import com.example.q_mark.Fragments.add_post;
-import com.example.q_mark.Fragments.me_following;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -93,14 +90,11 @@ public class Home extends Fragment {
         });
 
 
-
-
         addpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment addp=new add_post();
-                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,addp).commit();
+                Intent intent=new Intent(getActivity(),Add_post_activity.class);
+                startActivity(intent);
             }
         });
 

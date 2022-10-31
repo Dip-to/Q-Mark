@@ -42,8 +42,10 @@ public class Cropclass extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        System.out.println("chck11111");
         if(resultCode==RESULT_OK && requestCode==UCrop.REQUEST_CROP)
         {
+
             final Uri ruri=UCrop.getOutput(data);
             Intent in=new Intent();
             in.putExtra("result",ruri+"");
