@@ -1,6 +1,11 @@
 package com.example.q_mark.Adapter;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.text.Html;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -17,10 +22,14 @@ import com.example.q_mark.Model.Files;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.FileShowSampleBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,6 +39,10 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
     Context context;
     ArrayList<Files> list;
     Boolean op=false;
+
+    StorageReference storageReference;
+    FirebaseStorage firebaseStorage;
+    StorageReference ref;
 
     public File_show_adapter(Context context, ArrayList<Files> list) {
         this.context = context;
@@ -94,6 +107,52 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
                 }
             }
         });
+
+        holder.binding.downloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProgressDialog progressBar = new ProgressDialog(view.getContext());
+                progressBar.setCancelable(true);
+                progressBar.setMessage("File uploading ...");
+                progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressBar.setProgress(0);
+                progressBar.setMax(100);
+                progressBar.show();
+
+                download(model);
+
+                progressBar.dismiss();
+            }
+        });
+    }
+
+    public void download(Files model)
+    {
+        storageReference = firebaseStorage.getReference();
+        ref = storageReference.child(model.getPath());
+        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String url = uri.toString();
+                downloadFiles(context,model.getName(),"."+model.getDataType(),DIRECTORY_DOWNLOADS,url);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+    public void downloadFiles(Context context,String fileName, String fileExtension, String destinationDirectory, String url)
+    {
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context,destinationDirectory,fileName+fileExtension);
+
+        downloadManager.enqueue(request);
     }
 
     @Override

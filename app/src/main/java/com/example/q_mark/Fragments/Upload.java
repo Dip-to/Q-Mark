@@ -1,8 +1,10 @@
 package com.example.q_mark.Fragments;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -50,8 +52,10 @@ public class Upload extends Fragment {
     UploadBinding binding;
     ActivityResultLauncher<String> launcher;
     Uri uri;
+    URL url;
     private String unv,type;
 
+    String datatype;
 
 
 
@@ -139,15 +143,26 @@ public class Upload extends Fragment {
             @Override
             public void onClick(View view) {
                 Files files=new Files();
+
                 files.setName(binding.fname.getText().toString());
+                files.setUniversity(unv);
                 files.setCourse(binding.fcourse.getText().toString());
                 files.setYear(binding.fyear.getText().toString());
                 files.setSubject(binding.fsubject.getText().toString());
                 files.setHint(binding.fname.getText().toString()+"*"+binding.fcourse.getText().toString()+"*"+
                                 binding.fsubject.getText().toString()+"*"+
                                 unv);
+
+                datatype = uri.getPath();
+
+                System.out.println("the full path and name of this file in upload is : "+datatype);
+
+                datatype = datatype.toLowerCase().substring(datatype.toLowerCase().lastIndexOf('.')+1);
+
+
                 files.setUploaderid(FirebaseAuth.getInstance().getUid());
-                files.setUniversity(unv);
+
+                files.setDataType(datatype);
 
                 if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
                 {
@@ -166,6 +181,9 @@ public class Upload extends Fragment {
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             if(task.isSuccessful())
                             {
+
+                                // jhamela thik kor ekhaner; path ber kore de
+                                
                                 reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri urii) {
