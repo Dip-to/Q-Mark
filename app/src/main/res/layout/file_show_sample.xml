@@ -96,11 +96,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/pname" />
 
                 <Button
-                    android:id="@+id/dwnld"
+                    android:id="@+id/downloadBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Button"
+                    android:text="Download"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -173,17 +173,6 @@
                 app:layout_constraintTop_toTopOf="@+id/year"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/downloadBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="Download"
-                app:layout_constraintBottom_toTopOf="@+id/type"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.541"
-                app:layout_constraintStart_toEndOf="@+id/course"
-                app:layout_constraintTop_toTopOf="@+id/name_file" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

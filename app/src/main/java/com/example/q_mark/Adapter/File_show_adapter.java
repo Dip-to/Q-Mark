@@ -111,6 +111,7 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
         holder.binding.downloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ProgressDialog progressBar = new ProgressDialog(view.getContext());
                 progressBar.setCancelable(true);
                 progressBar.setMessage("File uploading ...");
@@ -134,7 +135,7 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
             @Override
             public void onSuccess(Uri uri) {
                 String url = uri.toString();
-                downloadFiles(context,model.getName(),"."+model.getDataType(),DIRECTORY_DOWNLOADS,url);
+                downloadFiles(context,model.getName(),"."+model.getFiletype(),DIRECTORY_DOWNLOADS,url);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

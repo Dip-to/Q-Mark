@@ -153,16 +153,13 @@ public class Upload extends Fragment {
                                 binding.fsubject.getText().toString()+"*"+
                                 unv);
 
-                datatype = uri.getPath();
 
-                System.out.println("the full path and name of this file in upload is : "+datatype);
 
-                datatype = datatype.toLowerCase().substring(datatype.toLowerCase().lastIndexOf('.')+1);
+
 
 
                 files.setUploaderid(FirebaseAuth.getInstance().getUid());
 
-                files.setDataType(datatype);
 
                 if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
                 {
@@ -176,43 +173,73 @@ public class Upload extends Fragment {
 
                     files.setType(type);
                     StorageReference reference=FirebaseStorage.getInstance().getReference().child("Upload/"+ UUID.randomUUID().toString());
-                    reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            if(task.isSuccessful())
-                            {
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri urii) {
 
-                                // jhamela thik kor ekhaner; path ber kore de
-                                
-                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri urii) {
-                                        files.setPath(urii.toString());
-                                        String key=FirebaseDatabase.getInstance().getReference().child("Upload").push().getKey();
-                                        Map<String, Object> postValues = files.toMap();
+                                    String ttt= taskSnapshot.getMetadata().getContentType();
+                                    ttt=ttt.toLowerCase().substring(ttt.toLowerCase().lastIndexOf(".")+1);
+                                    files.setFiletype(ttt);
+                                    files.setPath(urii.toString());
+                                    String key=FirebaseDatabase.getInstance().getReference().child("Upload").push().getKey();
+                                    Map<String, Object> postValues = files.toMap();
+                                    Map<String, Object> childUpdates = new HashMap<>();
+                                    childUpdates.put("/Upload/" + key, postValues);
+                                    childUpdates.put("/Upload_unv/"+files.getUniversity()+"/"+key,postValues);
+                                    FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            //dismiss progressbar
+                                            progressBar.dismiss();
+                                            Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
 
-                                        Map<String, Object> childUpdates = new HashMap<>();
-                                        childUpdates.put("/Upload/" + key, postValues);
-                                        childUpdates.put("/Upload_unv/"+files.getUniversity()+"/"+key,postValues);
-                                        FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                //dismiss progressbar
-                                                progressBar.dismiss();
-                                                Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-
-
-                                    }
-                                });
-                            }
-                            else
-                            {
-                                Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
-                            }
+                                }
+                            });
                         }
                     });
+
+//                    reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                            if(task.isSuccessful())
+//                            {
+//
+//                                // jhamela thik kor ekhaner; path ber kore de
+//
+//                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                    @Override
+//                                    public void onSuccess(Uri urii) {
+//                                        files.setPath(urii.toString());
+//                                        String key=FirebaseDatabase.getInstance().getReference().child("Upload").push().getKey();
+//                                        Map<String, Object> postValues = files.toMap();
+//
+//                                        Map<String, Object> childUpdates = new HashMap<>();
+//                                        childUpdates.put("/Upload/" + key, postValues);
+//                                        childUpdates.put("/Upload_unv/"+files.getUniversity()+"/"+key,postValues);
+//                                        FirebaseDatabase.getInstance().getReference().updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                            @Override
+//                                            public void onSuccess(Void unused) {
+//                                                //dismiss progressbar
+//                                                progressBar.dismiss();
+//                                                Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        });
+//
+//
+//                                    }
+//                                });
+//                            }
+//                            else
+//                            {
+//                                Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
                 }
 
             }

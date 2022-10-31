@@ -1,15 +1,18 @@
 package com.example.q_mark.Fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.q_mark.Cropclass;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
@@ -59,6 +63,8 @@ public class add_post extends Fragment {
         firebaseDatabase=FirebaseDatabase.getInstance();
         firebaseStorage=firebaseStorage.getInstance();
         dialog=new ProgressDialog(getContext());
+
+
     }
 
     @Override
@@ -137,9 +143,27 @@ public class add_post extends Fragment {
             public void onActivityResult(Uri result) {
                 if(result!=null)
                 {
-                    binding.imgvw.setImageURI(result);
-                    img=result;
-                    binding.imgvw.setVisibility(View.VISIBLE);
+                    Intent intent=new Intent(getActivity(), Cropclass.class);
+                    intent.putExtra("Data",result.toString());
+                    startActivity(intent);
+
+                    ActivityResultLauncher<Intent> activityResultLaunch = registerForActivityResult(
+                            new ActivityResultContracts.StartActivityForResult(),
+                            new ActivityResultCallback<ActivityResult>() {
+                                @Override
+                                public void onActivityResult(ActivityResult result) {
+                                    System.out.println(result.getResultCode()+"res code");
+                                    if (result.getResultCode() == -1) {
+                                        Intent data=result.getData();
+                                        Uri u=Uri.parse(data.getStringExtra("result"));
+                                        binding.imgvw.setImageURI(u);
+                                        img=u;
+                                        System.out.println("image here : "+img.toString());
+                                        binding.imgvw.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
+
                 }
             }
         });
@@ -182,4 +206,5 @@ public class add_post extends Fragment {
         return binding.getRoot();
 
     }
+
 }
