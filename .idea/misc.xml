@@ -43,12 +43,13 @@
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_change_password.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.33" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_comment.xml" value="0.33" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_file_download.xml" value="0.35643115942028986" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_forget_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_login.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_main.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_otp_verify.xml" value="0.302536231884058" />
-        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_search_contents.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_search_contents.xml" value="0.25" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_sign_up.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_welcom_page.xml" value="0.302536231884058" />
         <entry key="..\:/Users/Dipto/AndroidStudioProjects/Q-mark/app/src/main/res/layout/addfriend.xml" value="0.30434782608695654" />
@@ -113,10 +114,6 @@
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/user_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/menu/bottom_navigation_bar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/menu/drawer_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/search_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/university_fragment.xml" value="0.264" />
-        <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/unv_list_sample.xml" value="0.15353260869565216" />
-        <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/upload.xml" value="0.2" />
       </map>
     </option>
   </component>
