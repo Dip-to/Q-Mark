@@ -106,8 +106,9 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-           //super.onBackPressed();
-            drawer.openDrawer(GravityCompat.START);
+           super.onBackPressed();
+
+            //drawer.openDrawer(GravityCompat.START);
         }
 
     }
@@ -188,6 +189,9 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     selectedFragment).addToBackStack(null).commit();
+            drawer.closeDrawer(GravityCompat.START);
+
+
             return true;
 
 

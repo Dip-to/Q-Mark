@@ -38,6 +38,8 @@ public class MIddlepage extends Fragment {
                 transaction.commit();
             }
         });
+
+        binding.uniBackBtn.setOnClickListener(view -> getActivity().onBackPressed());
         binding.slides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
