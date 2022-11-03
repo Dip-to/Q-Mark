@@ -86,6 +86,8 @@ public class Search_contents extends Fragment {
             }
         });
 
+
+
     }
 
     public void loadFragment(Fragment fragment)
@@ -95,6 +97,8 @@ public class Search_contents extends Fragment {
         fragmentTransaction.replace(R.id.viewpager,fragment);
         fragmentTransaction.addToBackStack(null).commit();
     }
+
+
 
     @Override
     public void onStart() {

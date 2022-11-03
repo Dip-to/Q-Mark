@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.q_mark.Home;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.FragmentMiddlepageBinding;
 
@@ -39,7 +40,21 @@ public class MIddlepage extends Fragment {
             }
         });
 
-        binding.uniBackBtn.setOnClickListener(view -> getActivity().onBackPressed());
+
+//        getActivity().onBackPressed();
+        //super.onBackPressed();
+
+        binding.uniBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment ff=new Search_contents();
+                //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,ff);
+               transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         binding.slides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
