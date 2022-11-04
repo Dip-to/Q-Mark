@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -17,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.q_mark.ConnectionReceiver;
 import com.example.q_mark.R;
 import com.example.q_mark.forget_password;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +37,8 @@ public class Login extends AppCompatActivity {
     TextView fpass;
     ProgressDialog progressDialog;
 
+    BroadcastReceiver broadcastReceiver;
+
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     private AppCompatButton login_button;
@@ -44,6 +51,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         email = findViewById(R.id.email);
@@ -110,6 +118,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void performlogin() {
+        broadcastReceiver = new ConnectionReceiver();
+        registorNetworkBroadcast();
 
         String s_email = email.getText().toString();
         String s_pass = password.getText().toString();
@@ -150,5 +160,23 @@ public class Login extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    protected void registorNetworkBroadcast(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            registerReceiver(broadcastReceiver , new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
+    }
+    protected void unregistorNetwork(){
+        try {
+            unregisterReceiver(broadcastReceiver);
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+    }
+    protected void onDestroy() {
+
+        super.onDestroy();
+        unregistorNetwork();
     }
 }

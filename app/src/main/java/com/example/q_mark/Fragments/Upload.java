@@ -9,8 +9,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.ConnectionReceiver;
 import com.example.q_mark.Model.Files;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.UploadBinding;
@@ -57,7 +62,7 @@ public class Upload extends Fragment {
 
     String datatype;
 
-
+    BroadcastReceiver broadcastReceiver;
 
     //firebase objects
     FirebaseAuth mauth;
@@ -142,6 +147,10 @@ public class Upload extends Fragment {
 
             @Override
             public void onClick(View view) {
+
+                broadcastReceiver = new ConnectionReceiver();
+                registorNetworkBroadcast();
+
                 Files files=new Files();
 
                 files.setName(binding.fname.getText().toString());
@@ -246,5 +255,23 @@ public class Upload extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    protected void registorNetworkBroadcast(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+           getActivity().registerReceiver(broadcastReceiver , new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
+    }
+    protected void unregistorNetwork(){
+        try {
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+    }
+    public void onDestroy() {
+
+        super.onDestroy();
+        unregistorNetwork();
     }
 }

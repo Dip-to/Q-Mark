@@ -32,12 +32,12 @@ public class Profile_user extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user=snapshot.getValue(User.class);
                 binding.nameProfile.setText(user.getName());
-                binding.uniName.setText("udvash");
-                binding.email1.setText(user.getEmail());
-                binding.emailTex.setText(user.getEmail());
-                binding.phn.setText(user.getMobile());
-                binding.fllwrCnt.setText(String.valueOf(user.getFollowerCount()));
-                binding.followCnt.setText(String.valueOf(user.getFollowingCount()));
+//                binding.uniName.setText("udvash");
+//                binding.email1.setText(user.getEmail());
+//                binding.emailTex.setText(user.getEmail());
+//                binding.phn.setText(user.getMobile());
+//                binding.fllwrCnt.setText(String.valueOf(user.getFollowerCount()));
+//                binding.followCnt.setText(String.valueOf(user.getFollowingCount()));
                 Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(binding.proImg);
 
             }
