@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -22,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.q_mark.Change_password;
-import com.example.q_mark.Fragments.my_followers;
 import com.example.q_mark.R;
 import com.example.q_mark.fbase_userdata;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,7 +41,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Profile extends Fragment {
-    private TextView pro_name,email1,email2,mobile1,chngpass;
+    private TextView pro_name,email1,email2,mobile1,chngpass,flw_cnt,flwr_cnt;
     private ImageView pro_img;
     private Button brws;
     DatabaseReference databaseReference;
@@ -66,14 +64,16 @@ public class Profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         chngpass=getView().findViewById(R.id.pchng);
         pro_name=getView().findViewById(R.id.name_profile);
-        email1=getView().findViewById(R.id.email1);
+        email1=getView().findViewById(R.id.univ);
         email2=getView().findViewById(R.id.email2);
         mobile1=getView().findViewById(R.id.mobile);
         pro_img=getView().findViewById(R.id.proImg);
-        brws=getView().findViewById(R.id.browse);
+        //brws=getView().findViewById(R.id.browse);
         mfrnds=getView().findViewById(R.id.frnds_btn);
         following=getView().findViewById(R.id.following);
         chng_dp=getView().findViewById(R.id.chng_dp_btn);
+        flw_cnt=getView().findViewById(R.id.following_count);
+        flwr_cnt=getView().findViewById(R.id.follower_count);
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,18 +119,18 @@ public class Profile extends Fragment {
         fbase_userdata f=new fbase_userdata();
         ArrayList<String> pp= new ArrayList<String>();
 
-        brws.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launcher.launch("image/*");
-
-                if(img!=null)
-                {
-
-                    uploadimg();
-                }
-            }
-        });
+//        brws.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                launcher.launch("image/*");
+//
+//                if(img!=null)
+//                {
+//
+//                    uploadimg();
+//                }
+//            }
+//        });
         chng_dp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,11 +167,16 @@ public class Profile extends Fragment {
                     String email = String.valueOf(dataSnapshot.child("Email").getValue());
                     String mpbile = String.valueOf(dataSnapshot.child("Mobile").getValue());
                     String pimg = String.valueOf(dataSnapshot.child("Pimage").getValue());
+                    String univ= String.valueOf(dataSnapshot.child("University").getValue());
+                    String fol_cnt=String .valueOf(dataSnapshot.child("followingCount").getValue());
+                    String  folwr_cnt= String .valueOf( dataSnapshot.child("followerCount").getValue());
 
                     pro_name.setText(name);
-                    email1.setText(email);
+                    email1.setText(univ);
                     email2.setText(email);
                     mobile1.setText(mpbile);
+                    flw_cnt.setText(fol_cnt);
+                    flwr_cnt.setText(folwr_cnt);
                     //System.out.println(pimg);
                     if(!pimg.equals("###"))
                     {

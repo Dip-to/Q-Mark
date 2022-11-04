@@ -49,7 +49,7 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
         User user=list.get(position);
         Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
         holder.binding.usName.setText(user.getName());
-        holder.binding.puniv.setText("univerity of udvash");
+        holder.binding.puniv.setText(user.getUniversity());
         FirebaseDatabase.getInstance().getReference().child("User")
                 .child(user.getUid())
                 .child("followers")

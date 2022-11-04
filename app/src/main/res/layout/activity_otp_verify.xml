@@ -129,8 +129,8 @@
 
     <TextView
         android:id="@+id/otp_mobile"
-        android:layout_width="140dp"
-        android:layout_height="28dp"
+        android:layout_width="165dp"
+        android:layout_height="25dp"
         android:layout_marginTop="372dp"
         android:gravity="center"
         android:text="165165156"

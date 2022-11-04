@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="#2F9133"
+    android:background="#009688"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/logo_pic" />
 
     <TextView
-        android:id="@+id/email1"
+        android:id="@+id/univ"
         android:layout_width="248dp"
         android:layout_height="57dp"
         android:gravity="center"

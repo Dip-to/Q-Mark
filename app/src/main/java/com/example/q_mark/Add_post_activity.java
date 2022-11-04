@@ -84,7 +84,7 @@ public class Add_post_activity extends AppCompatActivity {
                     User user=snapshot.getValue(User.class);
                     Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(proImg);
                     usName.setText(user.getName());
-                    puniv.setText("univerity of udvash");
+                    puniv.setText(user.getUniversity());
                     Picasso.get().load(user.getPimage()).into(proImg);
                 }
             }

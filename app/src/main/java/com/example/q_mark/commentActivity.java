@@ -83,7 +83,7 @@ public class commentActivity extends AppCompatActivity {
                 User user=snapshot.getValue(User.class);
                 Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(binding.pImage);
                 binding.usName.setText(user.getName());
-                binding.puniv.setText("NSU");
+                binding.puniv.setText(user.getUniversity());
             }
 
             @Override
