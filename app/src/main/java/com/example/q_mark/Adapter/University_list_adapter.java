@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.Fragments.MIddlepage;
 import com.example.q_mark.Fragments.Profile_user;
+import com.example.q_mark.Fragments.Search_contents;
 import com.example.q_mark.Fragments.me_following;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
@@ -46,14 +47,16 @@ public class University_list_adapter extends RecyclerView.Adapter<University_lis
         holder.binding.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Search_contents.tabLayout.setVisibility(View.GONE);
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment ff=new MIddlepage();
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("university", s);
+                bundle.putString("jhamela","ja");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
+                transaction.replace(R.id.frag_framelayout,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

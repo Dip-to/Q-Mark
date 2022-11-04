@@ -18,6 +18,7 @@ import com.example.q_mark.databinding.FragmentMiddlepageBinding;
 
 public class MIddlepage extends Fragment {
 
+    public static int on=0;
     FragmentMiddlepageBinding binding;
     @Nullable
     @Override
@@ -34,7 +35,7 @@ public class MIddlepage extends Fragment {
                 bundle.putString("type","Question");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
+                transaction.replace(R.id.frag_framelayout,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -44,17 +45,7 @@ public class MIddlepage extends Fragment {
 //        getActivity().onBackPressed();
         //super.onBackPressed();
 
-        binding.uniBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment ff=new Search_contents();
-                //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
-               transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
+
         binding.slides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,10 +53,11 @@ public class MIddlepage extends Fragment {
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
                 bundle.putString("university", s);
+                on=1;
                 bundle.putString("type","Slide");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
+                transaction.replace(R.id.frag_framelayout,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -80,13 +72,12 @@ public class MIddlepage extends Fragment {
                 bundle.putString("type","Others");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
+                transaction.replace(R.id.frag_framelayout,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
-
         return binding.getRoot();
     }
+
 }

@@ -143,6 +143,7 @@ public class Login extends AppCompatActivity {
                         try {
                             throw task.getException();
                         } catch (Exception e) {
+                            System.out.println("wrong "+e.getMessage());
                             Toast.makeText(getApplicationContext(), "Wrong Credential. Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     }

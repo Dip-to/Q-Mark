@@ -3,6 +3,7 @@ package com.example.q_mark.StartActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.q_mark.Fragments.Chat;
+import com.example.q_mark.Fragments.MIddlepage;
 import com.example.q_mark.Fragments.Search_contents;
 import com.example.q_mark.Fragments.notification;
 import com.example.q_mark.Fragments.Profile;
@@ -105,9 +107,10 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-           super.onBackPressed();
+        }
+        else {
 
+           super.onBackPressed();
             //drawer.openDrawer(GravityCompat.START);
         }
 

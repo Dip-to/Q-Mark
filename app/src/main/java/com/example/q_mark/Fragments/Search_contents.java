@@ -29,9 +29,9 @@ import java.util.List;
 
 public class Search_contents extends Fragment {
 
-   private TabLayout tabLayout;
+   public static TabLayout tabLayout;
    private ViewPager2 viewPager;
-    private ViewPager2 viewPager2;
+   private ViewPager2 viewPager2;
 
     @Nullable
     @Override
@@ -42,7 +42,6 @@ public class Search_contents extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         tabLayout= getView().findViewById(R.id.table_layout);
         viewPager= getView().findViewById(R.id.viewpager);
 
@@ -65,10 +64,12 @@ public class Search_contents extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
 
             }
 
@@ -85,25 +86,5 @@ public class Search_contents extends Fragment {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-
-
-
-    }
-
-    public void loadFragment(Fragment fragment)
-    {
-        FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.viewpager,fragment);
-        fragmentTransaction.addToBackStack(null).commit();
-    }
-
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-//        button_uni_content frag1=new button_uni_content();
-//        loadFragment(frag1);
     }
 }

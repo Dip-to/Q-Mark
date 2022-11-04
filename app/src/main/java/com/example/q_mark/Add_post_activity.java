@@ -130,7 +130,7 @@ public class Add_post_activity extends AppCompatActivity {
 
                 if(img!=null)
                 {
-                    // do shit
+
 
 
                 }
@@ -144,28 +144,31 @@ public class Add_post_activity extends AppCompatActivity {
                 {
                     Intent intent=new Intent(Add_post_activity.this, Cropclass.class);
                     intent.putExtra("Data",result.toString());
-                    startActivity(intent);
+                    startActivityForResult(intent,100);
 
-//                    ActivityResultLauncher<Intent> activityResultLaunch = registerForActivityResult(
-//                            new ActivityResultContracts.StartActivityForResult(),
-//                            new ActivityResultCallback<ActivityResult>() {
-//                                @Override
-//                                public void onActivityResult(ActivityResult result) {
-//                                    System.out.println(result.getResultCode()+"res code");
-//                                    if (result.getResultCode() == -1) {
-//                                        Intent data=result.getData();
-//                                        Uri u=Uri.parse(data.getStringExtra("result"));
-//                                        imgvw.setImageURI(u);
-//                                        img=u;
-//                                        System.out.println("image here : "+img.toString());
-//                                        imgvw.setVisibility(View.VISIBLE);
-//                                    }
-//                                }
-//                            });
+
+
 
                 }
             }
         });
+
+       ActivityResultLauncher<Intent> activityResultLaunch = registerForActivityResult(
+               new ActivityResultContracts.StartActivityForResult(),
+               new ActivityResultCallback<ActivityResult>() {
+                   @Override
+                   public void onActivityResult(ActivityResult result) {
+                       System.out.println(result.getResultCode()+"res code");
+//
+                       Intent data=result.getData();
+                       Uri u=Uri.parse(data.getStringExtra("result"));
+                       imgvw.setImageURI(u);
+                       img=u;
+                       System.out.println("image here : "+img.toString());
+                       imgvw.setVisibility(View.VISIBLE);
+//
+                   }
+               });
        addpostBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -204,17 +207,33 @@ public class Add_post_activity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//            System.out.println(requestCode+"res code");
-//            String ss=data.getStringExtra("result");
-//            System.out.println(ss);
-//            Uri u=Uri.parse(ss);
-//            imgvw.setImageURI(u);
-//            img=u;
-//            System.out.println("image here : "+img.toString());
-//            imgvw.setVisibility(View.VISIBLE);
-//
-//    }
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+       super.onActivityResult(requestCode, resultCode, data);
+       System.out.println(resultCode+" "+requestCode);
+           if(resultCode==101 && requestCode==100)
+           {
+               System.out.println(requestCode+"res code");
+               System.out.println(data.getStringExtra("hello"));
+               String result=data.getStringExtra("result");
+               System.out.println(result);
+               Uri uri=data.getData();
+               if(result!=null)
+               {
+                   uri=Uri.parse(result);
+                   imgvw.setImageURI(uri);
+                   img=uri;
+               }
+           }
+
+
+//           String ss= (String) data.getExtras().get("result");
+//           System.out.println(data.getStringExtra("hello"));
+//           Uri u=Uri.parse(ss);
+//           imgvw.setImageURI(u);
+//           img=u;
+//           System.out.println("image here : "+img.toString());
+//           imgvw.setVisibility(View.VISIBLE);
+
+   }
 }

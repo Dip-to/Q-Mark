@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class VPadapter extends FragmentStateAdapter {
 
     private final ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
-    private final ArrayList<String> fragmentTitle= new ArrayList<>();
 
     public VPadapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -44,11 +43,6 @@ public class VPadapter extends FragmentStateAdapter {
         return 2;
     }
 
-    public void addFragment(Fragment fragment,String title)
-    {
-        fragmentArrayList.add(fragment);
-        fragmentTitle.add(title);
-    }
 
     @Override
     public int getItemViewType(int position) {

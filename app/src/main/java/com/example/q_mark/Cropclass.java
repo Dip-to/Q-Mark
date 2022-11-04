@@ -33,7 +33,7 @@ public class Cropclass extends AppCompatActivity {
         Intent intent=getIntent();
         if(intent.getExtras()!=null)
         {
-            result=intent.getStringExtra("Data");
+            result =intent.getStringExtra("Data");
             fileuri=Uri.parse(result);
         }
     }
@@ -49,8 +49,9 @@ public class Cropclass extends AppCompatActivity {
             final Uri ruri=UCrop.getOutput(data);
             Intent in=new Intent();
             in.putExtra("result",ruri+"");
+            in.putExtra("hello","gese");
             System.out.println("image going here : "+ruri.toString());
-            setResult(-1,in);
+            setResult(101,in);
             finish();
 
         }
