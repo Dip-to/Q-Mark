@@ -1,20 +1,26 @@
 package com.example.q_mark.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Layer;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.q_mark.Fragments.Profile_user;
 import com.example.q_mark.Model.Comment;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.CommentSampleBinding;
 import com.example.q_mark.databinding.PostSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Comment_adapter extends RecyclerView.Adapter<Comment_adapter.viewHolder> {
+public class Comment_adapter extends RecyclerView.Adapter<Comment_adapter.viewHolder> implements SendToUserProfile {
     Context context;
     ArrayList<Comment> list;
 
@@ -56,6 +62,18 @@ public class Comment_adapter extends RecyclerView.Adapter<Comment_adapter.viewHo
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        holder.binding.pImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,comment.getCommentedBy());
+            }
+        });
+        holder.binding.pname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,comment.getCommentedBy());
             }
         });
     }

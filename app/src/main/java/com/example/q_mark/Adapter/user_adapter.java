@@ -16,6 +16,7 @@ import com.example.q_mark.Model.Notification;
 import com.example.q_mark.R;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.databinding.UserSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +28,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> {
+public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> implements SendToUserProfile {
     Context context;
     ArrayList<User> list;
 
@@ -49,6 +50,18 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
         User user=list.get(position);
         Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.proImg);
         holder.binding.usName.setText(user.getName());
+        holder.binding.usName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,user.getUid());
+            }
+        });
+        holder.binding.proImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,user.getUid());
+            }
+        });
         holder.binding.puniv.setText(user.getUniversity());
         FirebaseDatabase.getInstance().getReference().child("User")
                 .child(user.getUid())

@@ -24,6 +24,7 @@ import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.commentActivity;
 import com.example.q_mark.databinding.PostSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +36,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> {
+public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> implements SendToUserProfile {
 
     ArrayList<Post> list;
     Context context;
@@ -178,16 +179,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
         holder.binding.proImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment ff=new Profile_user();
-                //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putString("id", model.getPostedBy());
-                ff.setArguments(bundle);
-                FragmentTransaction transaction=activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,ff);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                sendToProfile(view,model.getPostedBy());
             }
         });
 

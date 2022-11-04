@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.Search;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SearchUsersAdapter extends RecyclerView.Adapter<SearchUsersAdapter.ViewHolder> {
+public class SearchUsersAdapter extends RecyclerView.Adapter<SearchUsersAdapter.ViewHolder> implements SendToUserProfile {
     private Context mcontext;
     private List<User> muser;
     String TAG = "SearchUserAdapter";
@@ -54,6 +55,18 @@ public class SearchUsersAdapter extends RecyclerView.Adapter<SearchUsersAdapter.
                 Intent intent = new Intent(mcontext , Search.class);
                 intent.putExtra("SearchedUserid",users.getUid());
                 mcontext.startActivity(intent);
+            }
+        });
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,users.getUid());
+            }
+        });
+        holder.profileimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,users.getUid());
             }
         });
     }

@@ -13,11 +13,12 @@ import com.example.q_mark.Model.Follower;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.MyFriendSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class follower_adapter extends RecyclerView.Adapter<follower_adapter.viewHolder> {
+public class follower_adapter extends RecyclerView.Adapter<follower_adapter.viewHolder> implements SendToUserProfile{
     Context context;
     ArrayList<User> list;
 
@@ -42,10 +43,21 @@ public class follower_adapter extends RecyclerView.Adapter<follower_adapter.view
 
         User model=list.get(position);
 
-        System.out.println(model.getName()+"haha");
         Picasso.get().load(model.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.pImage);
         holder.binding.pname.setText(model.getName());
-        holder.binding.pUniv.setText("univerity of udvash");
+        holder.binding.pUniv.setText(model.getUniversity());
+        holder.binding.pImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,model.getUid());
+            }
+        });
+        holder.binding.pname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,model.getUid());
+            }
+        });
     }
 
     @Override

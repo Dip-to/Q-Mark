@@ -99,14 +99,12 @@
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_chat_screen.xml" value="0.2" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_comment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_homepage.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_otp_verify.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_search_contents.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/activity_sign_up.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/chat.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/comment_sample.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/contact_us.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/file_show_sample.xml" value="0.22644927536231885" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/fragment_add_post.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/fragment_middlepage.xml" value="0.25" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/friends.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/home.xml" value="0.22826086956521738" />
@@ -116,17 +114,21 @@
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/me_following.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/my_friends.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/nav_header.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/post_sample.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/profile.xml" value="0.25" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/search.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/university_fragment.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/unv_list_sample.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/upload.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/user_profile.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/layout/user_search_items.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/menu/bottom_navigation_bar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Tech Land/AndroidStudioProjects/Q-mark/app/src/main/res/menu/drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/alert_dialog_layout.xml" value="0.16" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/comment_sample.xml" value="0.25" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/file_show_sample.xml" value="0.25" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/my_friend_sample.xml" value="0.25" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/user_profile.xml" value="0.24230072463768115" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/user_sample.xml" value="0.25" />
+        <entry key="..\:/Users/olina/Downloads/Q-mark/app/src/main/res/layout/user_search_items.xml" value="0.25" />
         <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/search_fragment.xml" value="0.25" />
         <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/university_fragment.xml" value="0.264" />
         <entry key="..\:/Users/olina/OneDrive/Documents/Project/Q-mark/app/src/main/res/layout/unv_list_sample.xml" value="0.15353260869565216" />

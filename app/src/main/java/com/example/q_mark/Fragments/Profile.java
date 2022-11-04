@@ -65,7 +65,7 @@ public class Profile extends Fragment {
         chngpass=getView().findViewById(R.id.pchng);
         pro_name=getView().findViewById(R.id.name_profile);
         email1=getView().findViewById(R.id.univ);
-        email2=getView().findViewById(R.id.email2);
+        email2=getView().findViewById(R.id.profileEmail);
         mobile1=getView().findViewById(R.id.mobile);
         pro_img=getView().findViewById(R.id.proImg);
         //brws=getView().findViewById(R.id.browse);

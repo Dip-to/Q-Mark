@@ -12,6 +12,7 @@ import com.example.q_mark.Listener.UserListener;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.ItemContainerChatUserBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
