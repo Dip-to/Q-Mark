@@ -35,7 +35,7 @@ public class MIddlepage extends Fragment {
                 bundle.putString("type","Question");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frag_framelayout,ff);
+                transaction.replace(R.id.fragment_container,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -57,7 +57,7 @@ public class MIddlepage extends Fragment {
                 bundle.putString("type","Slide");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frag_framelayout,ff);
+                transaction.replace(R.id.fragment_container,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -72,7 +72,18 @@ public class MIddlepage extends Fragment {
                 bundle.putString("type","Others");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frag_framelayout,ff);
+                transaction.replace(R.id.fragment_container,ff);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        binding.uniBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment ff=new Home();
+                //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

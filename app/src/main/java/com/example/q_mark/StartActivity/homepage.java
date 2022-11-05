@@ -110,7 +110,15 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else {
 
-           super.onBackPressed();
+            try {
+                super.onBackPressed();
+            } catch (Exception e)
+            {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+            }
             //drawer.openDrawer(GravityCompat.START);
         }
 

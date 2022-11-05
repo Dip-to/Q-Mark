@@ -83,6 +83,7 @@ public class button_srch_content extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 srch(charSequence.toString().toLowerCase());
+                System.out.println(charSequence.toString().toLowerCase());
             }
 
             @Override
@@ -205,11 +206,6 @@ public class button_srch_content extends Fragment {
                         list.add(files);
                     }
                 }
-//                tmplist = getSortedArrayList(tmplist,s);
-//                for(Files fl : tmplist)
-//                {
-//                    list.add(fl);
-//                }
                 ff.notifyDataSetChanged();
             }
 

@@ -47,7 +47,7 @@ public class University_list_adapter extends RecyclerView.Adapter<University_lis
         holder.binding.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Search_contents.tabLayout.setVisibility(View.GONE);
+                //Search_contents.tabLayout.setVisibility(View.GONE);
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment ff=new MIddlepage();
                 //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
@@ -56,7 +56,7 @@ public class University_list_adapter extends RecyclerView.Adapter<University_lis
                 bundle.putString("jhamela","ja");
                 ff.setArguments(bundle);
                 FragmentTransaction transaction=activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frag_framelayout,ff);
+                transaction.replace(R.id.fragment_container,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
