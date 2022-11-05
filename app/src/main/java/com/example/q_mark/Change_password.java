@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,10 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Change_password extends AppCompatActivity {
+
+    private boolean pass_show1 = false;
+    private boolean pass_show2 = false;
+
     EditText p1,p2,p3;
     Button button;
     ImageView back;
@@ -32,6 +37,42 @@ public class Change_password extends AppCompatActivity {
         p3=findViewById(R.id.confirm_pass);
         button=findViewById(R.id.update_btn);
         back=findViewById(R.id.change_pass_back_btn);
+
+        final ImageView pass1_show_img = findViewById(R.id.show_sup_pass3);
+        final ImageView pass2_show_img = findViewById(R.id.show_sup_pass);
+
+        pass1_show_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pass_show1 == true) {
+                    pass_show1 = false;
+                    p2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    pass1_show_img.setImageResource(R.drawable.eye_show);
+                } else {
+                    pass_show1 = true;
+                    p2.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    pass1_show_img.setImageResource(R.drawable.eye_hide);
+                }
+                p2.setSelection(p2.length());
+            }
+        });
+
+        pass2_show_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pass_show2 == true) {
+                    pass_show2 = false;
+                    p3.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    pass2_show_img.setImageResource(R.drawable.eye_show);
+                } else {
+                    pass_show2 = true;
+                    p3.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    pass2_show_img.setImageResource(R.drawable.eye_hide);
+                }
+                p3.setSelection(p3.length());
+
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +102,7 @@ public class Change_password extends AppCompatActivity {
                                         if(task.isSuccessful())
                                         {
                                             Toast.makeText(getApplicationContext(), "Password changed successfully.", Toast.LENGTH_SHORT).show();
+                                            finish();
                                         }
                                         else
                                         {
