@@ -102,6 +102,8 @@ public class Profile_user extends Fragment {
                             binding.fb.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.followdbutton));
                             binding.fb.setText("Following");
                             binding.fb.setTextColor(getContext().getResources().getColor(R.color.gray));
+                           // binding.fb.setBackgroundColor(getContext().getResources().getColor(R.color.white));
+
                         }
                     }
 
@@ -133,6 +135,7 @@ public class Profile_user extends Fragment {
                                         binding.fb.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.followdbutton));
                                         binding.fb.setText("Following");
                                         binding.fb.setTextColor(getContext().getResources().getColor(R.color.gray));
+                                       // binding.fb.setBackgroundColor(getContext().getResources().getColor(R.color.white));
 
                                         Toast.makeText(getContext(), "You followed " +suser.getName(), Toast.LENGTH_SHORT).show();
 

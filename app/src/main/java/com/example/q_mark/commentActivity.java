@@ -62,7 +62,7 @@ public class commentActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Post post=snapshot.getValue(Post.class);
                 Glide.with(getApplicationContext()).load(post.getPostImage()).fitCenter()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_profile).into(binding.postimage);
+                        .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_default_dp).into(binding.postimage);
                 String pp=post.getPostDescription();
                 if (pp.equals("")) {
                    binding.posttextdesc.setVisibility(View.GONE);

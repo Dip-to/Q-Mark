@@ -60,7 +60,7 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
         //post image
         Glide.with(context).load(model.getPostImage()).fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_profile).into(holder.binding.story);
+                .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_default_dp).into(holder.binding.story);
         //Picasso.get().load(model.getPostImage()).placeholder(R.drawable.ic_profile).into(holder.binding.story);
         holder.binding.like.setText(model.getPostLike() + "");
         holder.binding.comment.setText(model.getCommentCount()+"");
