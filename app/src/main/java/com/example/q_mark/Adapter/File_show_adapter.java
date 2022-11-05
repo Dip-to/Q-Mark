@@ -75,6 +75,19 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
         String s=model.getType();
         Picasso.get().load(model.getPath()).placeholder(R.drawable.ic_pdf).into(holder.binding.img);
 
+        holder.binding.pImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view , model.getUploaderid());
+            }
+        });
+        holder.binding.pname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,model.getUploaderid());
+            }
+        });
+
         FirebaseDatabase.getInstance().getReference().child("User").child(model.getUploaderid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

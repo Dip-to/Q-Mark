@@ -79,4 +79,5 @@ public class User {
     public void setFollowingCount(int followingCount) {
         this.followingCount = followingCount;
     }
+
 }
