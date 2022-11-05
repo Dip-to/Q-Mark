@@ -174,7 +174,7 @@ public class Profile_user extends Fragment {
                                 FirebaseDatabase.getInstance().getReference().child("User").child(suser.getUid()).child("followerCount").setValue(suser.getFollowerCount()-1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        binding.fb.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.followdbutton));
+                                        binding.fb.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.follow_btn));
                                         binding.fb.setText("Follow");
                                         binding.fb.setTextColor(getContext().getResources().getColor(R.color.black));
 
