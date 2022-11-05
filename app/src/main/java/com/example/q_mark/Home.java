@@ -2,6 +2,7 @@ package com.example.q_mark;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Home extends Fragment{
 
@@ -34,6 +37,7 @@ public class Home extends Fragment{
     RecyclerView rv;
     ArrayList<Post> dashboardList;
     ImageView img;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +73,25 @@ public class Home extends Fragment{
         rv.addItemDecoration(new DividerItemDecoration(rv.getContext(),DividerItemDecoration.VERTICAL));
         rv.setNestedScrollingEnabled(false);
         rv.setAdapter(pp);
+        Map<String, Boolean> map=new HashMap<String,Boolean>();
+        map.put(FirebaseAuth.getInstance().getUid(),true);
+        FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getUid()).child("following").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    User user=dataSnapshot.getValue(User.class);
+                    user.setUid(dataSnapshot.getKey());
+                    System.out.println("uid"+user.getUid());
+                    map.put(user.getUid(),true);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         FirebaseDatabase.getInstance().getReference().child("posts").orderByChild("postedAt").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -78,8 +100,12 @@ public class Home extends Fragment{
                 {
                     Post post=dataSnapshot.getValue(Post.class);
                     post.setPostID(dataSnapshot.getKey());
-                    dashboardList.add(post);
+                    if(map.containsKey(post.getPostedBy())==true)
+                    {
+                        dashboardList.add(post);
+                    }
                 }
+
                 Collections.reverse(dashboardList);
                 pp.notifyDataSetChanged();
             }

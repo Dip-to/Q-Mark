@@ -166,7 +166,6 @@ public class user_adapter extends RecyclerView.Adapter<user_adapter.viewholder> 
                 }
             });
         }
-
         else if(holder.binding.button.getText().toString().toLowerCase().equals("following"))
         {
             holder.binding.button.setOnClickListener(new View.OnClickListener() {
