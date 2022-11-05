@@ -1,8 +1,8 @@
 # Q-mark
-1.1 About the App
+* About the app :
 Q-Mark is a social media network based on education that allows students to
 find slides, questions, and other resources on a variety of topics.
-1.2 Motivation
+
 The goal is to provide students with sufficient benefits from a platform. Our
 main motivation is to make things easier for students by offering everything they need
 for their studies under one platform. It’s less time consuming and offers more options
