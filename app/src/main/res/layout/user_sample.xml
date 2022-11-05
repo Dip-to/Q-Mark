@@ -33,24 +33,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/puniv"
+                android:id="@+id/usName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/proImg"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/usName"
+                android:id="@+id/puniv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="TextView"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/proImg"
-                app:layout_constraintTop_toBottomOf="@+id/puniv" />
+                app:layout_constraintTop_toBottomOf="@+id/usName" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/proImg"
