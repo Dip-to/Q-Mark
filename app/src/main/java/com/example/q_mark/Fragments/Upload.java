@@ -170,7 +170,9 @@ public class Upload extends Fragment {
                 files.setUploaderid(FirebaseAuth.getInstance().getUid());
 
 
-                if(binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked())
+                if((binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked()) && binding.fname.getText()!=null &&
+                        binding.fname.getText().length()!=0 && binding.fcourse.getText()!=null && binding.fcourse.getText().length()!=0 &&
+                        binding.fyear.getText()!=null && binding.fyear.getText().length()!=0 && binding.fsubject.getText()!=null && binding.fsubject.getText().length()!=0)
                 {
                     ProgressDialog progressBar = new ProgressDialog(view.getContext());
                     progressBar.setCancelable(true);
@@ -249,6 +251,9 @@ public class Upload extends Fragment {
 //                            }
 //                        }
 //                    });
+                }
+                else{
+                    Toast.makeText(getContext(), "Please fill up all fields", Toast.LENGTH_SHORT).show();
                 }
 
             }
