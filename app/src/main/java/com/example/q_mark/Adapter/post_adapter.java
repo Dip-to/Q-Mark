@@ -164,6 +164,17 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
 
                     }
                 });
+        holder.binding.story.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, commentActivity.class);
+                intent.putExtra("postid",model.getPostID());
+                intent.putExtra("postedby",model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                ((Activity) context).overridePendingTransition(R.anim.goup,R.anim.godown);
+            }
+        });
         holder.binding.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

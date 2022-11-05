@@ -20,6 +20,7 @@ import com.example.q_mark.commentActivity;
 import com.example.q_mark.databinding.CommentSampleBinding;
 import com.example.q_mark.databinding.NotificationBinding;
 import com.example.q_mark.databinding.NotificationSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class notification_adapter extends RecyclerView.Adapter<notification_adapter.viewHolder> {
+public class notification_adapter extends RecyclerView.Adapter<notification_adapter.viewHolder> implements SendToUserProfile {
 
     Context context;
     ArrayList<Notification>list;
@@ -92,6 +93,10 @@ public class notification_adapter extends RecyclerView.Adapter<notification_adap
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                     ((Activity) context).overridePendingTransition(R.anim.goup,R.anim.godown);
+                }
+                else
+                {
+                    sendToProfile(view , model.getNotificationBy());
                 }
             }
         });

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.q_mark.Adapter.Comment_adapter;
 import com.example.q_mark.Model.Comment;
 import com.example.q_mark.Model.Notification;
@@ -59,7 +61,8 @@ public class commentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Post post=snapshot.getValue(Post.class);
-                Picasso.get().load(post.getPostImage()).placeholder(R.drawable.ic_profile).into(binding.postimage);
+                Glide.with(getApplicationContext()).load(post.getPostImage()).fitCenter()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.ic_profile).into(binding.postimage);
                 String pp=post.getPostDescription();
                 if (pp.equals("")) {
                    binding.posttextdesc.setVisibility(View.GONE);
