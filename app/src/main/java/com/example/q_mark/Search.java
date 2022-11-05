@@ -54,7 +54,6 @@ public class Search extends Fragment {
                     list.clear();
                     for(DataSnapshot dataSnapshot: snapshot.getChildren())
                     {
-
                         User user=dataSnapshot.getValue(User.class);
                         user.setUid(dataSnapshot.getKey());
                         System.out.println(dataSnapshot.getKey());
@@ -70,6 +69,51 @@ public class Search extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        binding.searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                firebaseDatabase.getReference().child("User").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(binding.searchbar.getText().toString().equals(""))
+                        {
+                            list.clear();
+                            for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                            {
+                                User user=dataSnapshot.getValue(User.class);
+                                if(!charSequence.toString().toLowerCase().contains(user.getName().toLowerCase())) {
+                                    continue;
+                                }
+                                user.setUid(dataSnapshot.getKey());
+                                System.out.println(dataSnapshot.getKey());
+                                if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid()))
+                                {
+                                    list.add(user);
+                                }
+                            }
+                            us.notifyDataSetChanged();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
 
             }
         });
