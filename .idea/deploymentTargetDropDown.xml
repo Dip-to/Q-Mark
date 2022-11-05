@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Dipto\.android\avd\Pixel_5_2.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="adb-4pfmwoofkzcug6d6-QP6MDn._adb-tls-connect._tcp" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-11-05T15:08:17.077758200Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-11-05T15:14:00.818805500Z" />
   </component>
 </project>

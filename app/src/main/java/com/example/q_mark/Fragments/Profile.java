@@ -1,5 +1,6 @@
 package com.example.q_mark.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class Profile extends Fragment {
     Uri img;
     private String s;
     private FloatingActionButton chng_dp;
+    ProgressDialog progressDialog;
 
     ActivityResultLauncher<String> launcher;
     @Nullable
@@ -62,6 +64,7 @@ public class Profile extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progressDialog = new ProgressDialog(getContext());
         chngpass=getView().findViewById(R.id.pchng);
         pro_name=getView().findViewById(R.id.name_profile);
         email1=getView().findViewById(R.id.univ);
@@ -139,7 +142,6 @@ public class Profile extends Fragment {
                 if(img!=null)
                 {
 
-                    uploadimg();
                 }
             }
         });
@@ -151,6 +153,31 @@ public class Profile extends Fragment {
                 {
                     pro_img.setImageURI(result);
                     img=result;
+                    progressDialog.setMessage("Uploading");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+                    StorageReference reference=FirebaseStorage.getInstance().getReference().child("Profile_image/"+ UUID.randomUUID().toString());
+                    reference.putFile(img).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            if(task.isSuccessful())
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(getActivity(),"Image Uploaded",Toast.LENGTH_SHORT).show();
+                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        databaseReference.child(s).child("Pimage").setValue(uri.toString());
+                                    }
+                                });
+                                //databaseReference.child("User").child(s).child("Pimage").setValue("###");
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -192,36 +219,6 @@ public class Profile extends Fragment {
                             System.out.println("hello "+e );
                         }
                     }
-
-
-
-                }
-            }
-        });
-
-
-    }
-
-
-    private void uploadimg() {
-        StorageReference reference=FirebaseStorage.getInstance().getReference().child("Profile_image/"+ UUID.randomUUID().toString());
-        reference.putFile(img).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(getActivity(),"Image Uploaded",Toast.LENGTH_SHORT).show();
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            databaseReference.child(s).child("Pimage").setValue(uri.toString());
-                        }
-                    });
-                    //databaseReference.child("User").child(s).child("Pimage").setValue("###");
-                }
-                else
-                {
-                    Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });

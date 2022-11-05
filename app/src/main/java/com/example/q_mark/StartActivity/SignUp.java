@@ -83,9 +83,6 @@ public class SignUp extends AppCompatActivity {
         final ImageView pass1_show_img = findViewById(R.id.show_sup_pass);
         final ImageView pass2_show_img = findViewById(R.id.show_sup_pass2);
 
-        email.setText("@gmail.com");
-        mobile.setText("01521582090");
-        name.setText("dsnalkdnaskl");
         mAuth = FirebaseAuth.getInstance();
         //mUser=mAuth.getCurrentUser();
 
