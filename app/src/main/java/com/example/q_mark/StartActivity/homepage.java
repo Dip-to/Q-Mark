@@ -28,6 +28,7 @@ import com.example.q_mark.Home;
 import com.example.q_mark.R;
 import com.example.q_mark.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     FirebaseUser mUser;
+    BottomNavigationView bottom_nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_homepage);
 
 
-        BottomNavigationView bottom_nav=findViewById(R.id.bottom_navigation);
+       bottom_nav=findViewById(R.id.bottom_navigation);
         bottom_nav.setOnItemSelectedListener(nav_listener);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -118,6 +120,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+
             }
             //drawer.openDrawer(GravityCompat.START);
         }

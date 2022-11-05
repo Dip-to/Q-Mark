@@ -183,6 +183,13 @@ public class post_adapter extends RecyclerView.Adapter<post_adapter.viewholder> 
             }
         });
 
+        holder.binding.usName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendToProfile(view,model.getPostedBy());
+            }
+        });
+
     }
 
     @Override

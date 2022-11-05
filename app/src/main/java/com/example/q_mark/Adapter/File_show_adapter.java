@@ -22,6 +22,7 @@ import com.example.q_mark.Model.Files;
 import com.example.q_mark.Model.User;
 import com.example.q_mark.R;
 import com.example.q_mark.databinding.FileShowSampleBinding;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +36,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.viewHolder> {
+public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.viewHolder> implements SendToUserProfile {
 
     Context context;
     ArrayList<Files> list;
@@ -83,15 +84,21 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
                 Picasso.get().load(user.getPimage()).placeholder(R.drawable.ic_profile).into(holder.binding.pImage);
             }
 
+
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
+
+
         holder.binding.updown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(holder.binding.cl2.getVisibility()==view.GONE)
                 {
                     TransitionManager.beginDelayedTransition(holder.binding.cv,new AutoTransition());

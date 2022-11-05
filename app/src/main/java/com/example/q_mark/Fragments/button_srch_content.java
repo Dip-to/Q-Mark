@@ -21,6 +21,7 @@ import com.example.q_mark.Adapter.notification_adapter;
 import com.example.q_mark.Model.Files;
 import com.example.q_mark.Model.Notification;
 import com.example.q_mark.R;
+import com.example.q_mark.databinding.SearchFragmentBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +37,7 @@ import java.util.Locale;
 import java.util.PriorityQueue;
 
 public class button_srch_content extends Fragment {
-
+     SearchFragmentBinding binding;
     ArrayList<Files> list=new ArrayList<>();
     RecyclerView rv;
     EditText srch;
@@ -91,7 +92,6 @@ public class button_srch_content extends Fragment {
 
             }
         });
-
 
 
 

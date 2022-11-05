@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -194,6 +196,12 @@ public class Add_post_activity extends AppCompatActivity {
                                     public void onSuccess(Void unused) {
                                         dialog.dismiss();
                                         Toast.makeText(Add_post_activity.this, "Posted Successfully", Toast.LENGTH_SHORT).show();
+                                        Fragment ff=new Home();
+                                        //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                                        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                                        transaction.replace(R.id.fragment_container,ff);
+                                        transaction.addToBackStack(null);
+                                        transaction.commit();
                                     }
                                 });
                             }

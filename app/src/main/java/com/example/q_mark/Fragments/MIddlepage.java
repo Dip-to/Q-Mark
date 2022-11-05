@@ -42,8 +42,9 @@ public class MIddlepage extends Fragment {
         });
 
 
-//        getActivity().onBackPressed();
-        //super.onBackPressed();
+
+
+
 
 
         binding.slides.setOnClickListener(new View.OnClickListener() {

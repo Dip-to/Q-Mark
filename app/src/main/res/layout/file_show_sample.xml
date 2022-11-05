@@ -95,11 +95,13 @@
                     app:layout_constraintStart_toStartOf="@+id/pname"
                     app:layout_constraintTop_toBottomOf="@+id/pname" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/downloadBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:background="@drawable/follow_btn"
+                    android:backgroundTint="@color/teal_700"
                     android:text="Download"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

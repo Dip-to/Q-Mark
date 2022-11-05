@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.q_mark.Adapter.post_adapter;
 import com.example.q_mark.Model.Post;
 import com.example.q_mark.Model.User;
+import com.example.q_mark.utilities.SendToUserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +28,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Home extends Fragment {
+public class Home extends Fragment{
 
     ImageView addpost;
     RecyclerView rv;
@@ -89,7 +90,6 @@ public class Home extends Fragment {
             }
         });
 
-
         addpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +97,7 @@ public class Home extends Fragment {
                 startActivity(intent);
             }
         });
+
 
     }
 }

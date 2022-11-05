@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.q_mark.Fragments.MIddlepage;
 import com.example.q_mark.Fragments.Profile_user;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 public class University_list_adapter extends RecyclerView.Adapter<University_list_adapter.viewholder> {
     Context context;
     ArrayList<String> list;
-
+    ViewPager2 v;
     public University_list_adapter(Context context, ArrayList<String> list) {
         this.context = context;
         this.list = list;
@@ -44,6 +45,7 @@ public class University_list_adapter extends RecyclerView.Adapter<University_lis
         String s=list.get(position);
         holder.binding.nm.setText(s);
 
+
         holder.binding.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +61,7 @@ public class University_list_adapter extends RecyclerView.Adapter<University_lis
                 transaction.replace(R.id.fragment_container,ff);
                 transaction.addToBackStack(null);
                 transaction.commit();
+
             }
         });
     }
