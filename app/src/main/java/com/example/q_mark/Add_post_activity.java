@@ -105,11 +105,11 @@ public class Add_post_activity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String description=posttext.getText().toString();
-                if(!description.isEmpty())
+                if(!description.isEmpty() || img!=null)
                 {
                    addpostBtn.setBackgroundDrawable(ContextCompat.getDrawable(getApplication(),R.drawable.follow_btn));
                    addpostBtn.setTextColor(getApplication().getResources().getColor(R.color.white));
-                    addpostBtn.setEnabled(true);
+                   addpostBtn.setEnabled(true);
                 }
                 else
                 {
@@ -196,12 +196,13 @@ public class Add_post_activity extends AppCompatActivity {
                                     public void onSuccess(Void unused) {
                                         dialog.dismiss();
                                         Toast.makeText(Add_post_activity.this, "Posted Successfully", Toast.LENGTH_SHORT).show();
-                                        Fragment ff=new Home();
-                                        //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                                        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                                        transaction.replace(R.id.fragment_container,ff);
-                                        transaction.addToBackStack(null);
-                                        transaction.commit();
+//                                        Fragment ff=new Home();
+//                                        //FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+//                                        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+//                                        transaction.replace(R.id.fragment_container,ff);
+//                                        transaction.addToBackStack(null);
+//                                        transaction.commit();
+                                        finish();
                                     }
                                 });
                             }
