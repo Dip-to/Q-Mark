@@ -162,7 +162,7 @@
                 android:layout_weight="1"
                 android:text="Change"
                 android:textAlignment="viewEnd"
-                android:textColor="#5b5b5b"
+                android:textColor="#0B78CF"
                 android:textSize="18sp" />
         </LinearLayout>
 

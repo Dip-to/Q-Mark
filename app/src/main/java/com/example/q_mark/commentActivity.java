@@ -70,8 +70,7 @@ public class commentActivity extends AppCompatActivity {
                     binding.posttextdesc.setText(post.getPostDescription());
                     binding.posttextdesc.setVisibility(View.VISIBLE);
                 }
-                binding.like.setText(post.getPostLike()+"");
-                binding.comment.setText(post.getCommentCount()+"");
+
             }
 
             @Override
