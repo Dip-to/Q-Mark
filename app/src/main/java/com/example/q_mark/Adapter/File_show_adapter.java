@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -163,6 +164,7 @@ public class File_show_adapter extends RecyclerView.Adapter<File_show_adapter.vi
         request.setDestinationInExternalFilesDir(context,destinationDirectory,fileName+fileExtension);
 
         downloadManager.enqueue(request);
+        Toast.makeText(context,"Download Started",Toast.LENGTH_SHORT).show();
     }
 
     @Override

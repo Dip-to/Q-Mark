@@ -28,11 +28,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.q_mark.ConnectionReceiver;
+import com.example.q_mark.Home;
 import com.example.q_mark.Model.Files;
 import com.example.q_mark.Model.User;
+import com.example.q_mark.R;
 import com.example.q_mark.databinding.UploadBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -172,7 +175,8 @@ public class Upload extends Fragment {
 
                 if((binding.slide.isChecked() || binding.pdf.isChecked() || binding.others.isChecked()) && binding.fname.getText()!=null &&
                         binding.fname.getText().length()!=0 && binding.fcourse.getText()!=null && binding.fcourse.getText().length()!=0 &&
-                        binding.fyear.getText()!=null && binding.fyear.getText().length()!=0 && binding.fsubject.getText()!=null && binding.fsubject.getText().length()!=0)
+                        binding.fyear.getText()!=null && binding.fyear.getText().length()!=0 && binding.fsubject.getText()!=null && binding.fsubject.getText().length()!=0
+                        && uri!=null)
                 {
                     ProgressDialog progressBar = new ProgressDialog(view.getContext());
                     progressBar.setCancelable(true);
@@ -206,6 +210,13 @@ public class Upload extends Fragment {
                                             //dismiss progressbar
                                             progressBar.dismiss();
                                             Toast.makeText(getActivity(), "File uploaded successfully.", Toast.LENGTH_SHORT).show();
+                                            Fragment frnd_fragment=new Home();
+                                            FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+                                            transaction.replace(R.id.fragment_container,frnd_fragment);
+                                            transaction.addToBackStack(null);
+                                            transaction.commit();
+
+
                                         }
                                     });
 

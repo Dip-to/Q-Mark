@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class notification extends Fragment {
 
@@ -47,7 +48,7 @@ public class notification extends Fragment {
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(ff);
 
-        FirebaseDatabase.getInstance().getReference().child("notification").child(FirebaseAuth.getInstance().getUid())
+        FirebaseDatabase.getInstance().getReference().child("notification").child(FirebaseAuth.getInstance().getUid()).orderByChild("notificationAt")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,6 +60,7 @@ public class notification extends Fragment {
                             System.out.println(notification.getNotificationId());
                             list.add(notification);
                         }
+                        Collections.reverse(list);
                         ff.notifyDataSetChanged();
                     }
 
