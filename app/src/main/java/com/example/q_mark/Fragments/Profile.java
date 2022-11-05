@@ -197,6 +197,14 @@ public class Profile extends Fragment {
                     String univ= String.valueOf(dataSnapshot.child("University").getValue());
                     String fol_cnt=String .valueOf(dataSnapshot.child("followingCount").getValue());
                     String  folwr_cnt= String .valueOf( dataSnapshot.child("followerCount").getValue());
+                    if(folwr_cnt==null)
+                    {
+                        folwr_cnt = "0";
+                    }
+                    if(fol_cnt==null)
+                    {
+                        fol_cnt = "0";
+                    }
 
                     pro_name.setText(name);
                     email1.setText(univ);
